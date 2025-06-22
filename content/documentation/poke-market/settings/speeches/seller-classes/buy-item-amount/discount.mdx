@@ -1,0 +1,19 @@
+## BuyItemAmountDiscount
+
+The BuyItemAmountDiscount is what the NPC will say when choosing how many of an Item you want to buy. But only when there's a discount variable added to the store and the Discount is higher than 0%.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `BuyItemAmountDiscount` looks like this:
+<br/>
+```ruby
+BuyItemAmountDiscount: [
+  "There's a discount on {1}, they're {2} instead of {3}. How many would you like?"
+]
+```
+- \{1\} = contains the Item's plural name (for ex. "Poké Balls")
+
+- \{2\} = the Item's price with discount. (for ex. "$180")
+
+- \{3\} = the item's original price (for ex. "$200")
+<ImageWithCaption src="/images/documentation/poke-market/BuyItemAmountDiscount.png" caption="BuyItemAmountDiscount"/>

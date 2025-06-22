@@ -1,0 +1,27 @@
+<header>
+  # BuyOutOfStock
+  <br/>
+  How to use and define BuyOutOfStock speeches.
+
+  ---
+</header>
+
+The BuyOutOfStock is what the NPC will say when an Item is out of stock for the chosen period (refresh time) and when you try to buy more of this Item.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time and Day.
+<br/>
+Defining `BuyOutOfStock` looks like this:
+<br/>
+```ruby
+BuyOutOfStock: [
+  "We're really sorry, this item is currently out of stock. Come back {2}!", 
+  "We're sorry but we don't have any {1} left. Come back {2}!", 
+  "Come back {2} when we have more {1}."
+]
+```
+- \{1\} = selected Item (plural) (for ex. "Potions").
+
+- \{2\} = time left until the Item get restocked.
+<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 1.png" caption="BuyOutOfStock 1"/>
+<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 2.png" caption="BuyOutOfStock 2"/>
+<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 3.png" caption="BuyOutOfStock 3"/>

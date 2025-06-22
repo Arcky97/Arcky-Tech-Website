@@ -1,0 +1,51 @@
+## IntroText + Day
+<br/>
+It is possible to define an IntroText depending on the current Day in the game and similar to the Default IntroText, you can include more than 1 speech if you want to.
+<br/>
+- `IntroTextMonday`
+- `IntroTextTuesday`
+- `IntroTextWednesday`
+- `IntroTextThursday`
+- `IntroTextFriday`
+- `IntroTextSaturday`
+- `IntroTextSunday`
+- `IntroTextWeek`
+- `IntroTextWeekend`
+<br/>
+Week can be used as a combination for Monday, Tuesday, Wednesday, Thursday and Friday.
+<br/>
+Weekend can be used as a combination for Saturday and Sunday.
+<br/>
+Defining `IntroTextWeekend` looks like this:
+<br/>
+```ruby
+IntroTextWeekend: [
+  "Hello, it's weekend so we'll be closing soon, what do you want?"
+]
+```
+
+For example you can make the NPC sound rude in the weekend.
+<br/>
+This will be used by the script when it's either Saturday or Sunday in the game:
+<ImageWithCaption src="/images/documentation/poke-market/IntroTextWeekend.png" caption="IntroTextWeekend" align="center"/>
+We can do the similar for Monday, defining `IntroTextMonday` looks like this:
+<br/>
+```ruby
+IntroTextMonday: [
+  "Happy Monday - no discounts though - what can I do for you?"
+]
+```
+
+This will be used by the script when it's Monday in the game:
+<ImageWithCaption src="/images/documentation/poke-market/IntroTextMonday.png" caption="IntroTextMonday" align="center"/>
+The script first checks what day it is in game.
+<br/>
+But when you didn't provide an IntroText + Day (for example Monday), the fall-back will look like this:
+<br/>
+Here's a break down of what I mentioned above:
+- Day of week - If not then week or weekend - If not then Time of Day (same as with IntroText + Time) and so on.
+<br/>
+Let's simplify this with an example, let' say it's Money and Evening:
+IntroTextMoney - IntroTextWeek - IntroTextEvening - IntroTextDay - IntroText
+<br/>
+There are a few checks between the first and second one but I'll come to this in [IntroText + Time + Day](/documentation/poke-market/settings/speeches/seller-classes/intro-text#time-day).

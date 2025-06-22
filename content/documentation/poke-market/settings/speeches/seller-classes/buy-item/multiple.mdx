@@ -1,0 +1,19 @@
+## BuyItemMult
+
+The BuyItemMult is what the NPC will say when you buy 2 or more of an Item.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `BuyItemMult` looks like this:
+<br/>
+```ruby
+BuyItemMult: [
+  "So you want {1} {2}?\nThey'll be ${3}. All right?"
+]
+```
+- \{1\} = chosen amount of an Item (for ex. 2)
+
+- \{2\} = chosen Item's name (plural) (for ex. "Great Balls).
+
+- \{3\} = total price of the amount of chosen Item (for ex. "$1200").
+<ImageWithCaption src="/images/documentation/poke-market/BuyItemMult.png" caption="BuyItemMult"/>

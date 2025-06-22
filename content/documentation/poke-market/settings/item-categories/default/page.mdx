@@ -1,0 +1,38 @@
+<header>
+  # Default Item Categories
+  <br/>
+  What are the Default Item Categories.
+  
+  ---
+</header>
+<ImageWithCaption src="/images/documentation/poke-market/Item Categories.png" caption="Item Categories" align="center"/>
+This feature will split up the items in their respective category following the bag pocket names, they'll be ordered by alphabet. It is possible to set up custom categories as well, for example, evolution stones.
+<br/>
+As seen in the screenshot above, the category name and page number are on the top of the item list. You can edit the names of these Default Item Categories in the `000_PokeMart_Settings_and_Setup.rb` file.
+<br/>
+```ruby
+CategoryNames = [
+  "Items",
+  "Medicines",
+  "Poké Balls",
+  "TMs & HMs",
+  "Berries",
+  "Mail",
+  "Battle Items",
+  "Key Items"
+]
+```
+
+<Callout type="hint">If you plan on translating your game then it might be a good idea to edit each category name in the format of `_INTL("Items")` as otherwise this won't be extracted for translation.</Callout>
+
+Or you can use the following line instead:
+<br/>
+```ruby
+CategoryNames = PokemonBag.pocket_names.map { |pocket| pocket.to_s }
+```
+
+This will automatically create an array out of the pocket_names attribute in the PokemonBag Class.
+<br/>
+When you would translate or add any pockets later on, they'll automatically added and used by the script to put items in their respective pocket/category.
+<br/>
+Don't worry if this method is a bit out of your league of understanding, you can do it the other way that I first mentioned instead. :D

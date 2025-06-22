@@ -1,0 +1,22 @@
+<header>
+  # Item Categories
+  <br/>
+  How to enable Item Categories.
+
+  ---
+</header>
+All you need to do to enable Item Categories is adding `useCat: true` after the list of items in the method.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION,
+    :FULLRESTORE, :REVIVE,
+    :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL,
+    :FULLHEAL,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :ESCAPEROPE
+  ], useCat: true)
+end
+```

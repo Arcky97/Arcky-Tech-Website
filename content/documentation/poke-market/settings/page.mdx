@@ -1,0 +1,119 @@
+<header>
+  # Settings and Setup file
+  <br/>
+  The different customization options the plugin has to offer
+  
+  ---
+</header>
+
+## Settings 
+- [Item Categories](/documentation/poke-market/settings/item-categories)
+- [Badges for Items](/documentation/poke-market/settings/badges-items)
+- [Discounts](/documentation/poke-market/settings/discounts)
+- [Bonus Items](/documentation/poke-market/settings/bonus-items)
+- [Item Limits](/documentation/poke-market/settings/item-limits)
+- [Item Purchase Counter](/documentation/poke-market/settings/item-purchase-counter)
+- [Seller Classes](/documentation/poke-market/settings/speeches/seller-classes)
+- [Shelf Classes](/documentation/poke-market/settings/speeches/shelf-classes)
+---
+
+## Setup 
+<br/>
+Since v1.4.0 giving each setting you want to use for a Mart of Shelf Event has changed a bit and it should be a lot easier now as the order you give the settings don't even matter anymore. (Except for the item list which should **always come first**.)
+<br/>
+I'll explain the different possibilities of arguments you may give or not give to the mart event.
+<br/>
+Using the example from [Setting up a Mart Event](/documentation/poke-market/setup/mart-event).
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ])
+end
+```
+
+Each individual argument is explained in it's respective Setting Page in this guide.
+
+---
+The first command we can add is `speech: "string"` that let us use a [Seller Class](/documentation/poke-market/settings/speeches/seller-classes).
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller")
+end
+```
+
+The NPC will now use the speeches setup in ProSeller, again this is explained on the [Seller Class](/documentation/poke-market/settings/speeches/seller-classes) page.
+
+---
+The second command we can add is `useCat: Boolean` which is either `true` or `false` and let us either enable or disable the [Item Categories](/documentation/poke-market/settings/item-categories).
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true)
+end
+```
+
+---
+The third command we can add is `discount: Number` which refers to a Game Variable ID. This is explained on the [Discounts](/documentation/poke-market/settings/discounts) page.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true, discount: 26)
+end
+```
+
+---
+The fourth command we can add is `currency: "string` to set the Currency the mart event should use. The current possible values are: `"money"`, `"gold"`, `"coins"`, `"battle points"` and `"bp"` (with of course **money and gold** being the same as well as **battle points and bp**).
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: "coins")
+end
+```
+
+---
+The fifth command we add is `cantSell: Boolean` to disable Selling (set it to `true`). This is disabled (`false`) by default.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: "money", cantSell: true)
+end
+```
+
+<Callout type="hint">The only settings that can't be used for a Shelf Event are `useCat` and `cantSell`. All the other settings are exactly the same as well as how to apply them.</Callout>

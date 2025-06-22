@@ -1,0 +1,29 @@
+<header>
+  # BP and Coin Prizes (new v1.4.1)
+  <br/>
+  ---
+</header>
+## PBS File
+The plugin now supports the `BPPrices` parameter for an iteme in the PBS file. For example, you can add a `BPPrice` and `CoinPrice` for Pokeballs.
+<br/>
+```plaintext
+[POKEBALL]
+Name = Poké Ball 
+NamePlural = Poké Balls 
+Pocket = 3
+Price = 200
+BPPrice = 50
+CoinPrice = 35
+BattleUse = OnFoe
+Flags = Pokeball
+Description = A device for catching wild Pokémon.
+It is thrown like a ball at the target. It is designed as a capsule system.
+```
+<Callout type="hint">If the Currency has been set to `"BP"` (or `"Battle Points"`) for a store, it'll use the `BPPrice` (there's no fallback so make sure all items have a `BPPrice` defined or the Default price is 1 BP)
+Same goed for when the Currency has been set to `"Coins"` for a store, it'll use the `CoinPrice` (default is aflso 1 Coin if not set for an item.)</Callout>
+
+You can also specifiy a `SellBPPrice` and/or `SellCoinPrice`. Default is, like with the normal Price, `BPPrice / 2` (for Battle Points) and `CoinPrice / 2` (for coins). You might not need it but it's there just in case.
+
+<ImageWithCaption src="/images/documentation/poke-market/BpAndCoinParametersPBS.png" caption="In Game PBS Editor"/>
+
+You can also change these new parameters in the PBS editor in the debug mode.

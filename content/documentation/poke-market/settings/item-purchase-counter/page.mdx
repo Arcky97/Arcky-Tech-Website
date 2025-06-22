@@ -1,0 +1,25 @@
+<header>
+  # Item Purchase Counter (new v1.5.0)
+  <br/>
+  How to use the Item Purchase Counter Setting.
+
+  ---
+</header>
+The Item Purchase Counter is a new setting (since v1.5.0) that allows you to track how many of a specified item or items a player has bought over time, from any mart event.
+<br/>
+```ruby
+ItemPurchaseCounter = {
+  101 => [:POKEBALL, :GREATBALL, :ULTRABALL],
+  102 => [:POTION, :SUPERPOTION, :HYPERPOTION]
+}
+```
+
+- `101` = The Variable ID you want to use to save the amount of purchased items to.
+  - array of items 
+    - `:POKEBALL` = The Item's ID of a first item to track.
+    - `:GREATBALL` = The Item's ID of a second item to track.
+    - `:ULTRABALL` = The Item's ID of a third item to track.
+
+<Callout type="hint">You can add as many items as you want in an array to save to a variable. A same Item may be included in multiple arrays.</Callout>
+
+If this becomes a widely used feature, I can include an extra option to add a series of Items more easily and faster like "TMs" (would add an array of all TMs in your game) or "Balls" (would add an array of all Ball Items in your game).

@@ -1,0 +1,49 @@
+<header>
+  # Badges for Items
+  <br/>
+  How to Limit an Item to a certain amount of Badges.
+
+  ---
+</header>
+By default in Essentials you would need to setup a list of items for each badge amount that you want to change the items available for the Mart Event.
+<ImageWithCaption src="/images/documentation/poke-market/Default Mart Event for Badges.png" caption="Default Mart Event for Badges" align="left"/>
+This plugin provides a handy Setting that handles this for you.
+<br/>
+```ruby
+BadgesForItems = {
+  1 => [:GREATBALL, :SUPERPOTION, :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :REPEL, :ESCAPEROPE],
+  3 => [:HYPERPOTION, :SUPERREPEL, :REVIVE],
+  5 => [:ULTRABALL, :FULLHEAL, :MAXREPEL],
+  7 => [:MAXPOTION],
+  8 => [:FULLRESTORE]
+}
+```
+
+In other words, you add the badge amount and assign an array of items that will be available when you have at least this amount of badges. This Setting is similar at how you setup the HM's usage in the Overworld for each badge. But the difference here is that you can do this by a specific badge (by ID) or the amount.
+<br/>
+Any Items that are not mentioned in `BadgesForItems` Setting will be buyable from the start.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION,
+    :FULLRESTORE, :REVIVE,
+    :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL,
+    :FULLHEAL,
+    :REPEL, :SUPERREPEL, :MAXREPEL
+  ], useCat: true)
+end
+```
+
+So if we made this method and added this at the bottom of the `000_PokeMarket_Settings_and_Setup.rb` file, we only need to add a script command in the event saying `pbSomeMart`.
+<ImageWithCaption src="/images/documentation/poke-market/Shorter Mart Event for Badges.png" caption="Shorter Mart Event for Badges" align="left"/>
+Result in Game when we have 0 Badges:
+<ImageWithCaption src="/images/documentation/poke-market/0 Badges Item Category 1.png" caption="No Badges Item Category 1" align="left"/>
+<ImageWithCaption src="/images/documentation/poke-market/0 Badges Item Category 2.png" caption="No Badges Item Category 2" align="left"/>
+Result in Game when we have 1 Badge:
+<ImageWithCaption src="/images/documentation/poke-market/1 Badge Item Category 1.png" caption="1 Badge Item Category 1" align="left"/>
+<ImageWithCaption src="/images/documentation/poke-market/1 Badge Item Category 2.png" caption="1 Badge Item Category 2" align="left"/>
+<ImageWithCaption src="/images/documentation/poke-market/1 Badge Item Category 3.png" caption="1 Badge Item Category 3" align="left"/>
+<ImageWithCaption src="/images/documentation/poke-market/1 Badge Item Category 4.png" caption="1 Badge Item Category 4" align="left"/>
+And we can keep going for when we have 3 badges but looking at the `BadgesForItems` Setting, it'll add the `:HYPERPOTION`, `:SUPERREPEL` and `:REVIVE` items to the buyable items.

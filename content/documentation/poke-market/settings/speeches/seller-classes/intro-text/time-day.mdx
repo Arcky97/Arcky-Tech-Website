@@ -1,0 +1,37 @@
+## IntroText + Time + Day
+<br/>
+We have had an IntroText + Time and IntroText + Day. How about we combine both?
+<br/>
+This might sound a bit crazy, and it actually is, but you can go as far as you want in this one.
+<br/>
+Just like with IntroText + Day, you can use Week or Weekend and similar to the Default IntroText, you c an include more than 1 speech if you want to.
+<br/>
+Defining IntroTextDayWeek looks like this:
+<br/>
+```ruby
+IntroTextDayWeek: [
+  "Good Day, welcome to our store, what can I do for you?"
+]
+```
+
+This will be used by the script when it's Day and it's either Monday, Tuesday, Wednesday, Thursday or Friday in the game:
+<ImageWithCaption src="/images/documentation/poke-market/IntroTextDayWeek.png" caption="IntroTextDayWeek" align="center"/>
+Or you can go more specific by using the exact day.
+<br/>
+Defining IntroTextDayTuesday would look like this:
+<br/>
+```ruby
+IntroTextDayTuesday: [
+  "Hello, what can I do for you on this fine Tuesday Noon?"
+]
+```
+
+This will be used by the script when it's Day and it's Tuesday in the game:
+<ImageWithCaption src="/images/documentation/poke-market/IntroTextDayTuesday.png" caption="IntroTextDayTuesday" align="center"/>
+Let's list up the complete break down for how it'll choose the speech available:
+<br/>
+Let's say it's Wednesday Morning:
+<br/>
+IntroTextMorningWednesday - IntroTextDayWednesday - IntroTextWednesday - IntroTextMorningWeek - IntroTextDayWeek - IntroTextWeek - IntroTextMorning - IntroTextDay - IntroText 
+<br/>
+Like I said before, you can go as far as you want yourself in this. It might get complicated for sure but you're not supposed to have a text for each possible IntroText by Time and Day.

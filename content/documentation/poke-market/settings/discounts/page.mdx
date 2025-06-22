@@ -1,0 +1,147 @@
+<header>
+  # Discounts
+  <br/>
+  How to add and apply discounts to items.
+
+  ---
+</header>
+This feature allows you to setup discounts that would apply to all items in a store. Right now there's no way to exclude an item from a discount but it might be in the future.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION,
+    :FULLRESTORE, :REVIVE,
+    :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL,
+    :FULLHEAL,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :ESCAPEROPE
+  ], useCat: true, discount: 27)
+end
+```
+
+Enabling discount is done by adding `discount:` and a Game Variable ID.
+<br/>
+There are 3 ways to setup a discount
+
+---
+
+## First way
+<br/>
+The first way is by using a variable and assigning an array of values (in percentage (4 = 4% discount on the item's price)).
+<br/>
+```ruby
+DISCOUNTS = {
+  27 => [0, 1, 4, 7, 11]
+}
+```
+- `27` = Game Variable ID 27.
+  - [0, 1, 4, 7, 11] = An Array with 1 or more discount values.
+    - 0 = discount used whene Game Variable 27 equals to 0. 
+      <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex1-1.png" align="left"/>
+    - 1 = discount used when Game Variable 27 equals to 1. 
+      <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex1-2.png" align="left"/>
+    - 4 = discount used when Game Variable 27 equals to 3.
+      <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex1-3.png" align="left"/>
+    - 7 = discount used when Game Variable 27 equals to 4.
+      <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex1-4.png" align="left"/>
+    - 11 = discount used when Game Variable 27 equals to 5.
+      <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex1-5.png" align="left"/>
+
+<Callout type="hint">Each number in the array has an index, the index starts at 0. The script will use the index that matches the value of the variable. If a game variable would have been set too high, you'll be notified.</Callout>
+
+---
+
+## Second way
+<br/>
+The second way is by using a combination with an Item that is first requires to be owner by the player and a Game Variable. Again you assign an array of values. You can combine multiple Variables with the same Item but you can't repeat a game variable. If you do, you might get the wrong discount as result. It's also possible to use negative values, this will result in overcharge instead of discount. (-2 = % extra on the item's price).
+<br/>
+```ruby
+DISCOUNTS = {
+  :COUPONA => { 
+    26 => [0, 3, 6, 8, 10],
+    28 => [0, -2, -5] 
+  },
+}
+```
+- :COUPONA = Item ID :COUPONA 
+  - 26 = Game Variable ID 26.
+    - [0, 3, 6, 8, 10]
+      - 0 = discount used when Game Variable 26 equals to 0.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex2-1.png" align="left"/>
+      - 3 = discount used when Game Variable 26 equals to 1. 
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex2-2.png" align="left"/>
+      - 6 = discount used when Game Variable 26 equals to 2.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex2-3.png" align="left"/>
+      - 8 = discount used when Game Variable 26 equals to 3.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex2-4.png" align="left"/>
+      - 10 = discount used when Game Variable 26 equals to 4.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex2-5.png" align="left"/>
+  - 28 = Game Variable ID 28.
+    - [0, -2, -5]
+      - 0 = overcharge used when Game Variable 28 equals to 0.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex3-1.png" align="left"/>
+      - -2 = overcharge used when Game Variable 28 equals to 1.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex3-2.png" align="left"/>
+      - -5 = overcharge used when Game Variable 28 equals to 2.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex3-3.png" align="left"/>
+
+---
+
+You can combine discount and overcharge values in the same array but it could be easier to manage when kept separatly.
+<br/>
+For example, you can have a Game Variable increase by 1 for each time the player blacks out. You can start with a discount of 10 and then decrease it each time.
+<br/>
+```ruby
+DISCOUNTS = {
+  29 => [10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -12]
+}
+```
+Of course you can combine this here as well with an item.
+<br/>
+```ruby
+DISCOUNTS = {
+  :COUPONB => {
+    29 => [10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -12]
+  }
+}
+```
+- :COUPONB = Item ID :COUPONB 
+  - 29 = Game Variable ID 29.
+    - [10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -12]
+      - 10 = discount used when Game Variable 29 equals to 0.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-1.png" align="left"/>
+      - 8 = discount used when Game Variable 29 equals to 1.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-2.png" align="left"/>
+      - 6 = discount used when Game Variable 29 equals to 2.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-3.png" align="left"/>
+      - 4 = discount used when Game Variable 29 equals to 3.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-4.png" align="left"/>
+      - 2 = discount used when Game Variable 29 equals to 4.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-5.png" align="left"/>
+      - 0 = discount used when Game Variable 29 equals to 5.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-6.png" align="left"/>
+      - -2 = overcharge used when Game Variable 29 equals to 6.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-7.png" align="left"/>
+      - -4 = overcharge used when Game Variable 29 equals to 7.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-8.png" align="left"/>
+      - -6 = overcharge used when Game Variable 29 equals to 8.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-9.png" align="left"/>
+      - -8 = overcharge used when Game Variable 29 equals to 9.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-10.png" align="left"/>
+      - -10 = overcharge used when Game Variable 29 equals to 10.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-11.png" align="left"/>
+      - -12 = overcharge used when Game Variable 29 equals to 11.
+        <ImageWithCaption src="/images/documentation/poke-market/ItemDiscount Ex4-12.png" align="left"/>
+
+<br/>
+When Game Variable 29 would become higher than 11, the discount/overcharge would become 0. To prevent that from happening, you can work with a conditional to only increase the variable if it's smaller than 11. (There are 12 values but remember the first value is 0). A good place to increase the variable would be the start over event. But this is only an example so that's up to you how to do it.
+
+---
+
+## Third way 
+<br/>
+The third way is by using the value of the Game Variable directly. This means that it's independable from an array you setup in Discounts. The script will use the value of the Game Variable you put in the Pokemart command to use as the discount/overcharge.
+<br/>
+You are allowed to put -30 instead of 30 as this will make the discount an overcharge instead. Event if there's a way to make the Game Variable's value negative, you can reuse the Game Variable 30 to use as a discount for another store instead.

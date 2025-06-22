@@ -1,0 +1,42 @@
+<header>
+  # Setting up a Mart Events
+  <br/>
+  How to set up the poke mart event.
+
+  ---
+</header>
+
+## Mart Event
+The script command didn't change, I've only added the possibility to provide a few extra arguments and becuase of that the actual script command can become pretty big.
+<br/>
+This is for example how you would set it up now inside an event:
+<br/>
+```ruby
+pbPokemonMart([
+  :POKEBALL, :GREATBALL, :ULTRABALL,
+  :ESCAPEROPE, 
+  :REPEL, :SUPERREPEL, :MAXREPEL, 
+  :GRASSMAIL, :FLAMEMAIL, 
+  :BUBBLEMAIL, :SPACEMAIL
+])
+```
+
+<ImageWithCaption src="/images/documentation/poke-market/Default Mart Event.png" caption="Default Mart Event"/>
+
+The list of items you want the mart event to have can become really big so you can easily solve this by doing as follow. In the `000_PokeMart_Settings_and_Setup.rb` file you can add this at the bottom (use notepad ++ or any other code editor program to edit this file):
+<br/>
+```ruby 
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL 
+  ])
+end
+```
+
+Inside the Mart Event you only need to put `pbSomeMart` or whatever you named the method. This way you can have multiple events have the same kind of items and when you edit this method, it'll be updated for all events using this one method. it'll also be a lot more organized and easier to manage.
+
+<ImageWithCaption src="/images/documentation/poke-market/Shorter Mart Event.png" caption="Shorter Mart Event"/>

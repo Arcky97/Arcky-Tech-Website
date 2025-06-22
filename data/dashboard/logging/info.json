@@ -1,0 +1,216 @@
+{
+  "message": {
+    "all": {
+      "name": "Message Events",
+      "description": "Logs all activities related to messages within the server, including edits, deletions, and bulk deletions. This provides a comprehensive record of message changes and removals for transparancy and tracking."
+    },
+    "edits": {
+      "name": "Message Edits",
+      "description": "Tracks every instance of a message being edited in the server. This includes capturing the original message, the edits made, and the user who performed the edit, ensuring a history of all message alternations."
+    },
+    "deletes": {
+      "name": "Message Deletes",
+      "description": "Logs when any message is deleted in the server. This event captures the identity of the author of the message and provides transparancy into message removal activities."
+    },
+    "bulks": {
+      "name": "Message Bulk Deletes",
+      "description": "Tracks bulk deletions of messages, where multiple message are removed at once. This event records the user who initiated the bulk delete and the number of messages affected, providing a detailed log for mass message deletions."
+    }
+  },
+  "member": {
+    "roles": {
+      "all": {
+        "name": "Member Role Events",
+        "description": "Logs all changes made to a member's roles within the server."
+      },
+      "adds": {
+        "name": "Member Role Adds",
+        "description": ""
+      },
+      "removes": {
+        "name": "Member Role Removes",
+        "description": "" 
+      }
+    },
+    "names": {
+      "all": {
+        "name": "Member Name Change Events",
+        "description": ""
+      },
+      "users": {
+        "name": "Member User Name Changes",
+        "description": "" 
+      },
+      "globals": {
+        "name": "Member Global Name Changes",
+        "description": "" 
+      },
+      "nicks": {
+        "name": "Member Nickname Changes"
+      }
+    },
+    "avatars": {
+      "all": {
+        "name": "Member Avatar Change Events",
+        "description": ""
+      },
+      "globals": {
+        "name": "Member Global Avatar Changes",
+        "description": ""
+      },
+      "servers": {
+        "name": "Member Server Avatar Changes",
+        "description": ""
+      }
+    },
+    "bans": {
+      "all": {
+        "name": "Member Ban and Unban Events",
+        "description": ""
+      },
+      "adds": {
+        "name": "Member Bans",
+        "description": ""
+      },
+      "removes": {
+        "name": "Member Unbans",
+        "description": ""
+      }
+    },
+    "timeouts": {
+      "all": {
+        "name": "Member Timeout Events",
+        "description": ""
+      },
+      "adds": {
+        "name": "Member Timeout Adds",
+        "description": ""
+      },
+      "removes": {
+        "name": "Member Timeout Removes",
+        "description": ""
+      }
+    }
+  },
+  "server": {
+    "channels": {
+      "all": {
+        "name": "Server Channel Events",
+        "description": ""
+      },
+      "creates": {
+        "name": "Server Channel Creates",
+        "description": ""
+      },
+      "updates": {
+        "name": "Server Channel Updates",
+        "description": ""
+      },
+      "deletes": {
+        "name": "Server Channel Deletes",
+        "description": ""
+      }
+    },
+    "roles": {
+      "all": {
+        "name": "Server Role Events",
+        "description": ""
+      },
+      "creates": {
+        "name": "Server Role Creates",
+        "description": ""
+      },
+      "updates": {
+        "name": "Server Role Updates",
+        "description": ""
+      },
+      "deletes": {
+        "name": "Server Role Deletes",
+        "description": ""
+      }
+    },
+    "emojis": {
+      "all": {
+        "name": "Server Update Events",
+        "description": ""
+      },
+      "creates": {
+        "name": "Server Emojj Creates",
+        "description": ""
+      },
+      "updates": {
+        "name": "Server Emoji Updates",
+        "description": ""
+      },
+      "deletes": {
+        "name": "Server Emoji Deletes",
+        "description": ""
+      }
+    },
+    "stickers": {
+      "all": {
+        "name": "Server Sticker Events",
+        "description": ""
+      },
+      "creates": {
+        "name": "Server Sticker Creates",
+        "description": ""
+      },
+      "updates": {
+        "name": "Server Sticker Updates",
+        "description": ""
+      },
+      "deletes": {
+        "name": "Server Sticker Deletes",
+        "description": ""
+      }
+    }
+  },
+  "voice": {
+    "all": {
+      "name": "Voice Channel Events",
+      "description": ""
+    },
+    "joins": {
+      "name": "Voice Channel Joins",
+      "description": ""
+    },
+    "moves": {
+      "name": "Voice Channel Moves",
+      "description": ""
+    },
+    "leaves": {
+      "name": "Voice Channel Leaves",
+      "description": ""
+    },
+    "mutes": {
+      "name": "Voice Self and Server Mutes",
+      "description": ""
+    },
+    "unmutes": {
+      "name": "Voice Self and Server Unmutes",
+      "description": ""
+    },
+    "deafens": {
+      "name": "Voice Self and Server Deafens",
+      "description": ""
+    },
+    "undeafens": {
+      "name": "Voice Self and Server Undeafens"
+    }
+  },
+  "joinLeave": {
+    "all": {
+      "name": "Member Join-Leave Events",
+      "description": ""
+    },
+    "joins": {
+      "name": "Member Joins",
+      "description": ""
+    },
+    "leaves": {
+      "name": "Member Leaves",
+      "description": ""
+    }
+  }
+}

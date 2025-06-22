@@ -1,0 +1,21 @@
+## BuyItemAmountOvercharge
+
+The BuyItemAmountOvercharge is what the NPC will say when choosing how many of an item you want to buy. But only when there's a Discount (Overcharge) Variable added to the store and the Overcharge is higher than 0%.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time and Day.
+<br/>
+Defining `BuyItemAmountOvercharge` looks like this:
+<br/>
+```ruby
+BuyItemAmountOvercharge: [
+  "There's overcharge on {1}, you must pay ${2} instead of ${3}. So how many?"
+]
+```
+- \{1\} = contains the Item's plural name (for ex. "Poké Balls")
+
+- \{2\} = the Item's price with overcharge. (for ex. "$220")
+
+- \{3\} = the item's original price (for ex. "$200")
+<ImageWithCaption src="/images/documentation/poke-market/BuyItemAmountOvercharge.png" caption="BuyItemAmountOvercharge"/>
+
+<Callout type="hint">You don't need to use all \{1\}, \{2\} and \{3\}. If you use \{1\} and \{2\} and not \{3\} it will work just fine.</Callout>

@@ -1,0 +1,112 @@
+<header>
+  # Bonus Items
+  <br/>
+  How to add Bonus Items for an Item.
+
+  ---
+</header>
+This feature allows you to setup Bonus Items for multiple Items (not only pokeballs and other ball items like the default).
+<br/>
+Bonus Items apply to all stores for the same Item.
+<br/>
+A bonus Item is only given if the bought Item is found in the `BonusItems` Setting.
+
+---
+
+## Example 1
+<br/>
+This is the basic structure where you give the amount required to get the bonus item.
+<br/>
+```ruby
+BonusItems = {
+  :POKEBALL => {
+    :amount => 10,
+    :item => :PREMIERBALL
+  }
+}
+```
+
+- `:POKEBALL` = The item's ID that can give bonus Items.
+  - `:amount`
+    - `10` = for each 10 bought Poke Balls, you'll get a bonus Item.
+  - `:item` for single item.
+    - `:PREMIERBALL` = The Bonus Item's ID.
+
+To conclusion: For each 10 bought Poke Balls, you'll be given 1 Premier Ball (like the default).
+
+<Callout type="hint">**Only for Ball Items**: If the bought Item is a Great Ball or any kind of Ball Item, this bonus Item will be applied unless you added a specific Bonus Item for that Ball Item.</Callout>
+
+---
+
+## Example 2
+<br/>
+This is an expansion on the structure from example 1 where you can give an array of multiple items along with (optional) a specific chance for this item to be chosen as the given bonus item.
+<br/>
+```ruby
+BonusItems = {
+  :GREATBALL => {
+    :amount => 10,
+    :item => [
+      [:GREATBALL, 20],
+      :PREMIERBALL
+    ]
+  }
+}
+```
+
+- `:GREATBALL` = The item's ID that can give the bonus items.
+  - `:amount`
+    - `10` = for each 10 bought Great Balls, you'll get a Bonus Item.
+  - `:item` as an array.
+    - `[:GREATBALL, 20]` = an array containing the following:
+      - `:GREATBALL` = The Bonus Item's ID.
+      - `20` = the chance (in percentage) this Bonus Item is given. (optional).
+    - `:PREMIERBALL` = The Bonus Item's ID. (There's no chance given so the chance is 80%).
+
+To conclusion: For each 10 bought Great Balls, you'll have 20% chance of getting a Great Ball, otherwise it'll be a Premier Ball as it has a chance of 80%.
+
+<Callout type="hint">If you don't provide a specific chance for any item, the chance will be equal across all items. Or if you only provide a chance for a few items, the remaining percentage will be devided across the items that don't have a chance specified.</Callout>
+
+---
+
+## Example 3
+<br/>
+This is the most complex structure and is used if you want to give more than 1 of the bonus item for the required amount of the bought item. You can also give a chance like in example 2.
+<br/>
+```ruby
+BonusItems = {     
+  :ULTRABALL => {
+    :amount => 5,
+    :item => {
+      :PREMIERBALL => {
+        :amount => 3
+      },
+      :MASTERBALL => { 
+        :chance => 0.1 
+      },
+      :ULTRABALL => {
+        :amount => 2,
+        :chance => 5
+      }
+    }
+  }
+}
+```
+
+- `:ULTRABALL` = The item's ID that can give the bonus items.
+  - `:amount`
+    - `5` = For each 5 bought Ultra Balls, you'll get a Bonus Item.
+  - `:item` = as a **hash**.
+    - `:PREMIERBALL` = The Bonus Item's ID. 
+      - `:amount`
+        - `3` = The amount of this Bonus Item you get.
+    - `:MASTERBALL` = The Bonus Item's ID.
+      - `:chance`
+        - `0.1` = The chance (0.1%) this bonus Item is given.
+    - `:ULTRABALL` = The Bonus Item's ID
+      - `:amount`
+        - `2` = The amount of this Bonus Item you get.
+      - `:chance`
+        - `5` = The chance (5%) this Bonus Item is given. 
+
+<Callout type="attention">If you're using this structure then either `:amount`or `:chance` or both must be given for each Bonus Item. If you don't give any of these then you should use the structure of Example 2 instead.</Callout>

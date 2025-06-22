@@ -1,0 +1,24 @@
+<header>
+  # CategoryText
+  <br/>
+  How to use and define CategoryText speeches.
+
+  ---
+</header>
+The CategoryText is what the NPC will say after you made the "I'm here to buy" (or MenuTextBuy speech) choice. This will also only be used if you have the Category Setting enabled (see [Item Categories](/documentation/poke-market/settings/item-categories)).
+<br/>
+Using the `CategoryText` will show a choice menu with the available Categories as well.
+<br/>
+Just like the IntroText, you can include more than 1 speech if you want to. The script will choose a speech by random each time but unlike the IntroText, you can't add a Time or Day (this would be too complex otherwise).
+<br/>
+Defining `CategoryText` looks like this:
+<br/>
+```ruby
+CategoryText: [
+  "We listed our Items in Categories for you.",
+  "Exclusively for you, these are the Categories we have to offer."
+]
+```
+
+<ImageWithCaption src="/images/documentation/poke-market/CategoryText 1.png" caption="CategoryText 1" align="center"/>
+<ImageWithCaption src="/images/documentation/poke-market/CategoryText 2.png" caption="CategoryText 2" align="center"/>

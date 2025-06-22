@@ -1,0 +1,21 @@
+## BuyItem
+
+The (default) BuyItem is what the NPC will say when you buy only 1 of an item.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `BuyItem` looks like this:
+<br/>
+```ruby
+BuyItem: [
+  "So you want {1} {2}?\nIt'll be ${3}. All right?", 
+  "So you would like to buy {1} {2}?\nThat's going to cost you ${3}!"
+]
+```
+- \{1\} = chosen amount (in this case 1) of the Item.
+
+- \{2\} = chosen Item's name (singular) (for ex. "Poké Ball).
+
+- \{3\} = price of the 1 chosen Item (for ex. "$200").
+<ImageWithCaption src="/images/documentation/poke-market/BuyItem 1.png" caption="BuyItem 1"/>
+<ImageWithCaption src="/images/documentation/poke-market/BuyItem 2.png" caption="BuyItem 2"/>

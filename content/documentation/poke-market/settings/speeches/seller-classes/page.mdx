@@ -1,0 +1,72 @@
+<header>
+  # Seller Classes
+  <br/>
+  List of all Seller Class parameters.
+
+  ---
+</header>
+This Setting is the biggest one of all Settings in this plugin. You can go really far with this but you can also not use it at all.
+<br/>
+Adding a Seller Class to the event method is really easy, after the list of itemsn, you can add the Seller Class `speech: "ProSeller"`. Make sure it's written exactly the same as the constant for that Class (see below how to setup the Class itself). I've included 2 example classes that you can use and modify. One of these is the `"ProSeller"` Class.
+<br/>
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :POTION, :SUPERPOTION, :HYPERPOTION, :MAXPOTION,
+    :FULLRESTORE, :REVIVE,
+    :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL,
+    :FULLHEAL,
+    :REPEL, :SUPERREPEL, :MAXREPEL
+  ], speech: "ProSeller", useCat: true)
+end
+```
+
+For the Seller Class itself, this lets you setup what the seller will say to the player. As you know the seller always says the same over and over, pretty boring right? Well with this, you can change this so they start to sound more natural and have more variation in what they'll say to the player on certain actions.
+<br/>
+```ruby
+ProSeller = {
+  # Text when talking to them. This is the default one.
+  IntroText: ["Good Day, welcome, how may I serve you?", "Hello, welcome, what can I mean for you?", "Hello, Welcome what can I get for you?"],
+  # Text when choosing to buy item. (optional: If you make this empty( [] ), you'll go to the buy screen directly.)
+  CategoryText: [], # or CategoryText: ["Which Category would you like to view?"],
+  # Text when choosing amount of item. {1} = item name.
+  BuyItemAmount: ["So how many {1}?"],
+  # Text when choosing amount of item with discount. {1} = item name {2} = discount price {3} = original price.
+  BuyItemAmountDiscount: ["There's a discount on {1}, they're ${2} instead of ${3}. How many would you like?"],
+  # Text when choosing amount of item with overcharge. {1} = item name {2} = overcharge price {3} = original price.
+  BuyItemAmountOvercharge: ["There's overcharge on {1}, you must pay ${2} instead of ${3}. So how many?"],
+  # Text when buying 1 of an item. {1} = item vowel {2} = item name {3} = price.
+  BuyItem: ["So you want {1} {2}?\nIt'll be ${3}. All right?", "So you would like to buy {1} {2}?\nThat's going to cost you ${3}!"],
+  # Text when buying 2 or more of an item. {1} = amount {2} = item name (plural) {3} = price.
+  BuyItemMult: ["So you want {1} {2}?\nThey'll be ${3}. All right?"],
+  # Text when buying important item (that you can only buy 1 off). {1} = item name {2} = price.
+  BuyItemImportant: ["So you want {1}?\nIt'll be ${2}. All right?"],
+  # Text when wanted item is out of stock. {1} = item name (plural) {2} = time in days (tomorrow, in 2 days, in x days, in a week, next week etc.)
+  BuyOutOfStock: ["We're really sorry, this item is currently out of stock. Come back {2}!", "We're sorry but we don't have any {1} left. Come back {2}!", "Come back {2} when we have more {1}."],
+  # Text when bought item.
+  BuyThanks: ["Here you are! Thank you!"],
+  # Text when 10 of a kind of pokeballs are bought. {1} = item name.
+  BuyBonus: ["And have 1 {1} on the house!"],
+  # Text when 20 or more of a kind of pokeballs are bought. {1} = amount {2} = item name.
+  BuyBonusMult: ["And have {1} {2} on the house!"],
+  # Text when you don't have enough money to buy x item(s).
+  NotEnoughMoney: ["You don't have enough money."],
+  # Text when you don't have enough room in your bag. (Only used if you have an item limit).
+  NoRoomInBag: ["You have no room in your Bag."],
+  # Text when selecting an item to sell. {1} = item name
+  SellItem: ["How many {1} would you like to sell?"],
+  # Text when confirming amount of selected item to sell. {1} = price
+  SellItemConfirm: ["I can pay ${1}.\nWould that be OK?"],
+  # Text when unable to sell selected item. {1} = item name
+  CantSellItem: ["Oh, no. I can't buy {1}."],
+  # Text when returning to menu to choose either buying, selling or exit.
+  MenuReturnText: ["Is there anything else I can do for you?", "What else could I mean for you today?"],
+  # Text when the NPC is checking the items in the basket. {1} = list of each amount and item {2} = total price to pay.
+  BillCheckOut: ["Your basket contains {1} which comes to a total of {2}, please."]
+  # Text when exiting.
+  OutroText: ["Do come again!", "Thank you, I hope to see you again.", "Thank you for your purchase, come again!"]
+}
+```
+
+If you think this is already a lot, well it's not even half of them (at least for the IntroText and OutroText ones).
