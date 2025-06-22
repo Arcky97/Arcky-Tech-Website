@@ -46,6 +46,11 @@ export default function Moderation() {
       <h1 className="text-2xl font-bold mb-4">Dashboard Moderation</h1>
       <p>Guild ID: <span className="font-mono text-blue-400">{guildId || "N/A"}</span></p>
       {error && <p className="text-red-500">Error: {error}</p>}
+      {tableData && (
+        <div className="grid gap-4 grid-cols-1 md:grid-cols2 2xl:grid-cols-3 auto-cols-fr mt-6">
+          
+        </div>
+      )}
     </article>
   )
 }
