@@ -1,0 +1,22 @@
+<header>
+  # SellItem
+  <br/>
+  How to use and define SellItem speeches.
+
+  ---
+</header>
+
+The SellItem is what the NPC will say when confirming the amount of an Item you want to Sell.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `SellItem` looks like this:
+<br/>
+```ruby
+SellItem: [
+  "I can pay {1}.\nWould that be OK?"
+]
+```
+- \{1\} = total sell price for the amount of the chosen Item (for ex. $100).
+
+<ImageWithCaption src="/images/documentation/poke-market/SellItem.png" caption="SellItem"/>

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { layoutVariants } from '@/lib/documentation/layoutVariants';
+import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
 import { dynamicParams, generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/DocsTableOfContents';
@@ -85,7 +85,7 @@ export default async function Page({
   const tablePosts = posts.filter(({name}) => name !== 'header');
   const header = posts.filter(({name}) => name === 'header');
 
-  const styles = layoutVariants[slug[slug.length - 1]] || layoutVariants["default"];
+  const styles = getStyles(slug);
 
   return (
     <article key={slug[0]} className={styles.wrapper}>

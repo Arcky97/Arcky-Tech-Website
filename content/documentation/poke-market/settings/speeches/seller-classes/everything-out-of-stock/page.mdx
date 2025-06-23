@@ -1,0 +1,25 @@
+<header>
+  # EverythingOutOfStock
+  <br/>
+  How to use and define EverythingOutOfStock speeches.
+
+  ---
+</header>
+
+The EverythingOutOfStock is what the NPC will say when all items have been bought and everything is out of stock.
+<br/>
+This will not be used when, for example, a store has 5 items out of stock and 1 more item with no stock limit defined.
+<br/>
+If everything is out of stock, this will prevent the player from choosing the buy option, if selling is enabled, the player can still sell items for that store. If selling is disabled, the only speech the mart will give is this one.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `EverythingOutOfStock` looks like this:
+<br/>
+```ruby
+EverythingOutOfStock: [
+  "Well you bought everything I have in my stock. You can buy again {1}."
+  ]
+```
+- \{1\} = time left until the Items get restocked (if refresh rate wasn't set to "never").
+<ImageWithCaption src="/images/documentation/poke-market/EverythingOutOfStock.png" caption="EverythingOutOfStock"/>

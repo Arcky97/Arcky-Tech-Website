@@ -1,2 +1,11 @@
 ## BuyBonus
-
+The BuyBonus is what the NPC will say when buying 1 time the required amount for an item that has a BonusItem defined in [BonusItems](../../../settings/bonus-items) setting.
+<br/> 
+It is possible to include more than 1 speech if you want to but you can't add a Time and Day.
+<br/>
+Defining `BuyBonus` looks like this:
+<br/>
+```ruby
+BuyBonus: ["And have 1 {1} on the house!"]
+```
+- \{1\} = Bonus Item's name (for ex. "Premier Ball")

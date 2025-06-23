@@ -1,1 +1,16 @@
 ## PurchaseCount
+
+The PurchaseCount is what the NPC will say when you have purchased 1 amount of an Item from the [ItemPurchaseCounter](../../../settings/item-purchase-counter) setting.
+<br/>
+Remove this parameter in the Seller Class if you don't want to use it.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
+<br/>
+Defining `PurchaseCount` looks like this:
+<br/>
+```ruby
+PurchaseCount: [
+  "Congratulations, you've earned 1 loyalty point!"
+]
+```
+<ImageWithCaption src="/images/documentation/poke-market/PurchaseCount.png" caption="PurchaseCount"/>
