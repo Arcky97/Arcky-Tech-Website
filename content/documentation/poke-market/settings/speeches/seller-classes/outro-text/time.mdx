@@ -1,1 +1,23 @@
 ## OutroText + Time
+
+It is possible to define an OutroText depending on the current Time in the game (just like with [IntroText + Time](intro-text)). You can include more than 1 speech if you want to.
+<br/>
+These are the possibilities:
+- `IntroTextMorning` - Used from 5 to 10 (5am to 10am)
+- `IntroTextNoon` - Used from 10 to 2 (10pm to 2am)
+- `IntroTextAfternoon` - Used from 14 to 17 (2pm to 5pm)
+- `IntroTextEvening` - Used from 17 to 20 (5pm to 8pm)
+- `IntroTextDay` - Used from 5 to 20 (5am to 8pm)
+- `IntroTextNight` - Used from 20 to 5 (8pm to 5am)
+<br/>
+Defining `OutroTextEvening` looks like this:
+<br/>
+```ruby
+OutroTextEvening: [
+  "Have a nice Night, do come back again", 
+  "Thank you for your purchase, enjoy your evening."
+]
+```
+This will be used by the script when it's Evening in the game:
+<ImageWithCaption src="/images/documentation/poke-market/OutroTextEvening 1.png" caption="OutroTextEvening 1" align="center"/>
+<ImageWithCaption src="/images/documentation/poke-market/OutroTextEvening 2.png" caption="OutroTextEvening 2" align="center"/>

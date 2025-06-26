@@ -1,0 +1,21 @@
+<header>
+  # BuyBonusMult
+  <br/>
+  How to use and define various BuyBonus parameters.
+
+  ---
+</header>
+
+The BuyBonusMult is what the NPC will say when you buy receive 1 or more bonus items. You'll receive bonus items for bought items according to the[BonusItems](../../../settings/bonus-items) configuration.
+<br/>
+It is possible to include more than 1 speech if you want to but you can't add a Time and Day.
+<br/>
+Defining `BuyBonusMult` looks like this:
+<br/>
+```ruby
+BuyBonusMult: [
+  "And have {1} on the house!"
+]
+```
+- \{1\} = A list of bonus items (if multiple configured) (for ex. "2 Antidotes and 1 Full Heal).
+<ImageWithCaption src="/images/documentation/poke-market/BuyBonusMult.png" caption="BuyBonusMult"/>

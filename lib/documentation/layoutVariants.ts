@@ -38,9 +38,11 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'intro-text': { group: 'speechVariants' },
   'buy-item-amount': { group: 'speechVariants' },
   'buy-item': { group: 'speechVariants' },
-  'buy-bonus': { group: 'speechVariants' },
   'purchase-count': { group: 'speechVariants' },
-  'outro-text': { group: 'speechVariants' }
+  'outro-text': { group: 'speechVariants' },
+  'shelf-change-item-amount': { group: 'speechVariants' },
+  'shelf-item-amount': { group: 'speechVariants' },
+  'features': { group: "speechVariants" }
 }
 
 export function getStyles(slug: string[]): StyleConfig {

@@ -1,5 +1,5 @@
 "use client";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/outline";
@@ -17,6 +17,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
   const pathname = usePathname();
+  const hasScrolledToActive = useRef(false);
 
   const isDashboard = pathname.startsWith("/doggo-bot/dashboard");
   const isDocumentation = pathname.startsWith("/documentation");
@@ -59,6 +60,26 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
       toggleSubmenu(newPath, true);
     });
   }, [pathname, menuItems]);
+
+  useEffect(() => {
+    if (hasScrolledToActive.current) return;
+
+    const scrollSidebarToActiveItem = () => {
+      const sidebar = document.getElementById("sidebar");
+      if (!sidebar) return;
+      const activeItems = Array.from(sidebar.querySelectorAll(".bg-blue-900"));
+      if (activeItems.length === 0) return
+
+      const deepestActive = activeItems[activeItems.length - 1];
+      const sidebarRect = sidebar.getBoundingClientRect();
+      const activeRect = deepestActive.getBoundingClientRect();
+      const offsetTop = activeRect.top - sidebarRect.top + sidebar.scrollTop - 100;
+      sidebar.scrollTo({ top: offsetTop, behavior: "smooth" });
+      hasScrolledToActive.current = true;
+    };
+
+    setTimeout(scrollSidebarToActiveItem, 100);
+  }, [pathname]);
 
   const toggleSubmenu = (path: string, value?: boolean) => {
     setExpandedMenu((prev) => ({
@@ -174,7 +195,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
           isSidebarVisible ? "translate-x-0" : "-translate-x-full"
         } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
       >
-        <div className="flex-1 overflow-y-auto">{renderMenuItems(menuItems)}</div>
+        <div id="sidebar" className="flex-1 overflow-y-auto">{renderMenuItems(menuItems)}</div>
       </div>
 
       {/* Overlay on Small Screens */}

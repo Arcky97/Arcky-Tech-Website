@@ -463,8 +463,8 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                       text: "BuyThanks"
                     },
                     {
-                      path: "buy-bonus",
-                      text: "BuyBonus"
+                      path: "buy-bonus-mult",
+                      text: "BuyBonusMult"
                     },
                     {
                       path: "not-enough-money",
@@ -517,28 +517,16 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                       text: "IntroShelf"
                     },
                     {
-                      path: "shelf-amount-item",
-                      text: "ShelfAmountItem"
+                      path: "shelf-item-amount",
+                      text: "ShelfItemAmount"
                     },
                     {
-                      path: "shelf-change-amount-item",
-                      text: "ShelfChangeAmountItem"
-                    },
-                    {
-                      path: "shelf-limit-amount-item",
-                      text: "ShelfLimitAmountItem"
+                      path: "shelf-change-item-amount",
+                      text: "ShelfChangeItemAmount"
                     },
                     {
                       path: "shelf-out-of-stock",
                       text: "ShelfOutOfStock"
-                    },
-                    {
-                      path: "shelf-item-amount-discount",
-                      text: "ShelfItemAmountDiscount"
-                    },
-                    {
-                      path: "shelf-item-amount-overcharge",
-                      text: "ShelfItemAmountOvercharge"
                     },
                     {
                       path: "not-enough-money",
@@ -546,23 +534,11 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                     },
                     {
                       path: "not-enough-money-item",
-                      text: "NotEnoughMoneyItem"
+                      text: "NotEnoughMoneyItem" 
                     },
                     {
                       path: "not-enough-money-amount",
                       text: "NotEnoughMoneyAmount"
-                    },
-                    {
-                      path: "shelf-increase-amount-item",
-                      text: "ShelfIncreaseAmountItem"
-                    },
-                    {
-                      path: "shelf-decrease-amount-item",
-                      text: "ShelfDescreaseAmountItem"
-                    },
-                    {
-                      path: "shelf-remove-amount-item",
-                      text: "ShelfRemoveAmountItem"
                     }
                   ]
                 }

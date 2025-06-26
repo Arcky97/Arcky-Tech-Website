@@ -1,0 +1,28 @@
+<header>
+  # NotEnoughMoneyItem
+  <br/>
+  How to use and define NotEnoughMoneyItem speeches.
+
+  ---
+</header>
+
+The NotEnoughMoneyItem is what the shelf will say when selecting an item and you don't have enough money to add more of this item to your basket.
+<br/>
+Unlike [NotEnoughMoney](not-enough-money), this happens when you already have a certain amount added of this item.
+<br/>
+Pressing "Yes" will lead you to the [NotEnoughMoneyAmount](not-enough-money-amount) speech, pressing "No" will not do anything.
+<br/>
+It is possible to include more than 1 speech if you want to.
+<br/>
+Defining `NotEnoughMoneyItem` looks like this:
+<br/>
+```ruby
+NotEnoughMoneyItem: [
+  "You are out of {1}. Change the quantity of {2} you have in your basket?"
+]
+```
+- \{1\} = the currency set for this shelf (for ex. "Money")
+
+- \{2\} = chosen Item's name (plural) (for ex. "Potions").
+
+<ImageWithCaption src="/images/documentation/poke-market/ShelfNotEnoughMoneyItem.png" caption="NotEnoughMoneyItem"/>

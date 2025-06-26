@@ -1,3 +1,6 @@
+"use client"
+import ColorButton from "@/components/ColorButton";
+
 export default function Home() {
   return (
     <article className="flex flex-col mt-16 items-center justify-center min-h-screen bg-gray-900 text-white">

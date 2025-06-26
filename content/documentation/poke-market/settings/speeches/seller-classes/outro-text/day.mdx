@@ -1,1 +1,35 @@
 ## OutroText + Day
+
+It is possible to define an OutroText depending on the current Day in the game (just like with the [IntroText + Day](intro-text))
+<br/>
+- OutroTextMonday
+- OutroTextTuesday
+- OutroTextWednesday
+- OutroTextThursday
+- OutroTextFriday
+- OutroTextSaturday
+- OutroTextSunday
+- OutroTextWeek
+- OutroTextWeekend
+<br/>
+Week can be used as a combination for Monday, Tuesday, Wednesday, Thursday and Friday.
+<br/>
+Weekend can be used as a combination for Saturday and Sunday.
+<br/>
+Defining `OutroTextWeek` looks like this:
+<br/>
+```ruby
+OutroTextWeek: [
+  "Thank you, come back tomorrow when we have new items."
+]
+```
+<ImageWithCaption src="/images/documentation/poke-market/OutroTextWeek.png" caption="OutroTextWeek" align="center"/>
+We can do the similar for Friday, defining `OutroTextFriday` looks like this:
+<br/>
+```ruby
+OutroTextFriday: [
+  "Thank you and Happy Weekend to you as well."
+]
+```
+This will be used by the script when it's Friday in the game:
+<ImageWithCaption src="/images/documentation/poke-market/OutroTextFriday.png" caption="OutroTextFriday" align="center"/>

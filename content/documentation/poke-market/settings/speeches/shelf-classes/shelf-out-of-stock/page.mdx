@@ -1,0 +1,26 @@
+<header>
+  # ShelfOutOfStock
+  <br/>
+  How to use and define Various ShelfOutOfStock speeches.
+
+  ---
+</header>
+
+The ShelfOutOfStock is what the shelf will say when selecting an item that is out of stock 
+<br/>
+This only happens after buying all of them in stock and after checking out. 
+<br/>
+It is possible to include more than 1 speech if you want to.
+<br/>
+Defining `ShelfOutOfStock` looks like this:
+<br/>
+```ruby
+ShelfOutOfStock: [
+  "{1} are currently out of stock, come back {2}."
+]
+```
+- \{1\} = chosen Items's name (singular or plural) (for ex. "Potions").
+
+- \{2\} = time left until the Item gets restocked.
+
+<ImageWithCaption src="/images/documentation/poke-market/ShelfOutOfStock.png" caption="ShelfOutOfStock"/>
