@@ -1,15 +1,16 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
-import { ColorType, IntensityType } from "@/lib/colors";
+import { ColorType, IntensityType } from "@/lib/colors/main";
+import { getColorFromTailwindString } from "@/utils/getTailwindColor";
 
 const getRandomColor = (): { color: ColorType; intensity: IntensityType } => {
   const colors: ColorType[] = [
-    "black", "white", "red", "orange", "amber", "yellow", "lime", "green", "emerald", 
+    "red", "orange", "amber", "yellow", "lime", "green", "emerald", 
     "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", 
     "rose", "slate", "gray", "zinc", "neutral", "stone"
   ];
   
-  const intensities: IntensityType[] = ["100", "200", "300", "400", "500", "600", "700", "800", "900"];
+  const intensities: IntensityType[] = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"];
   
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   const randomIntensity = intensities[Math.floor(Math.random() * intensities.length)];
@@ -21,8 +22,8 @@ type CalloutType = "default" | "hint" | "attention" | "warning" | "check" | "ran
 
 const calloutStyles: Record<CalloutType, { border: string; bg: string; label: string }> = {
   default: {
-    border: "border-blue-500",
-    bg: "bg-gray-800",
+    border: getColorFromTailwindString("blue-500"),
+    bg: getColorFromTailwindString("gray-800"),
     label: ""
   },
   hint: {
@@ -31,18 +32,18 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
     label: "Hint"
   },
   attention: {
-    border: "border-yellow-400",
-    bg: "bg-yellow-900/20",
+    border: getColorFromTailwindString("yellow-400"),
+    bg: getColorFromTailwindString("yellow-900/40"),
     label: "Attention"
   },
   warning: {
     border: "border-red-500",
-    bg: "bg-red-900/20",
+    bg: "bg-red-900/40",
     label: "Warning"
   },
   check: {
     border: "border-green-500",
-    bg: "bg-green-900/20",
+    bg: "bg-green-900/40",
     label: "Check"
   },
   random: {
@@ -58,8 +59,8 @@ export const Callout = ({ type = "default", title = "", children }: { type?: Cal
   if (type === "random") {
     const { color, intensity } = getRandomColor();
     style = {
-      border: `border-${color}-${intensity}`,
-      bg: `bg-gray-800`,  
+      border: getColorFromTailwindString(`${color}-${intensity}`),
+      bg: getColorFromTailwindString("gray-900/40"),  
       label: title,
     };
   }
@@ -67,12 +68,24 @@ export const Callout = ({ type = "default", title = "", children }: { type?: Cal
   return (
     <blockquote
       className={clsx(
-        "border-l-3 rounded-md py-4 pl-4 px-8 my-6",
-        style.border,
-        style.bg,
+        `border-l-3 rounded-md py-4 pl-4 px-8 my-6 bg-linear-85 from-gray-700/20 ${type === "random" ? "to-gray-900" : "to-gray-800"}`,
+        //style.border,
+        //style.bg,
       )}
+      style={{
+        borderColor: style.border,
+        backgroundColor: style.bg,
+        //background: `linear-gradient(to right, #{style.bg} 0%, #{style.bg} 80%, rgba(0, 0, 0, 0) 100%)`
+      }}
     >
-      <strong className={clsx("block mb-1 font-semibold text-lg text-left", style.border)}>
+      <strong 
+        className={clsx(
+          "block mb-1 font-semibold text-lg text-left"
+        )}
+        style={{ 
+          color: type !== "random" ? style.border : ""
+        }}
+      >
         {title || style.label}
       </strong>
       <div className="text-left text-base">{children}</div>

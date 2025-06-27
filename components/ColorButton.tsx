@@ -1,4 +1,4 @@
-import { ColorType, IntensityType } from "@/lib/colors";
+import { ColorType, IntensityType } from "@/lib/colors/main";
 import clsx from "clsx";
 import { ReactNode } from "react";
 

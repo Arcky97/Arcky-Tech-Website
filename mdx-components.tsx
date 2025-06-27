@@ -7,10 +7,10 @@ import { Callout } from "./components/Callout";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
-      <h1 className="text-white text-2xl lg:text-3xl font-bold text-center">{children}</h1>
+      <h1 className="text-white text-3xl lg:text-4xl font-bold text-center">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-white text-2xl lg:text-3xl font-bold text-center">{children}</h2>
+      <h2 className="text-white text-2xl lg:text-3xl font-bold text-center mb-3">{children}</h2>
     ),
     h3: ({ children }) => (
       <h3 className="text-white text-lg lg:text-xl font-bold text-left mt-1 mb-2">{children}</h3>
