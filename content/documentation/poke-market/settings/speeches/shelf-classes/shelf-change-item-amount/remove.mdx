@@ -1,17 +1,17 @@
-## ShelfRemoveItemAmount
+## ShelfItemAmountRemove
 
-The ShelfRemoveItemAmount is what the shelf will say when the comfirmed quanity is 0 of the selected Item. 
+The ShelfItemAmountRemove is what the shelf will say when the comfirmed quanity is 0 of the selected Item. 
 <br/>
 It might seem similar to ShelfDescreaseItemAmount but this allows you to have a different speech for when making the quantity 0.
 <br/>
 It is possible to include more than 1 speech if you want to.
 <br/>
-Defining `ShelfRemoveItemAmount` looks like this:
+Defining `ShelfItemAmountRemove` looks like this:
 <br/>
 ```ruby
-ShelfRemoveItemAmount: [
-  "You removed {1} {2} from you basket. Your bill was decreased by {3}", 
-  "{1} {2} were removed from your basket. Your bill has decrease by {3}"
+ShelfItemAmountRemove: [
+  "You removed {1} {2} from you basket. Your bill was decreased by {3}.", 
+  "{1} {2} were removed from your basket. Your bill has decrease by {3}."
 ]
 ```
 - \{1\} = Quantity removed (for ex. 3).
@@ -20,5 +20,5 @@ ShelfRemoveItemAmount: [
 
 - \{3\} = Total price of chosen item * quantity (for ex. $600).
 
-<ImageWithCaption src="/images/documentation/poke-market/ShelfRemoveItemAmount 1.png" caption="ShelfRemoveItemAmount 1"/>
-<ImageWithCaption src="/images/documentation/poke-market/ShelfRemoveItemAmount 2.png" caption="ShelfRemoveItemAmount 2"/>
+<ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountRemove 1.png" caption="ShelfItemAmountRemove 1"/>
+<ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountRemove 2.png" caption="ShelfItemAmountRemove 2"/>

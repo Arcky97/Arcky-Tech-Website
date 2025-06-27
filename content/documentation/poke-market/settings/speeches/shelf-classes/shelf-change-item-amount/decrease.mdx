@@ -1,14 +1,14 @@
-## ShelfDecreaseItemAmount
+## ShelfItemAmountDecrease
 
-The ShelfDecreaseItemAmount is what the shelf will say when the comfirmed quanity is lower (not 0) than the previous quantity of the selected Item. 
+The ShelfItemAmountDecrease is what the shelf will say when the comfirmed quanity is lower (not 0) than the previous quantity of the selected Item. 
 <br/>
 It is possible to include more than 1 speech if you want to.
 <br/>
-Defining `ShelfDecreaseItemAmount` looks like this:
+Defining `ShelfItemAmountDecrease` looks like this:
 <br/>
 ```ruby
-ShelfDecreaseItemAmount: [
-  "You took {1} {2} out of your basket. Your bill was decreased by {3}"]
+ShelfItemAmountDecrease: [
+  "You took {1} {2} out of your basket. Your bill was decreased by {3}."]
 ```
 - \{1\} = Quantity removed (for ex. 2).
 
@@ -16,4 +16,4 @@ ShelfDecreaseItemAmount: [
 
 - \{3\} = Total price of chosen item * quantity (for ex. $400).
 
-<ImageWithCaption src="/images/documentation/poke-market/ShelfDecreaseItemAmount.png" caption="ShelfDecreaseItemAmount"/>
+<ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountDecrease.png" caption="ShelfItemAmountDecrease"/>

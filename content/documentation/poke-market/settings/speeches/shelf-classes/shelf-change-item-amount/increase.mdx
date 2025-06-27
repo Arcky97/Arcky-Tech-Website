@@ -1,15 +1,15 @@
-## ShelfIncreaseItemAmount
+## ShelfItemAmountIncrease
 
-The ShelfIncreaseItemAmount is what the shelf will say when the comfirmed quanity is higher than the previous quantity of the selected Item. 
+The ShelfItemAmountLimit is what the shelf will say when the comfirmed quanity is higher than the previous quantity of the selected Item. 
 <br/>
 It is possible to include more than 1 speech if you want to.
 <br/>
-Defining `ShelfIncreaseItemAmount` looks like this:
+Defining `ShelfItemAmountIncrease` looks like this:
 <br/>
 ```ruby
-ShelfIncreaseAmountItem: [
-  "You added {1} {2} to your basket. Your bill was increased by {3}", 
-  "{1} {2} have been added to your basket. Your bill was increased by {3}"
+ShelfItemAmountLimit: [
+  "You added {1} {2} to your basket. Your bill was increased by {3}.", 
+  "{1} {2} have been added to your basket. Your bill was increased by {3}."
 ]
 ```
 - \{1\} = Quantity added (for ex. 5).
@@ -18,5 +18,5 @@ ShelfIncreaseAmountItem: [
 
 - \{3\} = Total price of chosen item * quantity (for ex. $1000).
 
-<ImageWithCaption src="/images/documentation/poke-market/ShelfIncreaseItemAmount 1.png" caption="ShelfIncreaseItemAmount 1"/>
-<ImageWithCaption src="/images/documentation/poke-market/ShelfIncreaseItemAmount 2.png" caption="ShelfIncreaseItemAmount 2"/>
+<ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountIncrease 1.png" caption="ShelfItemAmountIncrease 1"/>
+<ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountIncrease 2.png" caption="ShelfItemAmountIncrease 2"/>
