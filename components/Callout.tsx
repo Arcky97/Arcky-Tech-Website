@@ -27,8 +27,8 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
     label: ""
   },
   hint: {
-    border: "border-gray-500",
-    bg: "bg-zinc-800",
+    border: getColorFromTailwindString("gray-500"),
+    bg: getColorFromTailwindString("zinc-800"),
     label: "Hint"
   },
   attention: {
@@ -37,13 +37,13 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
     label: "Attention"
   },
   warning: {
-    border: "border-red-500",
-    bg: "bg-red-900/40",
+    border: getColorFromTailwindString("red-500"),
+    bg: getColorFromTailwindString("red-900/40"),
     label: "Warning"
   },
   check: {
-    border: "border-green-500",
-    bg: "bg-green-900/40",
+    border: getColorFromTailwindString("green-500"),
+    bg: getColorFromTailwindString("green-900/40"),
     label: "Check"
   },
   random: {

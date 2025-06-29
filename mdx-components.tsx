@@ -22,10 +22,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <p className="text-white text-base lg:text-lg font-normal text-left">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-white text-base lg:text-lg font-normal text-left list-disc marker:text-white ">{children}</ul>
+      <ul className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "revert"}}>{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-white text-base lg:text-lg font-normal text-left list-decimal marker:text-white">{children}</ol>
+      <ol className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "initial"}}>{children}</ol>
     ),
     li: ({ children }) => (
       <li className="ml-6 text-white leading-relaxed text-md mb-1"><span className="">{children}</span></li>
