@@ -593,22 +593,6 @@ export default function DocumentationLayout({ children }: { children: React.Reac
           text: "Installation"
         }
       ]
-    },
-    {
-      name: "pokedex-entry-scroll",
-      path: "",
-      icon: <HomeIcon className="w-6 h-6"/>,
-      text: "Arcky's Pokedex Entry Scroll",
-      subItems: [
-        {
-          path: "update-history",
-          text: "Update History"
-        },
-        {
-          path: "installation",
-          text: "Installation"
-        }
-      ]
     }
   ];
 

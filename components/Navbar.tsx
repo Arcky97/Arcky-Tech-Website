@@ -72,7 +72,7 @@ export default function Navbar() {
               : "opacity-100"
           }`}
         >
-          Arcky-Tech
+          <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">Arcky-Tech</Link>
         </h1>
 
         {/* Desktop Navigation (Icons + Text) */}

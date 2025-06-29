@@ -7,12 +7,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="text-center p-8">
         <h1 className="text-5xl font-bold mb-4">Welcome to Arcky-Tech</h1>
-        <p className="text-lg text-gray-300 max-w">
+        <p className="text-lg text-gray-300 max-w mb-4">
           Hello, my name is Arcky.
         </p>
         <a
           href="/projects"
-          className="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg"
+          className="border border-blue-600 bg-blue-600 select-none cursor-pointer hover:bg-transparent text-white px-4 py-2 rounded-lg transition-all duration-300 ease-in-out text-lg"
         >
           View Projects 
         </a>
