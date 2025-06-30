@@ -1,7 +1,7 @@
 # ---------- STAGE 1: Build ----------
 FROM node:18-alpine AS builder
 
-WORKDIR /app
+WORKDIR /usr/app
 
 # Kopieer package.json en lockfile eerst (om caching van installaties te verbeteren)
 COPY package*.json ./
@@ -22,8 +22,8 @@ FROM node:18-alpine AS runner
 WORKDIR /app
 
 # Alleen de nodige bestanden overzetten
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /usr/app/public ./public
+COPY --from=builder /usr/app/package.json ./package.json
 
 EXPOSE 3000
 
