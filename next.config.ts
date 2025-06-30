@@ -9,8 +9,7 @@ const withMDX = nextMDX({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  ignoreDuringBuilds: true
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx']
 };
 
 export default withMDX(nextConfig);
