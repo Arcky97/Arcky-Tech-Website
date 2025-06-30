@@ -10,4 +10,4 @@ RUN npm install
 EXPOSE 3000
 
 # Set up a default command
-CMD [ "npm","start" ]
+CMD [ "npm","run", "dev" ]
