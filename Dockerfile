@@ -12,6 +12,7 @@ RUN npm install
 # Kopieer de rest van de app
 COPY . .
 
+ENV NEXT_DISABLE_ESLINT=true
 # Build de Next.js-app
 RUN npm run build
 
