@@ -1,13 +1,32 @@
-# Specify a base image
-FROM node:alpine
+# ---------- STAGE 1: Build ----------
+FROM node:18-alpine AS builder
 
-#Install some dependencies
+WORKDIR /app
 
-WORKDIR /usr/app
-COPY ./ /usr/app
+# Kopieer package.json en lockfile eerst (om caching van installaties te verbeteren)
+COPY package*.json ./
+
+# Installeer dependencies
 RUN npm install
+
+# Kopieer de rest van de app
+COPY . .
+
+# Build de Next.js-app
+RUN npm run build
+
+# ---------- STAGE 2: Run ----------
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+
+# Alleen de nodige bestanden overzetten
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 3000
 
-# Set up a default command
-CMD [ "npm","run", "dev" ]
+# Start in productie
+CMD ["npm", "start"]
