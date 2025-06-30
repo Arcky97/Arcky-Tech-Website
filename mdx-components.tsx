@@ -25,7 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ul className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "revert"}}>{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "initial"}}>{children}</ol>
+      <ol className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "decimal"}}>{children}</ol>
     ),
     li: ({ children }) => (
       <li className="ml-6 text-white leading-relaxed text-md mb-1"><span className="">{children}</span></li>
