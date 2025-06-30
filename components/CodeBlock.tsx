@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import hljs from "highlight.js/lib/core";
 
 import javascript from "highlight.js/lib/languages/javascript";
@@ -31,6 +31,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
         const { value } = hljs.highlight(line, { language, ignoreIllegals: true });
         return value;
       } catch (error) {
+        console.log(error);
         return line;
       }
     });

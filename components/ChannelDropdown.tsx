@@ -79,7 +79,7 @@ export default function ChannelDropdown({ label, value, onChange, channels, mult
               borderRadius: '8px',
               boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
             }),
-            option: (provided, { data, isFocused, isSelected}) => ({
+            option: (provided, { isFocused, isSelected}) => ({
               ...provided,
               backgroundColor: isSelected ? '#081635' : isFocused ? '#2563eb' : 'transparent',
               color: isFocused || isSelected ? 'fff' : 'gray'

@@ -796,10 +796,10 @@ export default function Levels() {
                 rows={levelSystem
                   .sort((a: any, b:any) => b.xp - a.xp)
                   .map((user: any, index: any) => [
-                    <span>{index + 1}</span>,
-                    <span>{handleUserName(user.memberId)}</span>,
-                    <span>{user.level}</span>,
-                    <span>{user.xp}</span>,
+                    <span key={`index-${index}`}>{index + 1}</span>,
+                    <span key={`user-index-${index}`}>{handleUserName(user.memberId)}</span>,
+                    <span key={`level-${user.level}`}>{user.level}</span>,
+                    <span key={`xp-${user.xp}`}>{user.xp}</span>,
                     <div key={`user-${user.memberId}`} className="justify-center space-x-4">
                       <ColorButton
                         color="blue"

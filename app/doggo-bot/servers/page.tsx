@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { fetchTableData } from "@/utils/fetchTableData";
+import Image from "next/image";
 
 export default function Servers() {
   const { data: session, status } = useSession();
@@ -70,7 +71,7 @@ export default function Servers() {
                     className="block"
                   >
                     {guild.icon ? (
-                      <img
+                      <Image
                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
                         alt={initials}
                         className="w-16 h-16 rounded-full mx-auto"

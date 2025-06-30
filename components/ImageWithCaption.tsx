@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import Image from "next/image";
 
 type Align = "left" | "center" | "right";
 type Size = "full" | "small" | "medium" | "large";
@@ -68,7 +69,7 @@ export const ImageWithCaption = ({
     <>
       {/* Normal Image with Caption */}
       <figure className={clsx("my-5", sizeValues[size], alignMargins[align])}>
-        <img
+        <Image
           ref={imageRef}
           src={src}
           alt={alt ?? "Image not found"}
@@ -102,9 +103,9 @@ export const ImageWithCaption = ({
                 : "translate(0, 0) scale(1)",
             }}
           >
-            <img
+            <Image
               src={src}
-              alt={alt}
+              alt={alt || ""}
               className="w-full h-full object-contain rounded-lg mx-auto select-none cursor-zoom-out"
             />
             <button
