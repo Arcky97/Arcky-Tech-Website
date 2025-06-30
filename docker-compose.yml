@@ -1,6 +1,9 @@
 version: '3'
 services:
   api:
-    image: ghcr.io/arcky97/Arcky-Tech-Website:main
+    build: .   # build from local Dockerfile instead of pulling image
     ports:
       - "3000:3000"
+    volumes:
+      - .:/usr/app  # mounts your code inside container
+    command: npm run dev  # for development; use 'npm start' for prod
