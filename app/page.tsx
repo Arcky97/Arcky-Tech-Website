@@ -1,4 +1,5 @@
 "use client"
+import ColorButton from "@/components/ColorButton";
 
 export default function Home() {
   return (

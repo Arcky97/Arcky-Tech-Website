@@ -2,8 +2,6 @@ import Markdown from "@/lib/markdown/Markdown";
 import type { Embed, EmbedField } from "../lib/interfaces";
 import { embedPlaceholder } from "@/utils/embedPlaceholder";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function EmbedPreview({ label, embed }: { label?: string, embed: Embed }) {
   const fieldRows: EmbedField[][] = [];
@@ -38,7 +36,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
     }
   }
  
-  //const { data: session } = useSession();
+  const { data: session } = useSession();
 
   return (
     <article>
@@ -56,7 +54,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
             <div className="min-w-0 flex items-center col-[1/1] mt-2">
               {/* Author Icon */}
               {embed.author.iconUrl ? (
-                <Image
+                <img
                   className="h-6 w-6 rounded-full mr-2 object-contain"
                   src={embedPlaceholder(embed.author.iconUrl)}
                   alt=""
@@ -64,8 +62,8 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
               ) : null}
 
               {/* Author Name */}
-              <Link
-                href={embedPlaceholder(embed.author.url || "") || ""}
+              <a
+                href={embedPlaceholder(embed.author.url || "") || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"
@@ -76,14 +74,14 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
                 }`}
               >
                 {embedPlaceholder(embed.author.name)}
-              </Link>
+              </a>
             </div> 
           ) : null}
 
           {/* Title */}
           {embed?.title ? (
-            <Link
-              href={embedPlaceholder(embed.url || "") || ""}
+            <a
+              href={embedPlaceholder(embed.url || "") || undefined}
               target="_blank"
               rel="noopener norefferrer"
               role="button"
@@ -96,7 +94,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
               <Markdown type="header">
                 {embedPlaceholder(embed.title)}
               </Markdown>
-            </Link>
+            </a>
           ): null}
 
           {/* Description */}
@@ -142,7 +140,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
                 embed.thumbnailUrl ? "col-[1/3]" : "col-[1/1]"
               }`}
             >
-              <Image
+              <img
                 className="object-contain max-h-full max-w-full"
                 src={embedPlaceholder(embed.imageUrl)}
                 alt={embedPlaceholder(embed.imageUrl)}
@@ -153,7 +151,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
           {/* Thumbnail */}
           {embed?.thumbnailUrl ? (
             <div className="min-w-0 row-[1/8] col-[2/2] mt-2 ml-4 shrink-0 justify-self-end block max-w-20 max-h-20 rounded-[3px] cursor-pointer overflow-hidden">
-              <Image
+              <img
                 className="object-contain max-h-full max-w-full"
                 src={embedPlaceholder(embed.thumbnailUrl)}
                 alt={embedPlaceholder(embed.thumbnailUrl)}
@@ -170,7 +168,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
             >
               {/* Footer Icon */}
               {embed.footer.iconUrl ? (
-                <Image
+                <img
                   className="h-5 w-5 rounded-full mr-2 object-contain"
                   src={embedPlaceholder(embed.footer.iconUrl)}
                   alt=""

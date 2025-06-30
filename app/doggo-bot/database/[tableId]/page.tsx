@@ -36,14 +36,13 @@ export default function DatabaseTablePage() {
     fetchData();
   }, [tableId]);
 
-  console.log(rowToEdit);
   function transformRow(row: any, schema: any) {
     return [
       schema.map((col: any) => {
         const columnName = col.COLUMN_NAME;
         const dataType = col.DATA_TYPE;
 
-        const value = row[columnName];
+        let value = row[columnName];
         if (dataType === "tinyint") {
           return value === 1 ? "True" : "False";
         } else if (dataType === "longtext") {
@@ -51,7 +50,6 @@ export default function DatabaseTablePage() {
             return <pre className="bg-gray-800 px-4 rounded-md overflow-auto">{JSON.stringify(JSON.parse(value), null, 2)}
             </pre>;
           } catch (error) {
-            console.log(error);
             return <pre className="bg-gray-800 px-4 rounded-md overflow-auto">
               {value}
             </pre>;

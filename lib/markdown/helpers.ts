@@ -22,7 +22,7 @@ export function depunycodeUrl(link: string) {
 
     return url.toString();
   } catch (error) {
-    console.log(error);
+    
   }
 }
 
@@ -73,7 +73,7 @@ export function createParser(rules: Record<string, MarkdownRule>) {
   const output = outputFor(rules, "react");
 
   return (content: string) => {
-    const ast = parse(content);
+    let ast = parse(content);
 
     return output(ast);
   };

@@ -12,7 +12,7 @@ interface MenuItem {
   subItems?: MenuItem[];
 }
 
-export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: boolean }) {
+export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: Boolean }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
