@@ -1,31 +1,21 @@
-# ---------- STAGE 1: Build ----------
 FROM node:18-alpine AS builder
 
 WORKDIR /app
-
-# Kopieer package.json en lockfile eerst (om caching van installaties te verbeteren)
 COPY package*.json ./
-
-# Installeer dependencies
 RUN npm install
-
-# Kopieer de rest van de app
 COPY . .
 
+# Disable ESLint during build
 ENV NEXT_DISABLE_ESLINT=true
-# Build de Next.js-app
 RUN npm run build
 
-# ---------- STAGE 2: Run ----------
 FROM node:18-alpine AS runner
 
 WORKDIR /app
-
-# Alleen de nodige bestanden overzetten
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 3000
-
-# Start in productie
 CMD ["npm", "start"]
