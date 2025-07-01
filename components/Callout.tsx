@@ -53,7 +53,7 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
   }
 };
 
-export const Callout = ({ type = "default", title = "", children }: { type?: CalloutType; title?: string; children: ReactNode }) => {
+export const Callout = ({ type = "default", title = "", blend = "dark", children }: { type?: CalloutType; title?: string; blend?:string; children: ReactNode }) => {
   let style = calloutStyles[type];
 
   if (type === "random") {
@@ -68,7 +68,7 @@ export const Callout = ({ type = "default", title = "", children }: { type?: Cal
   return (
     <blockquote
       className={clsx(
-        `border-l-3 rounded-md py-4 pl-4 px-8 my-6 bg-linear-85 from-gray-700/20 ${type === "random" ? "to-gray-900" : "to-gray-800"}`,
+        `border-l-3 rounded-md py-4 pl-4 px-8 my-6 bg-linear-85 from-gray-700/20 ${blend === "dark" ? "to-gray-900" : "to-gray-800"}`,
         //style.border,
         //style.bg,
       )}

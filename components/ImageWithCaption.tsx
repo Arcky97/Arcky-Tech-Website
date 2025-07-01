@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
 type Align = "left" | "center" | "right";
-type Size = "full" | "small" | "medium" | "large";
+type Size = "full" | "tiny" | "small" | "medium" | "large";
 
 const alignMargins: Record<Align, string> = {
   left: "ml-0",
@@ -13,6 +13,7 @@ const alignMargins: Record<Align, string> = {
 
 const sizeValues: Record<Size, string> = {
   full: "max-w-full",
+  tiny: "max-w-1/6",
   small: "max-w-2/5",
   medium: "max-w-3/5",
   large: "max-w-4/5"

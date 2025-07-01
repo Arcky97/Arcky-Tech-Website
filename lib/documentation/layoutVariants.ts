@@ -42,7 +42,8 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'outro-text': { group: 'speechVariants' },
   'shelf-change-item-amount': { group: 'speechVariants' },
   'shelf-item-amount': { group: 'speechVariants' },
-  'features': { group: "speechVariants" }
+  'features': { group: "speechVariants" },
+  'manual-editing': { group: "speechVariants"}
 }
 
 export function getStyles(slug: string[]): StyleConfig {

@@ -145,23 +145,23 @@ export default function DocumentationLayout({ children }: { children: React.Reac
           text: "Basic Setup",
           subItems: [
             {
-              path: "highlight",
-              text: "Highlight Images"
+              path: "highlight-graphics",
+              text: "Highlight Graphics"
             },
             {
-              path: "unvisited",
-              text: "Unvisited Images"
+              path: "unvisited-graphics",
+              text: "Unvisited Graphics"
             },
             {
-              path: "pbsfile",
+              path: "town-map-pbs-file",
               text: "Town_Map.txt PBS file",
               subItems: [
                 {
-                  path: "manual",
+                  path: "manual-editing",
                   text: "Manual PBS Editing"
                 },
                 {
-                  path: "townmapgen",
+                  path: "townmapgen-html-file",
                   text: "Townmapgen.html file"
                 }
               ]
