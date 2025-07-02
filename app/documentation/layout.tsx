@@ -171,7 +171,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
               text: "Location Preview"
             },
             {
-              path: "extended-preview",
+              path: "extended-location-preview",
               text: "Extended Preview"
             }
           ]

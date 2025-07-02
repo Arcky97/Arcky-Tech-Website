@@ -19,13 +19,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <header className="mt-4 text-center">{children}</header>
     ),
     p: ({ children }) => (
-      <p className="text-white text-base lg:text-lg font-normal text-left">{children}</p>
+      <p className="text-white text-base font-normal text-left">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "revert"}}>{children}</ul>
+      <ul className="text-white text-base font-normal text-left marker:text-white" style={{ listStyleType: "revert"}}>{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-white text-base lg:text-lg font-normal text-left marker:text-white" style={{ listStyleType: "decimal"}}>{children}</ol>
+      <ol className="text-white text-base font-normal text-left marker:text-white" style={{ listStyleType: "decimal"}}>{children}</ol>
     ),
     li: ({ children }) => (
       <li className="ml-6 text-white leading-relaxed text-md mb-1"><span className="">{children}</span></li>

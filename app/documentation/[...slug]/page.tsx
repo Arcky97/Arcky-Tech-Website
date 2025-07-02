@@ -30,29 +30,31 @@ export default async function Page({
 
   const files = fs
     .readdirSync(updatesDir)
-    .filter((file) => file.endsWith('.mdx'))
-    .sort((a, b) => {
+    .filter(file => file.endsWith('.mdx'));
+
+  const isIndexedFormat = files.filter(file => file !== 'header.mdx').every(file => /^\d{1}-.*\.mdx$/.test(file));
+
+  if (isIndexedFormat) {
+    // All files start with index: sort by numeric prefix ascending
+    files.sort((a, b) => {
+      const indexA = parseInt(a.split('-')[0], 10);
+      const indexB = parseInt(b.split('-')[0], 10);
+      return indexA - indexB;
+    });
+  } else {
+    // All files are date-formatted: sort by date descending
+    files.sort((a, b) => {
       const baseA = a.replace('.mdx', '');
       const baseB = b.replace('.mdx', '');
-
       const dateA = new Date(baseA.split('-').slice(0, 3).join('-'));
       const dateB = new Date(baseB.split('-').slice(0, 3).join('-'));
-
-      const isValidDateA = !isNaN(dateA.getTime());
-      const isValidDateB = !isNaN(dateB.getTime());
-
-      if (isValidDateA && isValidDateB) {
-        if (dateA.getTime() !== dateB.getTime()) {
-          return dateB.getTime() - dateA.getTime();
-        }
+      if (dateA.getTime() !== dateB.getTime()) {
+        return dateB.getTime() - dateA.getTime();
+      } else {
         return baseB.localeCompare(baseA);
       }
-
-      if (isValidDateA) return -1;
-      if (isValidDateB) return 1;
-
-      return baseA.localeCompare(baseB);
     });
+  }
 
   const posts = await Promise.all(
     files.map(async (file) => {
@@ -89,7 +91,7 @@ export default async function Page({
 
   return (
     <article key={slug[0]} className={styles.wrapper}>
-      {styles.card && <section className="mb-6 w-6/8">
+      {styles.card && <section className="mb-6 w-7/8">
         {header && header.map(({Component}, i) => (
           <div key={i} >
             <Component/>

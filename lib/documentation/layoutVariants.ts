@@ -26,7 +26,7 @@ const baseStyles: Record<StyleGroup, StyleConfig> = {
   },
   'speechVariants': {
     wrapper: 'flex flex-col mt-22 items-center min-h-screen bg-gray-900 text-white',
-    section: 'text-center w-6/8 space-y-4 mb-4',
+    section: 'text-center w-7/8 space-y-4 mb-4',
     card: 'border border-gray-700 rounded-lg px-6 py-2',
     date: '',
   }
@@ -43,7 +43,9 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'shelf-change-item-amount': { group: 'speechVariants' },
   'shelf-item-amount': { group: 'speechVariants' },
   'features': { group: "speechVariants" },
-  'manual-editing': { group: "speechVariants"}
+  'manual-editing': { group: "speechVariants"},
+  'location-preview': { group: "speechVariants" },
+  'extended-location-preview': { group: "speechVariants" }
 }
 
 export function getStyles(slug: string[]): StyleConfig {
