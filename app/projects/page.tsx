@@ -4,13 +4,21 @@ import { EmblaOptionsType } from 'embla-carousel';
 import EmblaCarousel from '@/components/EmblaCarousel';
 
 export default function Projects() {
-  const Slides = [
-    "/images/documentation/region-map/Bery Preview 1.png",
-    "/images/documentation/region-map/Bery Preview 2.png",
-    "/images/documentation/region-map/Bery Preview 3.png",
-    "/images/documentation/region-map/Bery Preview 4.png",
-    "/images/documentation/region-map/Bery Preview 5.png"
+  const RegionMapSlides = [
+    "documentation/region-map/Bery Preview 1",
+    "documentation/region-map/Bery Preview 2",
+    "documentation/region-map/Bery Preview 3",
+    "documentation/region-map/Bery Preview 4",
+    "documentation/region-map/Bery Preview 5"
   ];
+
+  const PokeMarketSlides = [
+    "documentation/poke-market/MenuText 1",
+    "documentation/poke-market/BuyItemAmountDiscount",
+    "documentation/poke-market/BuyItemMult",
+    "documentation/poke-market/BuyThanks",
+    "documentation/poke-market/BuyBonusMult"
+  ]
   const Options: EmblaOptionsType = { loop: true }
 
   return (
@@ -36,7 +44,7 @@ export default function Projects() {
           >
             Discover now
           </a>
-          <EmblaCarousel slides={[1, 2, 3, 4, 5, 6, 7, 8]} options={Options} />
+          <EmblaCarousel slides={RegionMapSlides} options={Options}/>
         </section>
         <section className="p-2">
           <h2 className="text-2xl font-semibold my-4">Arcky's Poké Mart</h2>
@@ -47,6 +55,7 @@ export default function Projects() {
           >
             Discover now
           </a>
+          <EmblaCarousel slides={PokeMarketSlides} options={Options}/>
         </section>
         <section className="p-2">
           <h2 className="text-2xl font-semibold my-4">Arcky's Graphic Transparancy</h2>

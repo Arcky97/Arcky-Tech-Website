@@ -231,16 +231,16 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
             <span
               className={`block w-6 h-1 bg-white transition-transform duration-300 ease-in-out ${
                 isSidebarVisible
-                  ? "group-hover:rotate-[-45deg] group-hover:translate-y-[0px]"
-                  : "group-hover:rotate-[45deg] group-hover:translate-y-[0px]"
+                  ? "group-hover:rotate-[-45deg] group-hover:translate-y-[0px] group-hover:bg-gray-400"
+                  : "group-hover:rotate-[45deg] group-hover:translate-y-[0px] group-hover:bg-gray-400"
               } group-hover:scale-110`}
             ></span>
-            <span className="block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out group-hover:opacity-0"></span>
+            <span className="block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out group-hover:opacity-0 group-hover:bg-gray-400"></span>
             <span
               className={`block w-6 h-1 bg-white transition-transform duration-300 ease-in-out ${
                 isSidebarVisible
-                  ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px]"
-                  : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px]"
+                  ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px] group-hover:bg-gray-400"
+                  : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px] group-hover:bg-gray-400"
               } group-hover:scale-110`}
             ></span>
           </button>

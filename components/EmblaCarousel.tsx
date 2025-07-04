@@ -17,7 +17,7 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 type PropType = {
-  slides: number[]
+  slides: string[]
   options?: EmblaOptionsType
 }
 
@@ -38,7 +38,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         : autoplay.stop
 
     resetOrStop()
-    setTimeout(() => autoplay.play, 2000);
+    setTimeout(() => { autoplay.reset; autoplay.play }, 200);
   }, [])
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
@@ -131,9 +131,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number"><img src={`/images/documentation/region-map/Bery Preview ${index}.png`}/></div>
+              <div className="embla__slide__number"><img src={`/images/${slide}.png`} alt={`Image ${index} not found`} /></div>
             </div>
           ))}
         </div>
