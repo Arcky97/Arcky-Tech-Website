@@ -83,7 +83,7 @@ export default function Navbar() {
             <BriefcaseIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
             {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Projects</span>)}
           </Link>
-          <Link href="https://discord.gg/4SrZTuYj26" className="flex items-center space-x-2 hover:text-gray-400">
+          <Link href="https://discord.gg/HK99jTNqS2" className="flex items-center space-x-2 hover:text-gray-400">
             <ChatAltIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
             {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Discord</span>)}
           </Link>

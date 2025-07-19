@@ -1,17 +1,19 @@
 import { ColorType, IntensityType } from "@/lib/colors/main";
 import { getColorFromTailwindString } from "@/utils/getTailwindColor";
 import clsx from "clsx";
+import Link from "next/link";
 import { ReactNode, useState } from "react";
 
 interface Props {
   color: ColorType;
   intensity?: IntensityType;
   text: ReactNode;
-  action: () => void;
-  className?: string;
+  action?: () => void;
+  extraClass?: string;
+  href?: string;
 }
 
-export default function ColorButton({ color, intensity = "600", text, action, className = "" }: Props) {
+export default function ColorButton({ color, intensity = "600", text, action, extraClass = "", href }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const style = getColorFromTailwindString(`${color}-${intensity}`)
@@ -24,12 +26,28 @@ export default function ColorButton({ color, intensity = "600", text, action, cl
     setIsHovered(false);
   }
 
+  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-white px-2 py-1 rounded-lg transition-all duration-300 ease-in-out"
+
+  if (href) {
+    return (
+      <Link 
+        href={href} 
+        className={clsx(baseClass, extraClass)}
+        style={{
+          borderColor: style,
+          backgroundColor: isHovered ? "transparent" : style,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {text}
+      </Link>
+    )
+  }
+
   return (
     <button
-      className={clsx(
-        "border select-none cursor-pointer hover:bg-transparent text-white px-2 py-1 rounded-lg transition-all duration-300 ease-in-out",
-        className
-      )}
+      className={clsx(baseClass, extraClass)}
       style={{
         borderColor: style,
         backgroundColor: isHovered ? "transparent" : style,
