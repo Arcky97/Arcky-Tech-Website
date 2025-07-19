@@ -2,15 +2,13 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; 
-import { signIn, signOut, useSession } from "next-auth/react";
-import { HomeIcon, BriefcaseIcon, UsersIcon, ChatAltIcon, InformationCircleIcon, ChartBarIcon, BookOpenIcon, DatabaseIcon } from "@heroicons/react/outline"; // Importing Heroicons
+import { HomeIcon, BriefcaseIcon, UsersIcon, ChatAltIcon, InformationCircleIcon, BookOpenIcon, DatabaseIcon } from "@heroicons/react/outline"; // Importing Heroicons
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false); 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const pathname = usePathname(); 
-  const { data: session } = useSession();
+  const pathname = usePathname();
   const navbarRef = useRef<HTMLDivElement>(null);
 
   const isHomePage = pathname === '/'; 
@@ -43,7 +41,7 @@ export default function Navbar() {
       window.removeEventListener("resize", updateIsSmallScreen);
     }
 
-  }, [pathname]);
+  }, [pathname, hasSideNav, isSmallScreen]);
 
   return (
     <nav
@@ -97,19 +95,6 @@ export default function Navbar() {
           )}
           {isDoggoBotPage ? (
             <>
-              <Link 
-                href={`${session ? "/doggo-bot/servers" : "#" }`}
-                onClick={(e) => {
-                  if (!session) {
-                    e.preventDefault();
-                    signIn('discord', { callbackUrl: "/doggo-bot/servers" });
-                  }
-                }}
-                className="flex items-center space-x-2 hover:text-gray-400"
-              >
-                <ChartBarIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`}/>
-                {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg' } transition-all duration-300 ease-in-out`}>Dashboard</span>)}
-              </Link>
               <Link href="/documentation/doggo-bot" className="flex items-center space-x-2 hover:text-gray-400">
                 <BookOpenIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`}/>
                 {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg' } transition-all duration-300 ease-in-out`}>Documentation</span>)}
@@ -137,24 +122,6 @@ export default function Navbar() {
                 {<span className={`${isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Database</span>}
               </Link>
             </>
-          )}
-          {/* Auth Buttons */}
-          {isDoggoBotPage && (
-            session ? (
-              <button
-                onClick={() => signOut()}
-                className="border border-red-600 bg-red-600 hover:bg-transparent text-white px-3 py-1 rounded-lg text-md transition-all duration-300 ease-in-out cursor-pointer"
-              >
-                Logout
-              </button>
-            ) : (
-              <button
-                onClick={() => signIn("discord", { callbackUrl: "/doggo-bot/servers" })}
-                className="border border-blue-600 bg-blue-600 hover:bg-transparent text-white px-3 py-1 rounded-lg text-md transition-all duration-300 ease-in-out cursor-pointer"
-                >
-                Login
-              </button>
-            )
           )}
         </div>
       </div>

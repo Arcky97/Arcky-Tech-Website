@@ -12,9 +12,10 @@ interface MenuItem {
   subItems?: MenuItem[];
 }
 
-export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: Boolean }) {
+export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: boolean }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
   const pathname = usePathname();
   const hasScrolledToActive = useRef(false);
@@ -34,12 +35,12 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     };
   })();
 
-  const toggleSidebarVisibility = () => setIsSidebarVisible((prev) => !prev);
 
   useEffect(() => {
     const updateIsSmallScreen = () => {
       setIsSmallScreen(window.innerWidth < 1024);
-      setIsSidebarVisible(window.innerWidth > 1024);
+      setIsSidebarVisible(window.innerWidth > 1024 || isDocumentation && window.innerWidth > 1024);
+      setIsSidebarFrozen(isDocumentation && window.innerWidth >= 1024);
     };
 
     window.addEventListener("resize", updateIsSmallScreen);
@@ -48,7 +49,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     return () => {
       window.removeEventListener("resize", updateIsSmallScreen);
     };
-  }, [pathname]);
+  }, [pathname, isDocumentation]);
 
   useEffect(() => {
     const splitPath = pathname.split('/');
@@ -81,6 +82,8 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     setTimeout(scrollSidebarToActiveItem, 100);
   }, [pathname]);
 
+  const toggleSidebarVisibility = () => {if ((isDocumentation && window.innerWidth < 1024) || isDashboard) setIsSidebarVisible((prev) => !prev)};
+
   const toggleSubmenu = (path: string, value?: boolean) => {
     setExpandedMenu((prev) => ({
       ...prev,
@@ -88,7 +91,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     }));
   };
 
-  const handleClick = async (e: any, path: string, subPath: string) => {
+  const handleClick = async (e: React.MouseEvent<HTMLElement>, path: string, subPath: string) => {
     e.preventDefault();
     const applyHighlightEffect = (id: string) => {
       const target = document.getElementById(id);
@@ -105,7 +108,6 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
       window.scrollTo({ top: targetPosition, behavior: "smooth" });
       applyHighlightEffect(subPath.replace("#", ""));
     }
-
     if (window.innerWidth < 1024) {
       setIsSidebarVisible(false);
     }
@@ -229,19 +231,24 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
             onClick={toggleSidebarVisibility}
           >
             <span
-              className={`block w-6 h-1 bg-white transition-transform duration-300 ease-in-out ${
-                isSidebarVisible
-                  ? "group-hover:rotate-[-45deg] group-hover:translate-y-[0px] group-hover:bg-gray-400"
-                  : "group-hover:rotate-[45deg] group-hover:translate-y-[0px] group-hover:bg-gray-400"
-              } group-hover:scale-110`}
+              className={`block w-6 h-1 bg-white transition-all duration-300 ease-in-out ${
+                isSidebarFrozen
+                  ? ""
+                  : `${isSidebarVisible
+                    ? "group-hover:rotate-[-45deg] group-hover:translate-y-[0px]"
+                    : "group-hover:rotate-[45deg] group-hover:translate-y-[0px]"} group-hover:scale-110 group-hover:bg-gray-400`
+                }`}
             ></span>
-            <span className="block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out group-hover:opacity-0 group-hover:bg-gray-400"></span>
+            <span className={`block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out ${isSidebarFrozen ? "": "group-hover:opacity-0 group-hover:bg-gray-400"}`}></span>
             <span
-              className={`block w-6 h-1 bg-white transition-transform duration-300 ease-in-out ${
-                isSidebarVisible
-                  ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px] group-hover:bg-gray-400"
-                  : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px] group-hover:bg-gray-400"
-              } group-hover:scale-110`}
+              className={`block w-6 h-1 bg-white transition-all duration-300 ease-in-out ${
+                isSidebarFrozen
+                  ? ""
+                  : `${isSidebarVisible
+                    ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px]"
+                    : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px]"} group-hover:scale-110 group-hover:bg-gray-400`
+                
+              }`}
             ></span>
           </button>
         </div>

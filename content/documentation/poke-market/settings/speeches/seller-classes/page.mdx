@@ -1,13 +1,10 @@
-<header>
-  # Seller Classes
-  <br/>
+<Header title="Seller Classes">
   List of all Seller Class parameters.
+</Header>
 
-  ---
-</header>
-This Setting is the biggest one of all Settings in this plugin. You can go really far with this but you can also not use it at all.
+This setting is the most extensive one in the entire plugin. You can go as deep as you'd like customizing it — or choose not to use it at all.
 <br/>
-Adding a Seller Class to the event method is really easy, after the list of itemsn, you can add the Seller Class `speech: "ProSeller"`. Make sure it's written exactly the same as the constant for that Class (see below how to setup the Class itself). I've included 2 example classes that you can use and modify. One of these is the `"ProSeller"` Class.
+Adding a Seller Class to the event method is simple: after the list of items, just add the Seller Class using `speech: "ProSeller"`. Make sure the string matches the constant name defined for the class (explained below). Two example classes are included by default, including "ProSeller".
 <br/>
 ```ruby
 def pbSomeMart
@@ -21,7 +18,7 @@ def pbSomeMart
   ], speech: "ProSeller", useCat: true)
 end
 ```
-For the Seller Class itself, this lets you setup what the seller will say to the player. As you know the seller always says the same over and over, pretty boring right? Well with this, you can change this so they start to sound more natural and have more variation in what they'll say to the player on certain actions.
+The Seller Class defined everything the seller says to the player. Normally, the seller repeats the same generic lines — but with this setup, you can make them sound much more dynamic and natural by adding variation based on the player's actions.
 <br/>
 ```ruby
 ProSeller = {
@@ -67,5 +64,6 @@ ProSeller = {
   OutroText: ["Do come again!", "Thank you, I hope to see you again.", "Thank you for your purchase, come again!"]
 }
 ```
-
-If you think this is already a lot, well it's not even half of them (at least for the IntroText and OutroText ones).
+<Callout type="hint">
+  You don't need to fill every field — only the ones you care about. Unused fields will use the default lines provided by the plugin.
+</Callout>

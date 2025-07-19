@@ -5,5 +5,3 @@ export function generateStaticParams() {
     { slug: ['doggo-bot'] },
   ]
 };
-
-export const dynamicParams = false;

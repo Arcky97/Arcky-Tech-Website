@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import hljs from "highlight.js/lib/core";
 
 import javascript from "highlight.js/lib/languages/javascript";
@@ -31,6 +31,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
         const { value } = hljs.highlight(line, { language, ignoreIllegals: true });
         return value;
       } catch (error) {
+        console.error(error);
         return line;
       }
     });
@@ -50,7 +51,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
         {highlightedLines.map((line, i) => (
           <div
             key={`line-${i}`}
-            className="grid grid-cols-[2rem_1fr] gap-2 py-0.5 hover:bg-gray-800 transition-colors duration-200 ease-in-out"
+            className="grid grid-cols-[2rem_1fr] gap-2 py-0.5 hover:bg-gray-800 rounded-lg transition-colors duration-200 ease-in-out"
           >
             <div className="text-right pr-2 text-gray-500 select-none">
               {i + 1}
@@ -64,7 +65,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
       </div>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 transition-all duration-300 ease-in-out"
+        className="absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded-md hover:bg-gray-600 transition-all duration-300 ease-in-out"
       >
         {copied ? "Copied!" : "Copy"}
       </button>
@@ -72,9 +73,9 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
   );
 };
 
-export const InlineCode = ({children}: { children: React.ReactNode }) => (
+export const InlineCode = ({children}: { children: ReactNode }) => (
   <code
-    className="bg-[#2d2d2d] text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest"
+    className="bg-gray-500/5 text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest"
   >
     {children}
   </code>

@@ -4,7 +4,8 @@
   ---
 </header>
 ## PBS File
-The plugin now supports the `BPPrices` parameter for an iteme in the PBS file. For example, you can add a `BPPrice` and `CoinPrice` for Pokeballs.
+The plugin now supports the use of `BPPrice` and `CoinPrice` within the PBS file.
+For example, you can define alternate currency prices for items like Poké Balls:
 <br/>
 ```plaintext
 [POKEBALL]
@@ -19,11 +20,22 @@ Flags = Pokeball
 Description = A device for catching wild Pokémon.
 It is thrown like a ball at the target. It is designed as a capsule system.
 ```
-<Callout type="hint">If the Currency has been set to `"BP"` (or `"Battle Points"`) for a store, it'll use the `BPPrice` (there's no fallback so make sure all items have a `BPPrice` defined or the Default price is 1 BP)
-Same goed for when the Currency has been set to `"Coins"` for a store, it'll use the `CoinPrice` (default is aflso 1 Coin if not set for an item.)</Callout>
+<Callout type="hint">
+  If the store's currency is set to `"BP"` (or `"Battle Points"`), it will use the `BPPrice` for each item. 
+  <br/>**There's no fallback**, so make sure every item has a `BPPrice` defined — otherwise the default price will be <Gn>1 BP</Gn>.
+  Likewise, if the currency is set to `"Coins`, the item will use its `CoinPrice` value. 
+  <br/>Again, if `CoinPrice` is not defined, the default is <Gn>1 Coin</Gn>.
+</Callout>
 
-You can also specifiy a `SellBPPrice` and/or `SellCoinPrice`. Default is, like with the normal Price, `BPPrice / 2` (for Battle Points) and `CoinPrice / 2` (for coins). You might not need it but it's there just in case.
+You can also optionally define:
+- `SellBPPrice`
+- `SellCoinPrice`
+
+<br/>if left undefined, they will default to:
+- `BPPrice / 2` for Battle Points 
+- `CoinPrice / 2` for Coins. 
+You may not need to override them, but the option is there if required.
 
 <ImageWithCaption src="/images/documentation/poke-market/BpAndCoinParametersPBS.png" caption="In Game PBS Editor"/>
 
-You can also change these new parameters in the PBS editor in the debug mode.
+These parameters can also be edited directly using the **PBS Editor** in <Gn>Debug Mode</Gn>.

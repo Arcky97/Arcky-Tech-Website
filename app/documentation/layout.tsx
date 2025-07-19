@@ -181,31 +181,31 @@ export default function DocumentationLayout({ children }: { children: React.Reac
           text: "Setup for other Plugins",
           subItems: [
             {
-              path: "quest",
+              path: "quest-icons-and-preview",
               text: "Quest Icons and Preview"
             },
             {
-              path: "poke-gear",
+              path: "poke-gear-themes",
               text: "Poke Gear Themes"
             },
             {
-              path: "weather",
+              path: "weather-preview",
               text: "Weather Preview"
             },
             {
-              path: "control-screen",
+              path: "set-the-controls-screen",
               text: "Set the Controls Screen"
             },
             {
-              path: "berry",
+              path: "berry-icons-and-preview",
               text: "Berry Icons and Preview"
             },
             {
-              path: "roaming",
+              path: "roaming-icons",
               text: "Roaming Icons"
             },
             {
-              path: "modular-ui",
+              path: "modular-ui-scenes",
               text: "Modular UI Scenes"
             }
           ]
@@ -598,7 +598,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
 
   const menuItemToUse = pathname.startsWith('/documentation/') 
     ? menuItems.filter(menuItem => pathname.includes(menuItem.name))
-    : menuItems.map(({ subItems, ...rest }) => rest )
+    : menuItems.map(({ ...rest }) => rest )
   
   return (
     <div className="flex">

@@ -9,6 +9,7 @@ import {
 } from './EmblaCarouselArrowButtons'
 import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
+import Image from 'next/image'
 
 const TweenFactorScale = 0.25;
 const TweenFactorOpacity = 0.65;
@@ -17,12 +18,13 @@ const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
 
 type PropType = {
-  slides: string[]
-  options?: EmblaOptionsType
+  slides: string[];
+  captions?: string[];
+  options?: EmblaOptionsType;
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
+  const { slides, captions, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
   const tweenFactorScale = useRef(0);
   const tweenFactorOpacity = useRef(0);
@@ -38,7 +40,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         : autoplay.stop
 
     resetOrStop()
-    setTimeout(() => { autoplay.reset; autoplay.play }, 200);
   }, [])
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
@@ -125,7 +126,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       .on('reInit', tweenScale)
       .on('scroll', tweenScale)
       .on('slideFocus', tweenScale)
-  }, [emblaApi, tweenScale])
+  }, [emblaApi, tweenScale, setTweenFactorOpacity, setTweenFactorScale, setTweenNodes])
   
   return (
     <section className="embla">
@@ -133,7 +134,20 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number"><img src={`/images/${slide}.png`} alt={`Image ${index} not found`} /></div>
+              <div className="embla__slide__number">
+                <figure>
+                  <Image
+                    src={`/images/${slide}.png`}
+                    alt={`Image ${index} not found`}
+                    width={500}
+                    height={500}
+                    className="rounded-lg border-white select-none"
+                  />
+                  <figcaption className="text-center text-[#ccc] text-sm mt-2">
+                      {captions && captions[index]}
+                  </figcaption>
+                </figure>
+              </div>
             </div>
           ))}
         </div>

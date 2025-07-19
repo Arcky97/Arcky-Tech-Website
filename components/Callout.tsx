@@ -18,13 +18,13 @@ const getRandomColor = (): { color: ColorType; intensity: IntensityType } => {
   return { color: randomColor, intensity: randomIntensity };
 };
 
-type CalloutType = "default" | "hint" | "attention" | "warning" | "check" | "random";
+type CalloutType = "custom" | "hint" | "attention" | "warning" | "check" | "random";
 
 const calloutStyles: Record<CalloutType, { border: string; bg: string; label: string }> = {
-  default: {
-    border: getColorFromTailwindString("blue-500"),
-    bg: getColorFromTailwindString("gray-800"),
-    label: ""
+  custom: {
+    border: "",
+    bg: "",
+    label: "custom"
   },
   hint: {
     border: getColorFromTailwindString("gray-500"),
@@ -53,7 +53,7 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
   }
 };
 
-export const Callout = ({ type = "default", title = "", blend = "dark", children }: { type?: CalloutType; title?: string; blend?:string; children: ReactNode }) => {
+export const Callout = ({ type = "custom", title = "", blend = "dark", color="blue-500", children }: { type?: CalloutType; title?: string; blend?:string; color:string; children: ReactNode }) => {
   let style = calloutStyles[type];
 
   if (type === "random") {
@@ -61,7 +61,13 @@ export const Callout = ({ type = "default", title = "", blend = "dark", children
     style = {
       border: getColorFromTailwindString(`${color}-${intensity}`),
       bg: getColorFromTailwindString("gray-900/40"),  
-      label: title,
+      label: title
+    };
+  } else if (type === "custom") {
+    style = {
+      border: getColorFromTailwindString(color),
+      bg: getColorFromTailwindString("gray-900/40"),
+      label: title
     };
   }
 
@@ -83,7 +89,7 @@ export const Callout = ({ type = "default", title = "", blend = "dark", children
           "block mb-1 font-semibold text-lg text-left"
         )}
         style={{ 
-          color: type !== "random" ? style.border : ""
+          color: !["random", "custom"].includes(type) ? style.border : ""
         }}
       >
         {title || style.label}

@@ -5,9 +5,12 @@
 </header>
 
 ## Shelf Event
-The way of setting up the Shelf Event is basically the same as how to do it for the Mart Events. I do recommend doing it like following so it's easier to reuse the same items for a shelf or apply changes to multiple events at once.
+Setting up a Shelf event is essentially the same as a regular Mart event — but with one key difference: you use `pbShelfMart` instead of `pbPokemonMart`.
 <br/>
-In the `000_PokeMart_Settings_and_Setup` file you can add this at the bottom (use notepad ++ or any other code editor program to edit this file):
+For Easier reusability and organization, it's recommended to define your shelf's item list as a method.
+<br/>
+In the `000_PokeMarket_Settings_and_Setup.rb` file, add the following at the bottom:
+<br/>(use *Nodepad++* or any code editor to modify this file)
 <br/>
 ```ruby
 def pbSomeShelf
@@ -18,8 +21,16 @@ def pbSomeShelf
   ])
 end 
 ```
-<Callout type="hint">Just keep in mind that the default limit is 18 items that can show up at once on the UI. If you add more than 18, only the first 18 will be shown, the rest will be ignored.</Callout>
+<Callout type="attention"> 
+  **<Rd>Important:</Rd>** The UI can only show **up to 18 items** at once. 
+  <br/>If you add more than 18, only the first 18 will be displayed — the rest will be ignored.
+  </Callout>
 
-Inside the Shelf Event you only need to put `pbSomeShelf` or whatever you named the method.
+Inside your Shelf event, simply call the method like this:
+<br/>
+```ruby
+  pbSomeShelf 
+```
+This makes it easier to reuse item lists across different shelves and apply changes globally by just updating the method once.
 
 <ImageWithCaption src="/images/documentation/poke-market/Shelf Event.png" caption="Default Shelf Event"/>

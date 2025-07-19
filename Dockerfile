@@ -28,4 +28,4 @@ COPY --from=builder /usr/app/package.json ./package.json
 EXPOSE 3000
 
 # Start in productie
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

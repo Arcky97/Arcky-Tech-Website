@@ -1,12 +1,12 @@
-<header>
-  # Item Categories
-  <br/>
-  How to enable Item Categories.
-
-  ---
-</header>
-All you need to do to enable Item Categories is adding `useCat: true` after the list of items in the method.
+<Header title="Item Categories">
+  How to enable Item Categories for your Mart.
+</Header>
+## Enabling Categories 
+to enable Item Categories in your Mart event, simply add the `useCat: true` argument after the item list inside your method call.
 <br/>
+This will organize the items automatically into logical groups (following the Bag Pocket Categories) like Poké Balls, Healing Items, Battle Items, etc — making the shopping UI easier to navigate.
+<br/>
+### Example:
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -20,3 +20,6 @@ def pbSomeMart
   ], useCat: true)
 end
 ```
+<Callout type="attention">
+  **<Rd>Important:</Rd>** `useCat` is only available for `pbPokemonMart` (Mart events). Shelf events (`pbShelfMart`) do <Rd>not</Rd> support this categories setting.
+</Callout>

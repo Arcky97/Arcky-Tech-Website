@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const disabledRoutes = [
-  '/doggo-bot/dashboard', 
-  '/doggo-bot/servers', 
+  //'/doggo-bot/dashboard', 
+  //'/doggo-bot/servers', 
   '/documentation/doggo-bot', 
-  //'/documentation/region-map', 
+  '/documentation/region-map', 
   '/documentation/graphic-transparancy', 
   '/documentation/vending-machine', 
 ];

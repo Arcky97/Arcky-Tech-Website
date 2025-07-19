@@ -1,7 +1,7 @@
-import nextMDX from "@next/mdx";
+import createMDX from '@next/mdx'
 import type { NextConfig } from "next";
 
-const withMDX = nextMDX({
+const withMDX = createMDX({
   options: {
     remarkPlugins: [],
   }

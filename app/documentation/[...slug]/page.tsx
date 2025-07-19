@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-
 import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
-import { dynamicParams, generateStaticParams } from '@/lib/documentation/mdxParams';
+import { generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/DocsTableOfContents';
 
 export default async function Page({
@@ -73,11 +72,13 @@ export default async function Page({
         Component = mod.default;
       } catch (err) {
         console.error(`❌ Error loading MDX file: ${nestedPath}/${file}`, err);
-        Component = () => (
-          <div className="text-red-500 border border-red-500 bg-red-100 p-4 rounded">
-            ⚠️ Failed to load <strong>{file}</strong>. Check the MDX syntax or code blocks.
-          </div>
-        );
+        Component = function FailedToLoadComponent() {
+          return (
+            <div className="text-red-500 border border-red-500 bg-red-100 p-4 rounded">
+              ⚠️ Failed to load <strong>{file}</strong>. Check the MDX syntax or code blocks.
+            </div>
+          )
+        }
       }
 
       return { name: file.replace('.mdx', ''), title, anchorId, Component }
@@ -115,5 +116,3 @@ export default async function Page({
 }
 
 generateStaticParams();
-
-dynamicParams;
