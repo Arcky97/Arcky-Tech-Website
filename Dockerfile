@@ -21,6 +21,7 @@ COPY --from=builder /usr/app/package-lock.json ./
 COPY --from=builder /usr/app/.next ./.next
 COPY --from=builder /usr/app/public ./public
 COPY --from=builder /usr/app/node_modules ./node_modules
+COPY --from=builder /usr/app/content ./content
 
 EXPOSE 3000
 
