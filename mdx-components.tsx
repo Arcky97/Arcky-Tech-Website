@@ -40,7 +40,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <CodeBlock language={language}>{codeString}</CodeBlock>
     },
     hr: () => (
-      <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"></hr>
+      <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
     ),
     a: (props) => <LinkWithPreview {...props} />,
     strong: ({children}) => (

@@ -33,7 +33,7 @@ export default function Projects() {
           DoggoBot
         </a>
       </section>
-      <hr className="my-4 w-7/8 lg:w-5/8 border-white border-t-2"></hr>
+      <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
       <section className="text-center p-8 w-7/8 lg:w-5/8">
         <h1 className="text-3xl font-bold mb-4">Essential Projects</h1>
         <section className="p-2">
@@ -89,7 +89,7 @@ export default function Projects() {
           </Link>
         </section>
       </section>
-      <hr className="my-4 w-7/8 lg:w-5/8 border-white border-t-2"></hr>
+      <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
       <section className="p-2">
         <h1 className="text-3xl font-bold mb-4">Other Projects</h1>
         <p className="text-center">You&#39;re looking at it...</p>

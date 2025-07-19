@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Arcky-Tech",
-  description: "Built with Next.js",
+  description: "A collection of Arcky's Projects, Documentation and a Dashboard.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

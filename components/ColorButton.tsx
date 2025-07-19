@@ -1,22 +1,20 @@
-import { ColorType, IntensityType } from "@/lib/colors/main";
 import { getColorFromTailwindString } from "@/utils/getTailwindColor";
 import clsx from "clsx";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 
 interface Props {
-  color: ColorType;
-  intensity?: IntensityType;
+  color: string;
   text: ReactNode;
   action?: () => void;
   extraClass?: string;
   href?: string;
 }
 
-export default function ColorButton({ color, intensity = "600", text, action, extraClass = "", href }: Props) {
+export default function ColorButton({ color, text, action, extraClass = "", href }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const style = getColorFromTailwindString(`${color}-${intensity}`)
+  const style = getColorFromTailwindString(color)
   
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -26,7 +24,7 @@ export default function ColorButton({ color, intensity = "600", text, action, ex
     setIsHovered(false);
   }
 
-  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-white px-2 py-1 rounded-lg transition-all duration-300 ease-in-out"
+  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-white px-3 py-2 rounded-lg transition-all duration-300 ease-in-out"
 
   if (href) {
     return (

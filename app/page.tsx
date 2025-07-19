@@ -6,24 +6,19 @@ export default function Home() {
   return (
     <article className="flex flex-col mt-16 items-center min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
-      <section className="text-center p-8 w-7/8 lg:w-5/8">
+      <section className="text-center pt-8 w-7/8 lg:w-5/8">
         <h1 className="text-5xl font-bold mb-4">Welcome to Arcky-Tech</h1>
-        <p className="text-lg text-gray-300 max-w mb-4">
+        <p className="text-lg text-gray-300 max-w mb-2">
           Hello, my name is Arcky. For years I&#39;ve been fascinated by coding so I&#39;ve been working on a lot of different projects among the years. You can take a look at them by clicking the button below.
         </p>
-        <Link
-          href="/projects"
-          className="border border-blue-600 bg-blue-600 select-none cursor-pointer hover:bg-transparent text-white px-4 py-2 rounded-lg transition-all duration-300 ease-in-out text-lg"
-        >
-          View Projects 
-        </Link>
+        <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
       </section>
-
       {/* Features Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-8 w-7/8 lg:w-5/8">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 w-7/8 lg:w-5/8">
         {[
-          { title: "Doggo Bot", desc: "A Bot for your Discord Server with a ton of features. Including a customizable level system, moderation commands, fun commands and even a chat function and so much more.", link: <ColorButton color="blue" intensity="600" text="View Info" href="/doggo-bot"></ColorButton>},
-          { title: "Region-Map", desc: "A Plugin for your Game that brings the Region Map to a next level. Packed with a ton of features, there's nearly nothing this plugin doesn't do. Check it out below.", link: <ColorButton color="blue" intensity="600" text="View Info" href="/documentation/region-map"></ColorButton>}
+          { title: "Doggo Bot", desc: "A Bot for your Discord Server with a ton of features. Including a customizable level system, moderation commands, fun commands and even a chat function and so much more.", link: <ColorButton color="blue-600" text="View Info" href="/doggo-bot"/>},
+          { title: "Region Map", desc: "A Plugin for your Game that brings the Region Map to a next level. Packed with a ton of features, there's nearly nothing this plugin doesn't do. Check it out below.", link: <ColorButton color="blue-600"  text="View Info" href="/documentation/region-map"/>},
+          { title: "Poke Market", desc: "A Plugin for your Game that brings more to your Marts than what you would normally expect from a Mart in these Games. A lot of features that is. Check it out!", link: <ColorButton color="blue-600" text="View Info" href="/documentation/poke-market"/>}
         ].map((feature, index) => (
           <div
             key={index}
