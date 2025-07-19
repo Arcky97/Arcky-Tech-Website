@@ -1,6 +1,5 @@
 "use client"
 import ColorButton from "@/components/ColorButton";
-import Link from "next/link";
 
 export default function Home() {
   return (
