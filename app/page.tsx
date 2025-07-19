@@ -9,7 +9,7 @@ export default function Home() {
       <section className="text-center p-8 w-7/8 lg:w-5/8">
         <h1 className="text-5xl font-bold mb-4">Welcome to Arcky-Tech</h1>
         <p className="text-lg text-gray-300 max-w mb-4">
-          Hello, my name is Arcky. For years I've been fascinated by coding so I've been working on a lot of different projects among the years. You can take a look at them by clicking the button below.
+          Hello, my name is Arcky. For years I&#39;ve been fascinated by coding so I&#39;ve been working on a lot of different projects among the years. You can take a look at them by clicking the button below.
         </p>
         <Link
           href="/projects"
