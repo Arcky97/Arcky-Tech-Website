@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="text/javascript"
           async
         ></script>
+        <meta name="google-adsense-account" content="ca-pub-6167645965076639"></meta>
       </head>
       <body className="flex flex-col min-h-screen ">
         <Navbar />
