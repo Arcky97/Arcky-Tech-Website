@@ -15,9 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Cookiebot script */}
         <script 
           id="Cookiebot" 
-          src="https://consent.cookiebot.com/uc.js" data-cbid="0d8c264c-1acf-481c-b1c3-66923a26955f" data-blockingmode="auto" 
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="0d8c264c-1acf-481c-b1c3-66923a26955f"
+          data-blockingmode="auto" 
           type="text/javascript"
-          async
         ></script>
       </head>
       <body className="flex flex-col min-h-screen ">

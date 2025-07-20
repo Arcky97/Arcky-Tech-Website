@@ -1,5 +1,4 @@
 "use client"
-
 import Script from "next/script";
 
 export default function AdBanner() {
@@ -13,7 +12,6 @@ export default function AdBanner() {
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6167645965076639"
         async 
         crossOrigin="anonymous"
-        strategy="afterInteractive"
       />
 
       {/* Ad slot container */}
