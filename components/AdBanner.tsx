@@ -8,7 +8,6 @@ export default function AdBanner() {
       <Script
         id="adsense-init"
         type="text/plain"
-        data-cookieconsent="marketing"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6167645965076639"
         async 
         crossOrigin="anonymous"

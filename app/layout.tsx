@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AdBanner from "@/components/AdBanner";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Arcky-Tech",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="bg-gray-900">
           {children}
           <AdBanner/>
+          <Footer/>
         </main>
       </body>
     </html>

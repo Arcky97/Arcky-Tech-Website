@@ -1,37 +1,48 @@
 ## IntroText + Time + Day
+
+We've already covered how to define `IntroText` by **Time** and by **Day** — but what if you want to combine both?
 <br/>
-We have had an IntroText + Time and IntroText + Day. How about we combine both?
+Yes, it might sound a little wild — and it kind of is — but this feature gives you complete control. You can make the NPC greet the player differently on a **Monday morning** then on a **Friday evening**, or anything in between.
 <br/>
-This might sound a bit crazy, and it actually is, but you can go as far as you want in this one.
+Just like with `IntroText + Day`, you can use broader categories like `Week` and `weekend`, and just like the default `IntroText`, you can define multiple lines for variation.
 <br/>
-Just like with IntroText + Day, you can use Week or Weekend and similar to the Default IntroText, you c an include more than 1 speech if you want to.
-<br/>
-Defining IntroTextDayWeek looks like this:
+---
+
+Here's an example:
 <br/>
 ```ruby
 IntroTextDayWeek: [
   "Good Day, welcome to our store, what can I do for you?"
 ]
 ```
-
-This will be used by the script when it's Day and it's either Monday, Tuesday, Wednesday, Thursday or Friday in the game:
+This text is used when the current **Time** is within `Day` (5:00 AM to 7:59 PM) a,d tje **Day** is Monday through Friday.
 <ImageWithCaption src="/images/documentation/poke-market/IntroTextDayWeek.png" caption="IntroTextDayWeek" align="center"/>
-Or you can go more specific by using the exact day.
-<br/>
-Defining IntroTextDayTuesday would look like this:
+Another example:
 <br/>
 ```ruby
 IntroTextDayTuesday: [
   "Hello, what can I do for you on this fine Tuesday Noon?"
 ]
 ```
+This text is used when the current **Time** is within `Day` (5:00 AM to 7:59 PM) and the **Day** is Tuesday.
 
-This will be used by the script when it's Day and it's Tuesday in the game:
 <ImageWithCaption src="/images/documentation/poke-market/IntroTextDayTuesday.png" caption="IntroTextDayTuesday" align="center"/>
-Let's list up the complete break down for how it'll choose the speech available:
-<br/>
-Let's say it's Wednesday Morning:
-<br/>
-IntroTextMorningWednesday - IntroTextDayWednesday - IntroTextWednesday - IntroTextMorningWeek - IntroTextDayWeek - IntroTextWeek - IntroTextMorning - IntroTextDay - IntroText 
-<br/>
-Like I said before, you can go as far as you want yourself in this. It might get complicated for sure but you're not supposed to have a text for each possible IntroText by Time and Day.
+
+---
+
+### Fallback Behavior
+
+Let's say the current in-game time is **Wednesday Morning**. The script will try to match in the following order:
+1. `IntroTextMorningWednesday`
+2. `IntrotextDayWednesday`
+3. `IntroTextWednesday`
+4. `IntroTextMorningWeek`
+5. `IntroTextDayWeek`
+6. `IntroTextWeek`
+7. `IntroTextMorning`
+8. `IntroTextDay`
+9. `IntroText`
+
+<Callout type="hint">
+  You're not expected to define every possible combination. Just include what matters most to you — the script handles the fallbacks intelligently.
+</Callout>
