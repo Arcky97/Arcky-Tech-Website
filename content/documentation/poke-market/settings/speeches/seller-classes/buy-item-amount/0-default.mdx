@@ -1,10 +1,12 @@
 ## BuyItemAmount
 
-The BuyItemAmount is what the NPC will say when choosing how many of an Item you want to buy.
+The `BuyItemAmount` determines what the NPC says when the player is prompted to choose how many of an item they want to buy. 
 <br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
-<br/>
-Defining `BuyItemAmount` looks like this:
+Just like with `IntroText`, you can define multiple entries, and the script will randomy choose one each time.
+<Callout type="attention">
+  Unlike `IntroText`, `BuyItemAmount` **<Rd>does not support</Rd>** Time or Day variations — this is intentionally kept simpler.
+</Callout>
+To define the `CategoryText`, use this structure:
 <br/>
 ```ruby
 BuyItemAmount: [
@@ -12,7 +14,8 @@ BuyItemAmount: [
   "How many {1} would you like?"
 ]
 ```
-- \{1\} = chosen item's name (plural) (for ex. "Poké Balls)
+### Placeholder Reference
+- `{1}` = Chosen item's name (plural) — e.g., `"Poké Balls"`
 <br/>
 <ImageWithCaption src="/images/documentation/poke-market/BuyItemAmount 1.png" caption="BuyItemAmount 1"/>
 <ImageWithCaption src="/images/documentation/poke-market/BuyItemAmount 2.png" caption="BuyItemAmount 2"/>
