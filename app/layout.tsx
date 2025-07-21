@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           async
         ></script>
         <meta name="google-adsense-account" content="ca-pub-6167645965076639"></meta>
+        <link rel="icon" href="/favicon.png" type="image/png"/>
       </head>
       <body className="flex flex-col min-h-screen ">
         <Navbar />
