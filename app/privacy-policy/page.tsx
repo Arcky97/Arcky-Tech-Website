@@ -1,5 +1,4 @@
 import { TextColor } from "@/components/TextColor";
-import Link from "next/link";
 
 export default function PrivacyPolicy() {
   return (

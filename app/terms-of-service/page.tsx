@@ -12,7 +12,7 @@ export default function TermsOfService() {
         <h2 className="text-2xl font-semibold pb-4">1. Acceptance of Terms</h2>
         <div className="pl-6 space-y-4">
           <p>
-            By accessing or using <Link href="https://arcky-tech.be" className="text-blue-400 hover:text-blue-200 transition">https://arcky-tech.be</Link> (referred to as "ArckyTech", "we", or "our"), you agree to be bound by these Terms of Service.
+            By accessing or using <Link href="https://arcky-tech.be" className="text-blue-400 hover:text-blue-200 transition">https://arcky-tech.be</Link> (referred to as &quot;ArckyTech&quot;, &quot;we&quot;, or &quot;our&quot;), you agree to be bound by these Terms of Service.
             If you do not agree to these terms, you must discontinue use of the site and its services.
           </p>
           <p>
