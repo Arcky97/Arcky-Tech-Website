@@ -16,7 +16,7 @@ type LayoutVariants = {
 const baseStyles: Record<StyleGroup, StyleConfig> = {
   'default': {
     wrapper: 'flex flex-col mt-14 items-center min-h-screen text-white',
-    section: 'text-center p-8 lg:w-3/4 space-y-8',
+    section: 'text-center p-8 min-w-[95%] space-y-8',
   },
   'history': {
     wrapper: 'flex flex-col mt-22 items-center min-h-screen bg-gray-900 text-white',

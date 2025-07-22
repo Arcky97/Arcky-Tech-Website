@@ -3,13 +3,13 @@ import { ReactNode } from "react";
 
 type Alignment = "left" | "center" | "right";
 
-export interface MarkdownTableProps {
+export interface DocsTableProps {
   headers: Array<ReactNode>;
   alignment?: Alignment[];
   rows: Array<Array<ReactNode>>;
 }
 
-export default function MarkdownTable({ headers, alignment, rows }: MarkdownTableProps) {
+export default function DocsTable({ headers, alignment, rows }: DocsTableProps) {
   return (
     <div className="w-fit overflow-auto rounded-lg text-gray-300">
       <table className="border border-gray-600/75 px-2 select-none">

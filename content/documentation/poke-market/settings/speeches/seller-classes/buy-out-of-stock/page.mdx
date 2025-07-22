@@ -1,16 +1,12 @@
-<header>
-  # BuyOutOfStock
-  <br/>
+<Header title="BuyOutOfStock">
   How to use and define BuyOutOfStock speeches.
+</Header>
 
-  ---
-</header>
+The `BuyOutOfStock` determines what the NPC will say when the player is trying to choose an Item that is out of stock.
 
-The BuyOutOfStock is what the NPC will say when an Item is out of stock for the chosen period (refresh time) and when you try to buy more of this Item.
-<br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time and Day.
-<br/>
-Defining `BuyOutOfStock` looks like this:
+<PMSpeeches speech="Buyoutofstock"/>
+
+To define the `BuyOutOfStock`, use this structure:
 <br/>
 ```ruby
 BuyOutOfStock: [
@@ -19,9 +15,20 @@ BuyOutOfStock: [
   "Come back {2} when we have more {1}."
 ]
 ```
-- \{1\} = selected Item (plural) (for ex. "Potions").
+### Placeholder Reference
+- `{1}` = Chosen Item's name (plural) — e.g., `"Potions"`
+- `{2}` = Time remaining until the Stock will be resetted — e.g., `"tomorrow"`.
 
-- \{2\} = time left until the Item get restocked.
-<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 1.png" caption="BuyOutOfStock 1"/>
-<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 2.png" caption="BuyOutOfStock 2"/>
-<ImageWithCaption src="/images/documentation/poke-market/BuyOutOfStock 3.png" caption="BuyOutOfStock 3"/>
+<EmblaCarousel
+  slides={[
+    "documentation/poke-market/BuyOutOfStock 1",
+    "documentation/poke-market/BuyOutOfStock 2",
+    "documentation/poke-market/BuyOutOfStock 3"
+  ]}
+  captions={[
+    "BuyOutOfStock Example 1",
+    "BuyOutOfStock Example 2",
+    "BuyOutOfStock Example 3"
+  ]}
+  options={{ loop: true }}
+/>

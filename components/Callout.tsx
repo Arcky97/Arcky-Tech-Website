@@ -53,7 +53,7 @@ const calloutStyles: Record<CalloutType, { border: string; bg: string; label: st
   }
 };
 
-export const Callout = ({ type = "custom", title = "", blend = "dark", color="blue-500", children }: { type?: CalloutType; title?: string; blend?:string; color:string; children: ReactNode }) => {
+export const Callout = ({ type = "custom", title = "", blend = "dark", color="blue-500", children }: { type?: CalloutType; title?: string; blend?:string; color?:string; children: ReactNode }) => {
   let style = calloutStyles[type];
 
   if (type === "random") {

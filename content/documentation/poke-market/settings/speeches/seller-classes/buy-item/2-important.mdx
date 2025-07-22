@@ -1,19 +1,22 @@
 ## BuyItemImportant
 
-The BuyItemImportant is what the NPC will say when you buy an item that is marked as Important (according to the [Essentials Wiki](https://essentialsengine.miraheze.org/wiki/Items), TMs, HMs and Key Items are marked as important Items by default).
+The `BuyItemImportant` determines what the NPC says when the player is buying an item that is marked as important.
 <br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
-<br/>
-Defining `BuyItemImportant` looks like this:
+See the [Essentials Wiki's Items](https://essentialsengine.miraheze.org/wiki/Items) page for more information.
+
+<PMSpeeches speech="BuyItemImportant"/>
+
+To define the `BuyItemImportant`, use this structure:
 <br/>
 ```ruby
 BuyItemImportant: [
   "So you want {1}?\nIt'll be ${2}. All right?"
 ]
 ```
-- \{1\} = chosen Important Item's name (singular) (for ex. "Escape Rope").
+### Placeholder Reference 
+- `{1}` = Chosen (important) Item's name (singular) — e.g., `"Escape Rope"`
+- `{2}` = Total price chosen (important) Item's name (after discount/overcharge if any) — e.g., `"$500"`
 
-- \{2\} = price of chosen Important Item (for ex. $500).
 <ImageWithCaption src="/images/documentation/poke-market/BuyItemImportant.png" caption="BuyItemImportant"/>
-You can only buy 1 of the same Important Item and once you bought it, it'll no longer show in the Items.
+Once you've bought an **Important Item**, it'll no longer show in the Item's list.
 <ImageWithCaption src="/images/documentation/poke-market/BuyItemImportant Out of Stock.png" caption="BuyItemImportant Out of Stock"/>

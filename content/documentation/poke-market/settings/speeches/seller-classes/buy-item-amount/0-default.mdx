@@ -1,12 +1,10 @@
 ## BuyItemAmount
 
 The `BuyItemAmount` determines what the NPC says when the player is prompted to choose how many of an item they want to buy. 
-<br/>
-Just like with `IntroText`, you can define multiple entries, and the script will randomy choose one each time.
-<Callout type="attention">
-  Unlike `IntroText`, `BuyItemAmount` **<Rd>does not support</Rd>** Time or Day variations — this is intentionally kept simpler.
-</Callout>
-To define the `CategoryText`, use this structure:
+
+<PMSpeeches speech="BuyItemAmount"/>
+
+To define the `BuyItemAmount`, use this structure:
 <br/>
 ```ruby
 BuyItemAmount: [

@@ -4,8 +4,9 @@ import { ImageWithCaption } from "./components/ImageWithCaption";
 import { CodeBlock, InlineCode } from "./components/CodeBlock";
 import { Callout } from "./components/Callout";
 import { TextColor as TC } from "./components/TextColor"
-import { DocsHeader as Header } from "./components/DocsHeader";
-import MarkdownTable from "./components/MarkdownTable";
+import { DocsHeader as Header } from "./components/documentations/DocsHeader";
+import DocsTable from "./components/documentations/DocsTable";
+import { DocsPokeMarketSpeeches as PMSpeeches } from "./components/documentations/DocsPokeMarketSpeeches";
 import EmblaCarousel from "./components/EmblaCarousel";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -68,7 +69,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ImageWithCaption,
     Callout,
     TC,
-    MarkdownTable,
+    DocsTable,
+    PMSpeeches,
     EmblaCarousel,
     ...components
   }
