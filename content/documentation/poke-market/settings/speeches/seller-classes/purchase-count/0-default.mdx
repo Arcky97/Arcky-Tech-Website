@@ -1,12 +1,16 @@
 ## PurchaseCount
 
-The PurchaseCount is what the NPC will say when you have purchased 1 amount of an Item from the [ItemPurchaseCounter](../../../settings/item-purchase-counter) setting.
+The `PurchaseCount` determines what the NPC will say wehn the player has purchased 1 amount of an Item that has been defined in the ItemPurchaseCounter setting.
 <br/>
-Remove this parameter in the Seller Class if you don't want to use it.
+See [ItemPurchaseCounter](../../../settings/item-purchase-counter) for more information 
 <br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
-<br/>
-Defining `PurchaseCount` looks like this:
+<Callout type="hint">
+  The `PurchaseCount` is **optional**, if not included,  it'll not be used by the script.
+</Callout>
+
+<PMSpeeches speech="PurchaseCount"/>
+
+To define the `PurchaseCount`, use this structure:
 <br/>
 ```ruby
 PurchaseCount: [

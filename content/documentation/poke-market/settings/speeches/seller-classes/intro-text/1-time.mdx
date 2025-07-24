@@ -1,14 +1,14 @@
 ## IntroText + Time
-<br/>
+
 It's possible to define an `IntroText` based on the in-game **Time of Day**. Like with the default `IntroText`, you can provide multiple lines for variety, and the script will randomly select one each time.
 <br/>
 Here are the available time-based keys:
-- `IntroTextMorning` - Used from 5:00 to 9:59 AM
-- `IntroTextNoon` - Used from 10:00 AM to 1:59 PM
-- `IntroTextAfternoon` - Used from 2:00 PM to 4:59 PM
-- `IntroTextEvening` - Used from 5:00 to 7:59 PM
-- `IntroTextDay` - Used from 5:00 AM to 7:59 PM (general fallback for daytime)
-- `IntroTextNight` - Used from 8:00 PM to 4:59 AM
+- `IntroTextMorning` — Used from 5:00 to 9:59 AM
+- `IntroTextNoon` — Used from 10:00 AM to 1:59 PM
+- `IntroTextAfternoon` — Used from 2:00 PM to 4:59 PM
+- `IntroTextEvening` — Used from 5:00 to 7:59 PM
+- `IntroTextDay` — Used from 5:00 AM to 7:59 PM (general fallback for daytime)
+- `IntroTextNight` — Used from 8:00 PM to 4:59 AM
 <br/>
 Note: `IntroTextDay` overlaps with Morning, Noon, Afternoon, and Evening. It acts as a fallback if no specific period is defined.
 <br/>
@@ -20,7 +20,7 @@ IntroTextAfternoon: [
 ]
 ```
 
-This will be used by the script when the in-game time is between 2:00 PM and 4:59 PM:
+This will be used by the script when the in-game time is between 2:00 and 4:59 PM:
 <ImageWithCaption src="/images/documentation/poke-market/IntroTextAfternoon.png" caption="IntroTextAfternoon" align="center"/>
 
 ### Fallback Behavior: 

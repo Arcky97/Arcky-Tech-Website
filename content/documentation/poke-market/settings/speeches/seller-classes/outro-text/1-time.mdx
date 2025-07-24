@@ -1,16 +1,19 @@
 ## OutroText + Time
 
-It is possible to define an OutroText depending on the current Time in the game (just like with [IntroText + Time](intro-text)). You can include more than 1 speech if you want to.
+It's possible to define an `OutroText` based on the in-game **Time of Day**.
+Like with the default `OutroText`, you can provide multiple lines for variety, and the script will randomly select one each time.
 <br/>
-These are the possibilities:
-- `IntroTextMorning` - Used from 5 to 10 (5am to 10am)
-- `IntroTextNoon` - Used from 10 to 2 (10pm to 2am)
-- `IntroTextAfternoon` - Used from 14 to 17 (2pm to 5pm)
-- `IntroTextEvening` - Used from 17 to 20 (5pm to 8pm)
-- `IntroTextDay` - Used from 5 to 20 (5am to 8pm)
-- `IntroTextNight` - Used from 20 to 5 (8pm to 5am)
+Here are the available time-based keys:
+- `OutroTextMorning`— Used from 5:00 to 9:59 AM 
+- `OutroTextNoon` — Used from 10:00 AM to 1:59 PM
+- `OutroTextAfternoon` — Used from 2:00 to 4:59 PM 
+- `OutroTextEvening` — Used from 5:00 to 7:59 PM
+- `OutroTextDay` — Used from 5:00 AM to 7:59 PM (general fallback for daytime)
+- `OutroTextNight` — Used from 8:00 PM to 4:59 AM 
 <br/>
-Defining `OutroTextEvening` looks like this:
+Note: `OutroTextDay` overlaps with Morning, Noon, Afternoon, and Evening. It acts as a fallback if no specific period is defined.
+<br/>
+Here's how you can defined `OutroTextEvening`:
 <br/>
 ```ruby
 OutroTextEvening: [
@@ -18,6 +21,9 @@ OutroTextEvening: [
   "Thank you for your purchase, enjoy your evening."
 ]
 ```
-This will be used by the script when it's Evening in the game:
+This will be used by the script when the in-game time is between 5:00 and 7:59 PM:
 <ImageWithCaption src="/images/documentation/poke-market/OutroTextEvening 1.png" caption="OutroTextEvening 1" align="center"/>
 <ImageWithCaption src="/images/documentation/poke-market/OutroTextEvening 2.png" caption="OutroTextEvening 2" align="center"/>
+
+### Fallback Behavior 
+See [IntroText + Time](intro-text#1-time) for the full explanation of the Fallback Behavior as well as a Simplified Breakdown.

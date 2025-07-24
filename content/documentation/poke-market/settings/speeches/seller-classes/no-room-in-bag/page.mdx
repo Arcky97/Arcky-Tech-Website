@@ -1,16 +1,12 @@
-<header>
-  # NoRoomInBag
-  <br/>
+<Header title="NoRoomInBag">
   How to use and define NoRoomInBag speeches.
+</Header>
 
-  ---
-</header>
+The `NoRoomInBag` determines what the NPC will say when the player has no more room in their Bag.
 
-The NoRoomInBag is what the NPC will say when you would have no more room in your Bag.
-<br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
-<br/>
-Defining `NoRoomInBag` looks like this:
+<PMSpeeches speech="NoRoomInBag"/>
+
+To define the `NoRoomInBag`, use this structure:
 <br/>
 ```ruby
 NoRoomInBag: [

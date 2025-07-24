@@ -1,10 +1,10 @@
 ## OutroText
+
+The `OutroText` determines what the NPC says when the player has chosen the **Exit** option.
 <br/>
-The OutroText is what the NPC will say when exiting the Mart Event, it's the last thing the NPC will say.
+As shown in the example below, you can include multiple variations. The script will randomy choose one line from the array each time the player exits the Mart event.
 <br/>
-It is possible to include more than 1 speech if you want to and you can add a Time and Day variant here.
-<br/>
-Defining `OutroText` looks like this:
+To define the `OutroTextr`, use this structure:
 <br/>
 ```ruby
 OutroText: [
@@ -13,6 +13,18 @@ OutroText: [
   "Thank you for your purchase, come again!"
 ]
 ```
-<ImageWithCaption src="/images/documentation/poke-market/OutroText 1.png" caption="OutroText 1" align="center"/>
-<ImageWithCaption src="/images/documentation/poke-market/OutroText 2.png" caption="OutroText 2" align="center"/>
-<ImageWithCaption src="/images/documentation/poke-market/OutroText 3.png" caption="OutroText 3" align="center"/>
+
+<EmblaCarousel
+  slides={[
+    "documentation/poke-market/OutroText 1",
+    "documentation/poke-market/OutroText 2",
+    "documentation/poke-market/OutroText 3"
+  ]}
+  captions={[
+    "OutroText Example 1",
+    "OutroText Example 2",
+    "OutroText Example 3"
+  ]}
+  options={{ loop: true }}
+/>
+<br/>

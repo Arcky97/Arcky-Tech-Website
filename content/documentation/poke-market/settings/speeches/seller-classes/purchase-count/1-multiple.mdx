@@ -1,16 +1,22 @@
 ## PurchaseCountMult
 
-The PurchaseCountMult is what the NPC will say when you have purchased 2 or more amounts of an Item from the [ItemPurchaseCounter](../../../settings/item-purchase-counter) setting.
+The `PurchaseCountMult` determines what the NPC will say when teh player has purchased 2 or more of an Item that has been defined in the ItemPurchaseCounter setting.
 <br/>
-Remove this parameter in the Seller Class if you don't want to use it.
+See [ItemPurchaseCounter](../../../setting/item-purchase-counter) for more information.
 <br/>
-It is possible to include more than 1 speech if you want to but you can't add a Time or Day.
-<br/>
-Defining `PurchaseCountMult` looks like this:
+<Callout type="hint">
+  The `PurchaseCountMult` is **optional** , if not included, it'll not be used by the script.
+</Callout>
+
+<PMSpeeches speech="PurchaseCountMult"/>
+
+To define the `PurchaseCountMult`, use this structure:
 <br/>
 ```ruby
 PurchaseCountMult: [
   "Wow, amazing! You got {1} loyalty points!"
 ]
 ```
+### Placeholder Reference
+- `{1}` = Amount of points received — e.g., `"11"`
 <ImageWithCaption src="/images/documentation/poke-market/PurchaseCountMult.png" caption="PurchaseCountMult"/>
