@@ -3,5 +3,6 @@ export function generateStaticParams() {
     { slug: ['poke-market'] },
     { slug: ['region-map'] },
     { slug: ['doggo-bot'] },
+    { slug: ['graphic-transparency']}
   ]
 };

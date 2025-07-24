@@ -6,7 +6,7 @@ const disabledRoutes = [
   //'/doggo-bot/servers', 
   '/documentation/doggo-bot', 
   '/documentation/region-map', 
-  '/documentation/graphic-transparancy', 
+  '/documentation/graphic-transparency', 
   '/documentation/vending-machine', 
 ];
 

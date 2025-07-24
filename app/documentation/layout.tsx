@@ -549,10 +549,10 @@ export default function DocumentationLayout({ children }: { children: React.Reac
       ]
     },
     {
-      name: "graphic-transparancy",
+      name: "graphic-transparency",
       path: "",
       icon: <HomeIcon className="w-6 h-6"/>,
-      text: "Arcky's Graphic Transparancy",
+      text: "Arcky's Graphic Transparency",
       subItems: [
         {
           path: "update-history",

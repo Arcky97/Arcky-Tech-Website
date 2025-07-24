@@ -60,6 +60,7 @@ export default async function Page({
       const filePath = path.join(updatesDir, file);
       const raw = fs.readFileSync(filePath, 'utf-8');
 
+      console.log(raw);
       const match = raw.match(/^## (.+)$/m);
       const title = match?.[1] || file.replace('.mdx', '');
       const anchorId = slugify(file.replace('.mdx', ''));

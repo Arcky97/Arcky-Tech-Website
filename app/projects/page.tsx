@@ -59,10 +59,10 @@ export default function Projects() {
           <EmblaCarousel slides={PokeMarketSlides} options={Options}/>
         </section>
         <section className="p-2">
-          <h2 className="text-2xl font-semibold my-4">Arcky&#39;s Graphic Transparancy</h2>
+          <h2 className="text-2xl font-semibold my-4">Arcky&#39;s Graphic Transparency</h2>
           <p className="my-4">What could behind that building? or that tree over there? Time to have fun and hide items, trainers, monsters behind buildings in your game. Go wild!</p>
           <Link
-            href="/documentation/graphic-transparancy"
+            href="/documentation/graphic-transparency"
             className="border border-blue-600 bg-blue-600 select-none cursor-pointer hover:bg-transparent text-white px-4 py-2 rounded-lg transition-all duration-300 ease-in-out"
           >
             Discover now

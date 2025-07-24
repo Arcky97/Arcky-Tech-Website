@@ -1,3 +1,4 @@
+"use client"
 import { getColorFromTailwindString } from "@/utils/getTailwindColor";
 import clsx from "clsx";
 import Link from "next/link";

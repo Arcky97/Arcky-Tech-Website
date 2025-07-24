@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; 
-import { HomeIcon, BriefcaseIcon, UsersIcon, ChatAltIcon, InformationCircleIcon, BookOpenIcon, DatabaseIcon } from "@heroicons/react/outline"; // Importing Heroicons
+import { HomeIcon, BriefcaseIcon, UsersIcon, ChatAltIcon, InformationCircleIcon, BookOpenIcon } from "@heroicons/react/outline"; // Importing Heroicons
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,7 +13,6 @@ export default function Navbar() {
 
   const isHomePage = pathname === '/'; 
   const isDoggoBotPage = pathname.startsWith('/doggo-bot');
-  const isServerSelectPage = pathname.startsWith('/doggo-bot/servers');
   const isDocumentationPage = pathname.startsWith('/documentation/');
   const hasSideNav = pathname.startsWith('/doggo-bot/dashboard') || pathname.startsWith('/documentation') || pathname.startsWith('/doggo-bot/database');
   const iconSizes = isSmallScreen ? { normal: 'w-6 h-6', shrunk: 'w-5 h-5' } : { normal: 'w-7 h-7', shrunk: 'w-6 h-6' };
@@ -109,17 +108,6 @@ export default function Navbar() {
               <Link href="/contact" className="flex items-center space-x-2 hover:text-gray-400">
                 <UsersIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
                 {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Contact</span>)}
-              </Link>
-            </>
-          )}
-          {isServerSelectPage && !isSmallScreen && (
-            <>
-              <Link
-                href={'/doggo-bot/database'}
-                className="flex items-center space-x-2 hover:text-gray-400"
-              >
-                <DatabaseIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`}/>
-                {<span className={`${isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Database</span>}
               </Link>
             </>
           )}
