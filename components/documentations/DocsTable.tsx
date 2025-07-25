@@ -9,7 +9,7 @@ export interface DocsTableProps {
   rows: Array<Array<ReactNode>>;
 }
 
-export default function DocsTable({ headers, alignment, rows }: DocsTableProps) {
+export const DocsTable = ({ headers, alignment, rows }: DocsTableProps) => {
   return (
     <div className="w-fit overflow-auto rounded-lg text-gray-300">
       <table className="border border-gray-600/75 px-2 select-none">

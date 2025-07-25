@@ -4,6 +4,7 @@ import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
 import { generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/DocsTableOfContents';
+import { notFound, redirect } from 'next/navigation';
 
 export default async function Page({
   params
@@ -21,15 +22,36 @@ export default async function Page({
 
   if (!fs.existsSync(updatesDir)) {
     return (
-      <div className="text-3xl font-bold text-white text-center mt-20">
-        {slug[0]} folder not found.
-      </div>
+      notFound()
     );
   }
 
   const files = fs
     .readdirSync(updatesDir)
     .filter(file => file.endsWith('.mdx'));
+
+  if (files.length === 0) {
+    const subFolders = fs
+      .readdirSync(updatesDir)
+      .filter(name => fs.statSync(path.join(updatesDir, name)).isDirectory());
+    
+    if (subFolders.length > 0) {
+      const firstSub = subFolders[0];
+      const firstSubDir = path.join(updatesDir, firstSub);
+      const redFiles = fs
+        .readdirSync(firstSubDir)
+        .filter(file => file.endsWith('.mdx'));
+
+      if (redFiles.length > 0) {
+        const newSlug = [...slug, firstSub].join('/');
+        redirect(`/documentation/${newSlug}`);
+      } else {
+        notFound();
+      }
+    } else {
+      notFound();
+    }
+  }
 
   const isIndexedFormat = files.filter(file => file !== 'header.mdx').every(file => /^\d{1}-.*\.mdx$/.test(file));
 

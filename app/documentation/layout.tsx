@@ -369,6 +369,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
         {
           path: "setup",
           text: "Event Setup",
+          noPage: true,
           subItems: [
             {
               path: "mart-event",
@@ -386,7 +387,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
         },
         {
           path: "settings",
-          text: "Settings and Setup File",
+          text: "Settings",
           subItems: [
             {
               path: "item-categories",
@@ -429,6 +430,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
             {
               path: "speeches",
               text: "Speeches",
+              noPage: true,
               subItems: [
                 {
                   path: "seller-classes",

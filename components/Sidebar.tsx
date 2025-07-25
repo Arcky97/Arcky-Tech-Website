@@ -9,6 +9,7 @@ interface MenuItem {
   path: string;
   icon?: JSX.Element;
   text: string;
+  noPage?: boolean;
   subItems?: MenuItem[];
 }
 
@@ -116,7 +117,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   };
 
   const renderMenuItems = (items: MenuItem[], parentPath = "") => {
-    return items.map(({ name, path, icon, text, subItems }) => {
+    return items.map(({ name, path, icon, text, subItems, noPage }) => {
       const isHashLink = path.startsWith("#");
       const isAbsolutePath = path.startsWith("/");
       if (mainDocs && name) path = name;
@@ -154,10 +155,20 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
               </Link>
             ) : (
               <div className="flex items-center gap-3 w-full">
-                <Link href={fullPath} className="flex items-center gap-3 flex-grow">
-                  {icon}
-                  <span className="transition-opacity duration-300 ease-in-out">{text}</span>
-                </Link>
+                <>
+                {!noPage ? 
+                  (
+                    <Link href={fullPath} className="flex items-center gap-3 flex-grow">
+                      {icon}
+                      <span className="transition-opacity duration-300 ease-in-out">{text}</span>
+                    </Link>
+                  ) : (
+                    <div className="flex items-center gap-3 flex-grow">
+                      {icon}
+                      <span className="transition-opacity duration-300 ease-in-out">{text}</span>
+                    </div>
+                  )}
+                </>
                 {!isDeepest && (
                   <button
                     onClick={() => toggleSubmenu(fullPath)}
