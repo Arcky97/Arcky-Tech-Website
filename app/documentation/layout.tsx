@@ -523,8 +523,8 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                       text: "ShelfItemAmount"
                     },
                     {
-                      path: "shelf-change-item-amount",
-                      text: "ShelfChangeItemAmount"
+                      path: "shelf-item-amount-change",
+                      text: "ShelfItemAmountChange"
                     },
                     {
                       path: "shelf-out-of-stock",

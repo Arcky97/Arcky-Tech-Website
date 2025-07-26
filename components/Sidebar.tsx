@@ -163,7 +163,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
                       <span className="transition-opacity duration-300 ease-in-out">{text}</span>
                     </Link>
                   ) : (
-                    <div className="flex items-center gap-3 flex-grow">
+                    <div className="flex items-center gap-3 flex-grow" onClick={() => toggleSubmenu(fullPath)}>
                       {icon}
                       <span className="transition-opacity duration-300 ease-in-out">{text}</span>
                     </div>

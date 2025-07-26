@@ -40,7 +40,7 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'buy-item': { group: 'speechVariants' },
   'purchase-count': { group: 'speechVariants' },
   'outro-text': { group: 'speechVariants' },
-  'shelf-change-item-amount': { group: 'speechVariants' },
+  'shelf-item-amount-change': { group: 'speechVariants' },
   'shelf-item-amount': { group: 'speechVariants' },
   'features': { group: "speechVariants" },
   'manual-editing': { group: "speechVariants"},

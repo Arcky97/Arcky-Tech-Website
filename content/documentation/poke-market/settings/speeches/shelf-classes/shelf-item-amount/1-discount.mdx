@@ -1,22 +1,24 @@
 ## ShelfItemAmountDiscount
 
-The ShelfItemAmountDiscount is what the shelf will say when selecting an item and there's a discount defined for the shelf event.
-<br/>
-It is possible to include more than 1 speech if you want to.
-<br/>
-Defining `ShelfItemAmountDiscount` looks like this:
+The `ShelfItemAmountDiscount` determines what the player will be prompted with when selecting an Item and there's a Discount applied to the Shelf event. 
+
+<SHSpeeches speech="ShelfItemAmountDiscount"/>
+
+To define the `ShelfItemAmountDiscount`, use this structure:
 <br/>
 ```ruby
 ShelfItemAmountDiscount: [
   "There's a discount {1} on {2}, how many would you like?"
 ]
 ```
-- \{1\} = "of" + percentage of discount (for ex.11%).
-
-- \{2\} = chosen item's name (plural) (for ex. "Potions").
+### Placeholder Reference
+- `{1}` = The quantity of discount (in percentage) — e.g., `"11%"`
+- `{2}` = The chosen Item's name (plural) — e.g., `"Potions"`
+- `{3}` = Discount price of the Item — e.g., `"$180"`
+- `{4}` = Original price of the Item — e.g., `"$200"`
 
 <ImageWithCaption src="/images/documentation/poke-market/ShelfItemAmountDiscount 1.png" caption="ShelfItemAmountDiscount 1"/>
-You can also only use \{2\}:
+### Another Example
 <br/>
 ```ruby
 ShelfItemAmountDiscount: [
