@@ -40,6 +40,8 @@ export const ImageWithCaption = ({
   const imageRef = useRef<HTMLImageElement>(null);
   const modalImgRef = useRef<HTMLDivElement>(null);
 
+  const isGif = (src: string) => src.toLowerCase().endsWith(".gif");
+
   const handleOpen = () => {
     if (imageRef.current) {
       const rect = imageRef.current.getBoundingClientRect();
@@ -70,15 +72,26 @@ export const ImageWithCaption = ({
     <>
       {/* Normal Image with Caption */}
       <figure className={clsx("my-5", sizeValues[size], alignMargins[align])}>
-        <Image
-          ref={imageRef}
-          src={src}
-          alt={alt ?? "Image not found"}
-          width={500}
-          height={500}
-          className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
-          onClick={handleOpen}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {isGif(src) ? (
+          <img
+            ref={imageRef}
+            src={src}
+            alt={alt ?? "Image not found"}
+            className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
+            onClick={handleOpen}
+          />
+        ) : (
+          <Image
+            ref={imageRef}
+            src={src}
+            alt={alt ?? "Image not found"}
+            width={500}
+            height={500}
+            className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
+            onClick={handleOpen}
+          />
+        )}
         {caption && (
           <figcaption className="text-center text-[#ccc] text-sm mt-2">
             {caption}
@@ -106,13 +119,22 @@ export const ImageWithCaption = ({
                 : "translate(0, 0) scale(1)",
             }}
           >
-            <Image
-              src={src}
-              alt={alt || ""}
-              width={1000}
-              height={1000}
-              className="w-full h-full object-contain rounded-lg mx-auto select-none cursor-zoom-out"
-            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {isGif(src) ? (
+              <img
+                src={src}
+                alt={alt || ""}
+                className="w-full h-full object-contain rounded-lg mx-auto select-none cursor-zoom-out"
+              />
+            ) : (
+              <Image
+                src={src}
+                alt={alt || ""}
+                width={1000}
+                height={1000}
+                className="w-full h-full object-contain rounded-lg mx-auto select-none cursor-zoom-out"
+              />
+            )}
             <button
               onClick={handleClose}
               className="absolute top-2 right-2 text-white text-3xl font-bold"

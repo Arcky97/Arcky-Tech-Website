@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         {/* Cookiebot script */}
         <script 
@@ -23,12 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ></script>
         <link rel="icon" href="/favicon.png" type="image/png"/>
       </head>
-      <body className="flex flex-col min-h-screen ">
+      <body className="h-full flex flex-col bg-gray-900">
         <Navbar />
-        <main className="bg-gray-900">
+        <main className="flex-1 bg-gray-900 pt-22">
           {children}
-          <Footer/>
         </main>
+        <Footer/>
       </body>
     </html>
   );

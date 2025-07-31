@@ -26,9 +26,15 @@ export function getLatestProjectUpdates(): UpdateEntry[] {
         .sort()
         .reverse()
 
-      const latestFile = files[0];
-      if (latestFile) {
-        const filePath = path.join(updateDir, latestFile);
+      for (const file of files) {
+        const dateStr = file.replace(".mdx", "");
+        const fileDate = new Date(dateStr);
+        const today = new Date();
+
+        // Exclude file if date is later than today
+        if (fileDate > today) continue;
+
+        const filePath = path.join(updateDir, file);
         const rawContent = fs.readFileSync(filePath, "utf-8");
 
         const title = rawContent.match(/^##\s+(.*)$/m)?.[1]?.trim() ?? "Unknown Update";
@@ -41,11 +47,13 @@ export function getLatestProjectUpdates(): UpdateEntry[] {
 
         updates.push({
           project: dir.name,
-          date: latestFile.replace(".mdx", ""),
+          date: dateStr,
           title,
           excerpt,
-          slug: `/documentation/${dir.name}/update-history#${latestFile.replace(".mdx", "")}`
+          slug: `/documentation/${dir.name}/update-history#${dateStr}`
         })
+        
+        break;
       }
     }
   }

@@ -137,6 +137,57 @@ def pbSomeMart
 end
 ```
 
-<Callout type="hint">
-  **Note:** The only two options <Rd>not supported</Rd> for `pbShelfMart` (Shelf events) are `useCat` and `cantSell`. All other options are shared between Shelf and Mart events. 
+---
+### billEnd: true / false 
+If enabled, the Mart event will end after paying the bill.
+<br/>
+```ruby
+  billEnd: true
+```
+```ruby 
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: "money", cantSell: true, billEnd: true)
+end
+```
+
+--- 
+### random: ["string", number]
+Use this to select a specific or random amount of items from the given item list. 
+- The first element is the refresh time for items to be repicked randomly. 
+- The second element is the amount of items you want to be selected randomly.
+<br/>
+Allowed refresh times are the same as the Refresh Rate for Item Limits with exception for `"random"` not being supported.
+<br/>
+- select a fixed amount.
+```ruby 
+  random: ["daily", 4]
+```
+- select a random amount.
+```ruby
+  random: ["daily", rand(1..4)]
+```
+```ruby 
+def pbSomeMart
+  pbPokemonMart([
+    :POKEBALL, :GREATBALL, :ULTRABALL,
+    :ESCAPEROPE,
+    :REPEL, :SUPERREPEL, :MAXREPEL,
+    :GRASSMAIL, :FLAMEMAIL,
+    :BUBBLEMAIL, :SPACEMAIL
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: "money", cantSell: true, billEnd: true, random: ["daily", rand(1..4)])
+end
+```
+
+---
+<Callout type="attention">
+  **Note:** The only options **<Rd>not supported</Rd>** for `pbShelfMart` (Shelf events) are `useCat`, `cantSell` and `billEnd`. All other options are shared between Shelf and Mart events. 
+</Callout>
+<Callout type="attention">
+  **Note:** The only options **<Gn>supported</Gn>** for `pbSpeciesMart` (Species events) are `speech`, `discount`, `currency` and `random`. All other options are **<Rd>not supported</Rd>**.
 </Callout>

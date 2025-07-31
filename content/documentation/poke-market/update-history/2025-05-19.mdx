@@ -7,11 +7,6 @@
 ### New Feature
 - You can now track how many of a specified item or items a player has bought over time, from any mart event.
 <br/>
-### Bug Fixes
-- Fixed a bug with the store restocking after paying the bill (when using the shelf events).
-- Fixed a crash when calling the `forcePokemonMartRefresh` method twice in a row.
-- Fixed another crash after using the `forcePokemonMartRefresh` method and there would be a bill left to pay. 
-<br/>
 ### Improvements
 - Using `forcePokemonMartRefresh` will not only restock items in all stores (expect the stores using a mart event with a refresh rate `"never"`) but also reset the items in the basket if any. This method is only meant for debugging when you want to test the restocking.
 - Added following new Speech parameters for Sellerclasses:
@@ -22,3 +17,9 @@
   - `PurchaseCount`
   - `PurchaseCountMult`
   - `EverythingOutOfStock`
+<br/>
+### Bug Fixes
+- Fixed a bug with the store restocking after paying the bill (when using the shelf events).
+- Fixed a crash when calling the `forcePokemonMartRefresh` method twice in a row.
+- Fixed another crash after using the `forcePokemonMartRefresh` method and there would be a bill left to pay. 
+

@@ -1,6 +1,5 @@
 "use client";
-
-import LinkWithPreview from "./LinkWithPreview";
+import LinkWithPreview from "../LinkWithPreview";
 
 type Item = {
   title: string;

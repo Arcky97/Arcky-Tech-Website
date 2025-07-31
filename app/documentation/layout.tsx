@@ -380,6 +380,10 @@ export default function DocumentationLayout({ children }: { children: React.Reac
               text: "Shelf Event Setup"
             },
             {
+              path: "species-event",
+              text: "Species Event Setup"
+            },
+            {
               path: "pbs-prizes",
               text: "BP and Coin Prizes"
             }
@@ -427,6 +431,21 @@ export default function DocumentationLayout({ children }: { children: React.Reac
               path: "item-purchase-counter",
               text: "Item Purchase Counter"
             },  
+            {
+              path: "stock-items",
+              text: "Stock Items",
+              noPage: true,
+              subItems: [
+                {
+                  path: "items",
+                  text: "Items"
+                },
+                {
+                  path: "species",
+                  text: "Species"
+                }
+              ]
+            },
             {
               path: "speeches",
               text: "Speeches",
@@ -543,6 +562,44 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                       text: "NotEnoughMoneyAmount"
                     }
                   ]
+                },
+                {
+                  path: "species-classes",
+                  text: "Species Classes",
+                  subItems: [
+                    {
+                      path: "intro-species",
+                      text: "IntroSpecies"
+                    },
+                    {
+                      path: "species-out-of-stock",
+                      text: "SpeciesOutOfStock"
+                    },
+                    {
+                      path: "buy-species",
+                      text: "BuySpecies"
+                    },
+                    {
+                      path: "not-enough-money",
+                      text: "NotEnoughMoney"
+                    },
+                    {
+                      path: "no-room-in-storage",
+                      text: "NoRoomInStorage"
+                    },
+                    {
+                      path: "species-thanks",
+                      text: "SpeciesThanks"
+                    },
+                    {
+                      path: "everything-out-of-stock",
+                      text: "EverythingOutOfStock"
+                    },
+                    {
+                      path: "outro-species",
+                      text: "OutroSpecies"
+                    }
+                  ]
                 }
               ]
             }
@@ -605,9 +662,9 @@ export default function DocumentationLayout({ children }: { children: React.Reac
   return (
     <div className="flex">
       <Sidebar menuItems={menuItemToUse} mainDocs={!pathname.startsWith('/documentation/')}/>
-      <main className="flex-1 bg-gray-900">
+      <>
         {children}
-      </main>
+      </>
     </div>
   );
 }

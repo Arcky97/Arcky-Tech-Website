@@ -3,7 +3,7 @@ import path from 'path';
 import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
 import { generateStaticParams } from '@/lib/documentation/mdxParams';
-import DocsTableOfContents from '@/components/DocsTableOfContents';
+import DocsTableOfContents from '@/components/documentations/DocsTableOfContents';
 import { notFound, redirect } from 'next/navigation';
 
 export default async function Page({
@@ -114,20 +114,20 @@ export default async function Page({
 
   return (
     <article key={slug[0]} className={styles.wrapper}>
-      {styles.card && <section className="mb-6 w-7/8">
+      {styles.card && <section className="mb-6">
         {header && header.map(({Component}, i) => (
           <div key={i} >
             <Component/>
           </div>
         ))}
         <h1 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h1>
-        <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))} offset={90}/>
+        <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
         <hr className="border-gray-600/75 border-t-1 mt-2"></hr>
       </section>}
 
       <section className={styles.section}>
         {tablePosts.map(({ name, anchorId, Component }, i) => (
-          <div key={i} id={anchorId} className={styles.card ?? ''}>
+          <div key={i} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
             {styles.date && <h4 className={styles.date}>{name}</h4>}
             <Component/>
           </div>

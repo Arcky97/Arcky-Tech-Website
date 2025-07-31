@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export const DocsHeader = ({title, children}: {title:string; children: ReactNode;}) => {
+export const DocsHeader = ({title, children}: {title:string; children?: ReactNode;}) => {
   return (
     <header className="text-white text-center">
       <h1 className="text-3xl lg:text-4xl font-bold text-center">{title}</h1>

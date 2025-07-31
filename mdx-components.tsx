@@ -8,12 +8,13 @@ import { DocsHeader as Header } from "./components/documentations/DocsHeader";
 import {DocsTable as Table} from "./components/documentations/DocsTable";
 import { DocsPokeMarketSpeeches as PMSpeeches } from "./components/documentations/DocsPokeMarketSpeeches";
 import { DocsShelfSpeeches as SHSpeeches } from "./components/documentations/DocsShelfSpeeches";
+import { DocsSpeciesSpeeches as SPSpeeches } from "./components/documentations/DocsSpeciesSpeeches";
 import EmblaCarousel from "./components/EmblaCarousel";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
-      <h1 className="text-white text-3xl lg:text-4xl font-bold text-center">{children}</h1>
+      <h1 className="head1">{children}</h1>
     ),
     h2: ({ children }) => (
       <h2 className="text-white text-2xl lg:text-3xl font-bold text-center mb-3">{children}</h2>
@@ -73,6 +74,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Table,
     PMSpeeches,
     SHSpeeches,
+    SPSpeeches,
     EmblaCarousel,
     ...components
   }

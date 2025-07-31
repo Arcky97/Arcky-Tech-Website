@@ -3,10 +3,10 @@ import LatestUpdates from "@/components/LatestUpdates";
 
 export default function Home() {
   return (
-    <article className="flex flex-col mt-16 items-center min-h-screen bg-gray-900 text-white">
+    <article className="flex flex-col items-center min-h-screen text-white">
       {/* Hero Section */}
-      <section className="text-center pt-8 w-7/8 lg:w-5/8">
-        <h1 className="text-5xl font-bold mb-4">Welcome to Arcky-Tech</h1>
+      <section className="text-center w-7/8 lg:w-5/8">
+        <h1 className="head1">Welcome to Arcky-Tech</h1>
         <p className="text-lg text-gray-300 max-w mb-2">
           Hello, my name is Arcky. For years I&#39;ve been fascinated by coding so I&#39;ve been working on a lot of different projects among the years. You can take a look at them by clicking the button below.
         </p>
@@ -30,7 +30,7 @@ export default function Home() {
               key={index}
               className="bg-gray-800 p-6 rounded-lg shadow-lg min-w-[200px] transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-blue-500/50 hover:ring-2 hover:ring-blue-500"
             >
-              <h3 className="text-xl font-semibold text-center">{feature.title}</h3>
+              <h3 className="text-xl font-semibold text-left">{feature.title}</h3>
               <p className="text-gray-400 mt-5">{feature.desc}</p>
               <div className="text-center mt-5">
                 {feature.link ?? ""}

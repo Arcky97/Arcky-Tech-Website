@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function TermsOfService() {
   return (
-    <article className="flex flex-col mt-16 min-h-screen bg-gray-900 text-white p-8 mx-auto lg:w-5/8">
+    <article className="flex flex-col min-h-screen bg-gray-900 text-white p-8 mx-auto lg:w-5/8">
       <h1 className="text-3xl font-bold mb-4 text-center">Terms of Service</h1>
       <em className="text-sm text-gray-400 text-center">Effective Date: July 20, 2025</em>
 
