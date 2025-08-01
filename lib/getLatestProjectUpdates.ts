@@ -59,7 +59,7 @@ export function getLatestProjectUpdates(): UpdateEntry[] {
   }
 
   return updates
-    .sort((a, b) => b.date.localeCompare(a.date))
+    .sort((a, b) => a.date.localeCompare(b.date))
     .slice(0, 3)
     .reverse()
 }

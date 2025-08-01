@@ -21,7 +21,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
-      setIsShrunk(scrollPosition > 100 && !hasSideNav);
+      setIsShrunk(scrollPosition > 100 || hasSideNav);
     };
 
     const updateIsSmallScreen = () => {
@@ -44,6 +44,7 @@ export default function Navbar() {
 
   return (
     <nav
+      id="navbar"
       ref={navbarRef}
       className={`fixed top-0 left-0 w-full bg-gray-900 text-white ${
         isScrolled ? "shadow-md transition-shadow duration-300 ease-in-out" : ""

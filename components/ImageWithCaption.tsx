@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
+import LoopingVideo from "./LoopingVideo";
 
 type Align = "left" | "center" | "right";
 type Size = "full" | "tiny" | "small" | "medium" | "large";
@@ -40,7 +41,7 @@ export const ImageWithCaption = ({
   const imageRef = useRef<HTMLImageElement>(null);
   const modalImgRef = useRef<HTMLDivElement>(null);
 
-  const isGif = (src: string) => src.toLowerCase().endsWith(".gif");
+  const isVideo = (src: string) => src.toLowerCase().endsWith(".mp4");
 
   const handleOpen = () => {
     if (imageRef.current) {
@@ -70,34 +71,39 @@ export const ImageWithCaption = ({
 
   return (
     <>
-      {/* Normal Image with Caption */}
-      <figure className={clsx("my-5", sizeValues[size], alignMargins[align])}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {isGif(src) ? (
-          <img
-            ref={imageRef}
-            src={src}
-            alt={alt ?? "Image not found"}
-            className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
-            onClick={handleOpen}
-          />
-        ) : (
-          <Image
-            ref={imageRef}
-            src={src}
-            alt={alt ?? "Image not found"}
-            width={500}
-            height={500}
-            className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
-            onClick={handleOpen}
-          />
-        )}
+      {/* Normal Image or Video with Caption */}
+      <figure
+        className={clsx("my-5", sizeValues[size], alignMargins[align])}
+      >
+        <div
+          ref={imageRef}
+          className={clsx(isVideo(src) && "aspect-video")}
+        >
+          {isVideo(src) ? (
+            <LoopingVideo
+              src={src}
+              className="rounded-lg w-full h-full bg-transparent object-contain cursor-pointer select-none cursor-zoom-in"
+              onClick={handleOpen}
+            />
+          ) : (
+            <Image
+              src={src}
+              alt={alt ?? "Image not found"}
+              width={500}
+              height={500}
+              className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
+              onClick={handleOpen}
+              ref={imageRef}
+            />
+          )}
+        </div>
         {caption && (
           <figcaption className="text-center text-[#ccc] text-sm mt-2">
             {caption}
           </figcaption>
         )}
       </figure>
+
       {/* Fullscreen Zoom Modal */}
       {showModal && thumbnailRect && (
         <div
@@ -119,12 +125,10 @@ export const ImageWithCaption = ({
                 : "translate(0, 0) scale(1)",
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            {isGif(src) ? (
-              <img
+            {isVideo(src) ? (
+              <LoopingVideo
                 src={src}
-                alt={alt || ""}
-                className="w-full h-full object-contain rounded-lg mx-auto select-none cursor-zoom-out"
+                className="w-full h-full bg-transparent object-contain rounded-lg mx-auto select-none cursor-zoom-out"
               />
             ) : (
               <Image
@@ -148,5 +152,3 @@ export const ImageWithCaption = ({
     </>
   );
 };
-
-

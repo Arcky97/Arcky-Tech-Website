@@ -23,9 +23,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ></script>
         <link rel="icon" href="/favicon.png" type="image/png"/>
       </head>
-      <body className="h-full flex flex-col bg-gray-900">
+      <body className="flex flex-col h-full">
         <Navbar />
-        <main className="flex-1 bg-gray-900 pt-22">
+        <main className="flex-1 bg-gray-900 pt-16">
           {children}
         </main>
         <Footer/>

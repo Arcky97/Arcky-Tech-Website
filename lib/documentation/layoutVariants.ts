@@ -15,17 +15,17 @@ type LayoutVariants = {
 
 const baseStyles: Record<StyleGroup, StyleConfig> = {
   'default': {
-    wrapper: 'flex flex-col min-h-screen text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
+    wrapper: 'text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
     section: 'text-center space-y-8',
   },
   'history': {
-    wrapper: 'flex flex-col min-h-screen text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
+    wrapper: 'text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
     section: 'text-center space-y-4 mb-4',
     card: 'border border-gray-700 rounded-lg px-6 py-2 bg-gray-800',
     date: 'text-gray-600 text-sm text-left'
   },
   'speechVariants': {
-    wrapper: 'flex flex-col min-h-screen text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
+    wrapper: 'text-white w-[90%] lg:w-[75%] lg:px-8 mx-auto',
     section: 'text-center space-y-4 mb-4',
     card: 'border border-gray-700 rounded-lg py-2 px-4',
     date: '',

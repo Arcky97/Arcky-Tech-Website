@@ -18,6 +18,8 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
+  const [footerHeightInView, setFooterHeightInView] = useState(0);
+  const footerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
   const hasScrolledToActive = useRef(false);
 
@@ -40,7 +42,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   useEffect(() => {
     const updateIsSmallScreen = () => {
       setIsSmallScreen(window.innerWidth < 1024);
-      setIsSidebarVisible(window.innerWidth > 1024 || isDocumentation && window.innerWidth > 1024);
+      setIsSidebarVisible(window.innerWidth >= 1024 || isDocumentation && window.innerWidth >= 1024);
       setIsSidebarFrozen(isDocumentation && window.innerWidth >= 1024);
     };
 
@@ -83,6 +85,39 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     setTimeout(scrollSidebarToActiveItem, 100);
   }, [pathname]);
 
+  useEffect(() => {
+    const footer = document.getElementById("footer");
+    if (!footer) return;
+
+    footerRef.current = footer;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const visible = entry.intersectionRect.height;
+          setFooterHeightInView(visible);
+        } else {
+          setFooterHeightInView(0);
+        }
+      },
+      {
+        root: null,
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100)
+      }
+    );
+
+    observer.observe(footer);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isSmallScreen) {
+      document.body.style.overflow = isSidebarVisible ? "hidden" : "";
+    }
+  }, [isSidebarVisible, isSmallScreen])
   const toggleSidebarVisibility = () => {if ((isDocumentation && window.innerWidth < 1024) || isDashboard) setIsSidebarVisible((prev) => !prev)};
 
   const toggleSubmenu = (path: string, value?: boolean) => {
@@ -204,9 +239,12 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     <nav className="flex min-h-screen transition-all duration-300 ease-in-out">
       {/* Sidebar */}
       <div
-        className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-20 fixed left-0 h-[calc(100vh-var(--navbar-height))] z-51 transition-all duration-300 bg-gray-800 text-white flex flex-col ${
-          isSidebarVisible ? "translate-x-0" : "-translate-x-full"
+        className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-12 fixed left-0 z-51 bg-gray-800 text-white flex flex-col transition-all lg:transition-none duration-300 ease-in-out ${
+          isSidebarVisible ? "translate-x-0 opacity-100" : "-translate-x-full"
         } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
+        style={{
+          height: `calc(100vh - 47px - ${footerHeightInView}px)`,
+        }}
       >
         <div id="sidebar" className="flex-1 overflow-y-auto">{renderMenuItems(menuItems)}</div>
       </div>
@@ -236,9 +274,9 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
         }}
       >
         {/* Sidebar Toggle Button */}
-        <div className="h-0 bg-gray-900 flex items-center">
+        <div className="h-0 bg-gray-900 flex items-center transition-opacity duration-300 ease-in-out">
           <button
-            className="fixed top-5 left-3 z-50 bg-gray-900 p-2 rounded-md flex flex-col justify-center items-center space-y-1 group"
+            className="fixed top-1.5 left-2 z-50 bg-gray-900 p-2 rounded-md flex flex-col justify-center items-center space-y-1 group"
             onClick={toggleSidebarVisibility}
           >
             <span
@@ -258,7 +296,6 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
                   : `${isSidebarVisible
                     ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px]"
                     : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px]"} group-hover:scale-110 group-hover:bg-gray-400`
-                
               }`}
             ></span>
           </button>

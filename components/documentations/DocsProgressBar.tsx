@@ -2,10 +2,12 @@
 
 import { DocumentationProgress } from "@/lib/documentation/docsProgress";
 import { useEffect, useState } from "react";
+import Skeleton from "../Skeleton";
 
 export default function DocsProgressBar() {
   const [progressData, setProgressData] = useState<Array<{ project: string; progress: DocumentationProgress }> | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProgress() {
@@ -21,14 +23,31 @@ export default function DocsProgressBar() {
     }
 
     fetchProgress();
+
+    const delayTimeout = setTimeout(() => {
+      setShowLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(delayTimeout);
+
   }, []);
 
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
 
-  if (!progressData) {
-    return <p className="text-gray-500">Loading documentation progress...</p>
+  if (!progressData || showLoading) {
+    return (
+      <div className="space-y-4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Skeleton key={index} color="bg-gray-800" width="w-full" height="h-full" rounded="rounded-xl" className="p-4 shadow border border-gray-600/75" variant="pulse"> 
+            <Skeleton width="w-1/2" height="h-6" className="mx-auto mb-3"/>
+            <Skeleton color="bg-gray-700" width="w-full" height="h-5" rounded="rounded-full" className="mb-3"/>
+            <Skeleton width="w-1/3" height="h-4" className="ml-3"/>
+          </Skeleton>
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -47,7 +66,6 @@ export default function DocsProgressBar() {
               ? `${data.progress.completeFiles} of ${data.progress.totalFiles} pages completed (${data.progress.percentage}%)`
               : "Not started!"
             }
-            
           </p>
         </div>
       ))}

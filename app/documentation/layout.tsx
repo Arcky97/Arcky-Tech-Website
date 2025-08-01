@@ -660,7 +660,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
     : menuItems.map(({ ...rest }) => rest )
   
   return (
-    <div className="flex">
+    <div className="flex h-full">
       <Sidebar menuItems={menuItemToUse} mainDocs={!pathname.startsWith('/documentation/')}/>
       <>
         {children}

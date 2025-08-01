@@ -3,7 +3,7 @@ import LatestUpdates from "@/components/LatestUpdates";
 
 export default function Home() {
   return (
-    <article className="flex flex-col items-center min-h-screen text-white">
+    <article className="flex flex-col pt-6 items-center min-h-screen text-white">
       {/* Hero Section */}
       <section className="text-center w-7/8 lg:w-5/8">
         <h1 className="head1">Welcome to Arcky-Tech</h1>
