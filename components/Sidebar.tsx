@@ -115,9 +115,16 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
 
   useEffect(() => {
     if (isSmallScreen) {
-      document.body.style.overflow = isSidebarVisible ? "hidden" : "";
+      if (isSidebarVisible) {
+        document.body.classList.add("lock-scrollbar");
+      } else {
+        document.body.classList.remove("lock-scrollbar");
+      }
+    } else {
+      document.body.classList.remove("lock-scrollbar");
     }
   }, [isSidebarVisible, isSmallScreen])
+  
   const toggleSidebarVisibility = () => {if ((isDocumentation && window.innerWidth < 1024) || isDashboard) setIsSidebarVisible((prev) => !prev)};
 
   const toggleSubmenu = (path: string, value?: boolean) => {

@@ -17,10 +17,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h1 className="head1">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-white text-2xl lg:text-3xl font-bold text-center mb-3">{children}</h2>
+      <h2 className="head2">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-white text-lg lg:text-xl font-bold text-left mt-1 mb-2">{children}</h3>
+      <h3 className="head3">{children}</h3>
     ),
     p: ({ children }) => (
       <p className="text-white text-base font-normal text-left">{children}</p>
@@ -43,7 +43,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <CodeBlock language={language}>{codeString}</CodeBlock>
     },
     hr: () => (
-      <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
+      <hr className="horRule"/>
     ),
     a: (props) => <LinkWithPreview {...props} />,
     strong: ({children}) => (

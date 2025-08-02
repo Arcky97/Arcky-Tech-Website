@@ -62,10 +62,10 @@ export const ImageWithCaption = ({
 
   useEffect(() => {
     setTimeout(() => {
-      document.body.style.overflow = isOpen ? "hidden" : "auto";
+      document.body.style.overflow = isOpen ? "hidden" : "";
     }, 150)
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 

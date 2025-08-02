@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "Arcky-Tech",
@@ -12,19 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="h-full">
       <head>
-        {/* Cookiebot script */}
-        <script 
-          id="Cookiebot" 
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="0d8c264c-1acf-481c-b1c3-66923a26955f"
-          data-blockingmode="auto" 
-          type="text/javascript"
-          async
-        ></script>
         <link rel="icon" href="/favicon.png" type="image/png"/>
       </head>
       <body className="flex flex-col h-full">
         <Navbar />
+        <CookieBanner/>
         <main className="flex-1 bg-gray-900 pt-16">
           {children}
         </main>
