@@ -5,6 +5,12 @@ import { ToggleSwitch }from "./ToggleSwitch"
 import ColorButton from "./ColorButton";
 import { CogIcon } from "lucide-react";
 
+declare global {
+  interface Window {
+    cookieConsent?: Consent;
+  }
+}
+
 type Consent = {
   analytics: boolean;
   preferences: boolean;
@@ -26,7 +32,7 @@ export const CookieBanner = () => {
     const stored = localStorage.getItem("cookieConsent");
     if (stored) {
       setHasConsent(true);
-      (window as any).cookieConsent = JSON.parse(stored);
+      window.cookieConsent = JSON.parse(stored);
     } else {
       setSelectionMode(true)
       setShowBanner(true);
@@ -49,7 +55,7 @@ export const CookieBanner = () => {
 
   const saveConsent = (values: Consent) => {
     localStorage.setItem("cookieConsent", JSON.stringify(values));
-    (window as any).cookieConsent = values;
+    window.cookieConsent = values;
     setHasConsent(true);
     setShowBanner(false);
     document.body.classList.remove("lock-scrollbar");
