@@ -17,7 +17,6 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
-  const [scrollLock, setScrollLock] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
   const [footerHeightInView, setFooterHeightInView] = useState(0);
   const footerRef = useRef<HTMLElement | null>(null);
