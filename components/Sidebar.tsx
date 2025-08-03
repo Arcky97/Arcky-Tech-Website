@@ -17,6 +17,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
+  const [scrollLock, setScrollLock] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
   const [footerHeightInView, setFooterHeightInView] = useState(0);
   const footerRef = useRef<HTMLElement | null>(null);
@@ -116,12 +117,17 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   useEffect(() => {
     if (isSmallScreen) {
       if (isSidebarVisible) {
+        const scrollY = window.scrollY * -1;
+        document.body.style.top = `${scrollY}px`
         document.body.classList.add("lock-scrollbar");
+        document.body.style.overflow = "hidden";
       } else {
+        const scrollY = parseInt(document.body.style.top) * -1;
+        document.body.style.top = "";
         document.body.classList.remove("lock-scrollbar");
+        document.body.style.overflow = "";
+        window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
       }
-    } else {
-      document.body.classList.remove("lock-scrollbar");
     }
   }, [isSidebarVisible, isSmallScreen])
   

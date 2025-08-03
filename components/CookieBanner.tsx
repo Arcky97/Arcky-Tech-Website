@@ -37,14 +37,25 @@ export const CookieBanner = () => {
       setSelectionMode(true)
       setShowBanner(true);
       setAnimationPhase("entering");
-      document.body.classList.add("lock-scrollbar");
       setTimeout(() => setAnimationPhase("idle"), 400);
     }
-
-    return () => {
-      document.body.classList.remove("lock-scrollbar");
-    };
   }, []);
+
+  useEffect(() => {
+    if (showBanner) {
+      const scrollY = window.scrollY * -1;
+      document.body.style.top = `${scrollY}px`;
+      document.body.classList.add("lock-scrollbar");
+      document.body.style.overflow = "hidden";
+    } else {
+      const scrollY = parseInt(document.body.style.top) * -1;
+      document.body.style.top = "";
+      document.body.classList.remove("lock-scrollbar");
+      document.body.style.overflow = "";
+      window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
+    }
+  }, [showBanner]);
+
 
   const triggerExitAnimationAndSave = (values: Consent) => {
     setAnimationPhase("exiting");
@@ -58,7 +69,6 @@ export const CookieBanner = () => {
     window.cookieConsent = values;
     setHasConsent(true);
     setShowBanner(false);
-    document.body.classList.remove("lock-scrollbar");
     setAnimationPhase("idle");
   };
 
@@ -83,7 +93,6 @@ export const CookieBanner = () => {
 
     setSelectionMode(true);
     setShowBanner(true);
-    document.body.classList.add("lock-scrollbar");
     requestAnimationFrame(() => {
       setTimeout(() => setAnimationPhase("idle"), 400);
     });
@@ -108,7 +117,7 @@ export const CookieBanner = () => {
       {showBanner && (
         <>
           {/* Background overlay */}
-          <div className={`fixed inset-0 bg-black z-51 transition-opacity duration-400 ease-in-out ${
+          <div className={`fixed inset-0 bg-black z-54 transition-opacity duration-400 ease-in-out ${
             animationPhase === "entering" || animationPhase === "reentering"
               ? "opacity-0"
               : animationPhase === "idle"
@@ -117,12 +126,12 @@ export const CookieBanner = () => {
           }`}/>
 
           {/* Modal Content */}
-          <div className={`fixed inset-0 z-52 flex items-center justify-center transition-all duration-400 transform ease-in-out ${animationClasses}`}>
-            <div className="bg-gray-900 text-white border border-gray-600/75 p-6 rounded-lg shadow-2xl max-w-3xl w-full mx-4">
+          <div className={`fixed inset-0 z-55 flex justify-center overflow-y-auto transition-all duration-400 transform ease-in-out ${animationClasses}`}>
+            <div className="bg-gray-900 text-white border border-gray-600/75 p-6 rounded-lg shadow-2xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto my-auto">
               <div className="max-w-3xl mx-auto flex flex-col sm:flew-row justify-between gap-4">
                 <div className="flex-1">
                   <h3 className="head3 px-2">We use cookies 🍪</h3>
-                  <p className="text-base text-left p-2">
+                  <p className="text-sm lg:text-base text-left p-2">
                     We use essential cookies to keep our site running smoothly. With your consent, we also use preference cookies to remember your settings and analytics cookies to help us understand how visitors use the site.
                   </p>
                   <hr className="horRule"/>
@@ -189,7 +198,7 @@ export const CookieBanner = () => {
       {hasConsent && (
         <div
           onClick={openSettings}
-          className={`fixed bottom-4 left-4 z-51 flex items-center group transition-opacity duration-400 ease-in-out
+          className={`fixed bottom-4 left-4 z-55 flex items-center group transition-opacity duration-400 ease-in-out
             ${shouldShowSettingsButton && !shouldHideSettingsButton ? "opacity-100" : "opacity-0 pointer-events-none"}
           `}
         >

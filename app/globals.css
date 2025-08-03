@@ -67,7 +67,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   height: 100%;
   scrollbar-color: #111827;
 }
@@ -77,6 +76,7 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
+  overflow-y: scroll;
 }
 
 body.lock-scrollbar {
@@ -291,6 +291,15 @@ body.lock-scrollbar {
     --slide-height: 30rem;
     --slide-size: 80%
   }
+  .head1 {
+    font-size: 30px;
+  }
+  .head2 {
+    font-size: 24px;
+  }
+  .head3 {
+    font-size: 18px;
+  }
 }
 
 @media only screen and (max-width: 653px) {
@@ -304,9 +313,6 @@ body.lock-scrollbar {
   .embla {
     --slide-height: 25rem;
     --slide-size: 95%;
-  }
-  .head1 {
-    font-size: 30px;
   }
 }
 

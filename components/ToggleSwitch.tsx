@@ -14,10 +14,10 @@ export const ToggleSwitch = ({ label = "", description = "", state, disabled = f
   return(
     <div className={`items-center justify-between ${className}`}>
       <div className="flex flex-col">
-        <label className="text-white text-lg font-bold mb-2">
+        <label className="text-white text-base md:text-lg font-bold mb-2">
           {label}
         </label>
-        <span className="text-white text-md mb-2">{description}</span>
+        <span className="text-white text-sm md:text-base mb-2">{description}</span>
       </div>
       <button
         className={`relative w-14 h-7 flex items-center rounded-full transition-colors duration-300 ease-in-out ${

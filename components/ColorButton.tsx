@@ -25,7 +25,7 @@ export default function ColorButton({ color, text, action, extraClass = "", href
     setIsHovered(false);
   }
 
-  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-white px-3 py-2 rounded-lg transition-all duration-300 ease-in-out"
+  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-sm md:text-base text-white px-2 py-1 md:px-3 md:py-2 rounded-lg transition-all duration-300 ease-in-out";
 
   if (href) {
     return (
