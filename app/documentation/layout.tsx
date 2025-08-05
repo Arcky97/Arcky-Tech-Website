@@ -180,6 +180,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
         {
           path: "plugin-setup",
           text: "Setup for other Plugins",
+          noPage: true,
           subItems: [
             {
               path: "quest-icons-and-preview",
@@ -210,6 +211,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
         {
           path: "settings",
           text: "Settings File",
+          noPage: true,
           subItems: [
             {
               path: "grid",
@@ -222,6 +224,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
             {
               path: "location",
               text: "Location Settings",
+              noPage: true,
               subItems: [
                 {
                   path: "no-unvisited-info",
@@ -272,6 +275,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
             {
               path: "ui",
               text: "UI Settings",
+              noPage: true,
               subItems: [
                 {
                   path: "map-ui",
@@ -306,6 +310,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
             {
               path: "preview",
               text: "Preview Settings",
+              noPage: true,
               subItems: [
                 {
                   path: "general",
