@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ToggleSwitch }from "./ToggleSwitch"
 import ColorButton from "./ColorButton";
 import { CogIcon } from "lucide-react";
+import { getCookie, setCookie } from "@/lib/cookies";
 
 declare global {
   interface Window {
@@ -29,7 +30,7 @@ export const CookieBanner = () => {
   const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("cookieConsent");
+    const stored = getCookie("cookieConsent");
     if (stored) {
       setHasConsent(true);
       window.cookieConsent = JSON.parse(stored);
@@ -65,7 +66,7 @@ export const CookieBanner = () => {
   }
 
   const saveConsent = (values: Consent) => {
-    localStorage.setItem("cookieConsent", JSON.stringify(values));
+    setCookie("cookieConsent", JSON.stringify(values));
     window.cookieConsent = values;
     setHasConsent(true);
     setShowBanner(false);
@@ -86,11 +87,10 @@ export const CookieBanner = () => {
 
   const openSettings = () => {
     setAnimationPhase("reentering");
-    const stored = localStorage.getItem("cookieConsent");
+    const stored = getCookie("cookieConsent");
     if (stored) {
       setConsent(JSON.parse(stored));
     }
-
     setSelectionMode(true);
     setShowBanner(true);
     requestAnimationFrame(() => {

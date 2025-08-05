@@ -62,7 +62,7 @@ export default function LinkWithPreview({ href = "", children, ...rest }: Props)
   return (
     <span
       ref={wrapperRef}
-      className="relative inline-block text-blue-400 hover:font-bold transition-all duration-300 ease-in-out"
+      className="relative inline-block text-blue-400 hover:text-blue-500 transition-all duration-300 ease-in-out"
       onMouseEnter={showPreview}
       onMouseLeave={hidePreview}
     >

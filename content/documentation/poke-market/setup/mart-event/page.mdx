@@ -6,7 +6,7 @@
 The script command **<Gn>hasn't changed</Gn>** — but as of **<Gn>v1.4.0</Gn>**, you can now provide *extra arguments*, which means the full command can get quite large.
 <br/>
 Here's how a basic setup would look inside an event:
-<br/>
+
 ```ruby
 pbPokemonMart([
   :POKEBALL, :GREATBALL, :ULTRABALL,
@@ -23,7 +23,7 @@ If your list of items gets too long, there's a much cleaner way to organize it u
   You can define a method in the `000_PokeMarket_Settings_and_Setup.rb` file to clean up your event commands.
 </Callout>
 For example, at the bottom of that file, add:
-<br/>
+
 ```ruby 
 def pbSomeMart
   pbPokemonMart([
@@ -36,6 +36,7 @@ def pbSomeMart
 end
 ```
 Now inside your event, you only need to call:
+
 ```ruby
   pbSomeMart
 ```

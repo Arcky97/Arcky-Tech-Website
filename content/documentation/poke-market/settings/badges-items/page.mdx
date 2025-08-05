@@ -14,7 +14,7 @@ In default Essentials, managing which items are available in a Mart based on bad
 ### The Easy Way with `BadgesForItems`
 
 Use the following setup in your `000_PokeMarket_Settings_and_Setup.rb` file:
-<br/>
+
 ```ruby
 BadgesForItems = {
   1 => [:GREATBALL, :SUPERPOTION, :ANTIDOTE, :PARALYZEHEAL, :AWAKENING, :BURNHEAL, :ICEHEAL, :REPEL, :ESCAPEROPE],
@@ -43,7 +43,6 @@ Any items **not listed** in the `BadgesForItems` hash will be available by defau
 
 Let's say we define a Mart like this:
 
-<br/>
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -76,7 +75,7 @@ Now simply call `pbSomeMart` in your event using a script command.
 
 As shown, once a badge treshold is crossed, all items defined at or below that level become available.
 <br/>For example, reaching 3 badges will unlock:
-<br/>
+
 ```ruby
   [:HYPERPOTION, :SUPERREPEL, :REVIVE]
 ```

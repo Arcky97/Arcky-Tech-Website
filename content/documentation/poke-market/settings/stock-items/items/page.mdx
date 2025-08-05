@@ -6,7 +6,9 @@ The **Stock Items** is a new setting introduced in **v1.6.0**. It allows you to 
 <br/>
 --- 
 ## Example 1 
+
 ### Setting Setup
+
 ```ruby 
 StockItems = {
   :normalStore => [
@@ -22,8 +24,9 @@ StockItems = {
   - An Array of Items for this stock.
 
 ### Usage in a Mart event 
+
 To use it in your Mart or Shelf event, you type the name of the stock but as a string instead of a hash.
-<br/>
+
 ```ruby 
 def pbSomeMart
   pbPokemonMart("normalStore", speech: "ProSeller", discount: 29, useCat: true, billEnd: true)
@@ -32,7 +35,9 @@ end
 
 ---
 ## Example 2
+
 ### Setting Setup 
+
 ```ruby 
 StockItems = {
   :limitStore => ["daily",
@@ -47,6 +52,7 @@ StockItems = {
   - An Array of Items for this stock. But this time they include Item Limits as well.
 
 ### Usage in a Mart event 
+
 ```ruby
 def pbSomeShelf
   pbShelfMart("limitStore", speech: "ShelfOne", discount: 29)

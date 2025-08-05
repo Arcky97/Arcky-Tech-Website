@@ -3,12 +3,12 @@ import LatestUpdates from "@/components/LatestUpdates";
 
 export default function Home() {
   return (
-    <article className="flex flex-col pt-6 items-center min-h-screen text-white">
+    <article className="flex flex-col pt-6 items-center h-full text-white">
       {/* Hero Section */}
       <section className="text-center w-7/8 lg:w-5/8">
         <h1 className="head1">Welcome to Arcky-Tech</h1>
         <p className="text-lg text-gray-300 max-w mb-2">
-          Hello, my name is Arcky. For years I&#39;ve been fascinated by coding so I&#39;ve been working on a lot of different projects among the years. You can take a look at them by clicking the button below.
+          Hello, my name is Arcky. For years I&#39;ve been fascinated by coding, so I&#39;ve been working on a lot of different projects over the years. You can take a look yourself down below!
         </p>
         <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
       </section>
@@ -17,7 +17,6 @@ export default function Home() {
       {/* Features Section */}
       <section className="w-7/8 lg:w-5/8">
         <h2 className="text-white text-4xl font-bold text-center mb-3">Projects</h2>
-        <p className="text-center text-lg text-gray-300 max-w mb-2">Overview of all the projects I&#39;ve worked on so far. Hover over a tile to be able to view more info about a project.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 ">
           {[
             { title: "Doggo Bot", desc: "A Bot for your Discord Server with a ton of features. Including a customizable level system, moderation commands, fun commands and even a chat function and so much more.", link: <ColorButton color="blue-600" text="View Info" href="/doggo-bot"/>},

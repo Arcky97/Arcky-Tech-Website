@@ -11,7 +11,7 @@ type Props = {
   offset?: number;
 }
 
-export default function DocsTableOfContents({ items, offset = 90 }: Props) {
+export default function DocsTableOfContents({ items, offset = 65 }: Props) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);

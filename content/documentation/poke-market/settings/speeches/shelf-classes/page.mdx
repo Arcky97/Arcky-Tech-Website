@@ -5,7 +5,7 @@
 A new Setting (as of v1.4.0) and similar to Seller Classes is the Shelf Classes. If you are wondering why shelfs would need classes, well you could make the shelf, at the interaction with the event, give the player a hint of which items to expect in the shelf. Of course that's just a suggestion. Another reason could be when you want to change a certain line of the default speeches. When creating a Shelf Class you don't need to add all parameters, those you don't add will get the default value instead.
 <br/>
 Adding a Shelf Class to the event method is really easy as it's the same as you would do for the Seller class. 
-<br/>
+
 ```ruby
 def pbSomeShelf
   pbShelfMart(["daily", :POTION,
@@ -17,7 +17,7 @@ def pbSomeShelf
 end
 ```
 For the Shelf Class itself, these are the parameters that you can use:
-<br/>
+
 ```ruby
 ShelfOne = {
   # Text when talking to a shelf in the mart.

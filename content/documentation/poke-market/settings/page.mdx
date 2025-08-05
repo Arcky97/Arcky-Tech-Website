@@ -21,7 +21,7 @@ Below are the links to each of the customizable features available in this plugi
 Since **v1.4.0**, the way you provide settings to a Mart or Shelf event has changed — and improved!
 - You no longer need to worry about the *order* of arguments (except for the item list, which should **always come first**).
 - Here's how you'd define a Mart event:
-<br/>
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -39,10 +39,11 @@ Each optional argument is explained below and in more detail on its correspondin
 ---
 ### speech: "string"
 This lets you assign a specific <Ye>Seller Class</Ye> to the event.
-<br/>
+
 ```ruby 
   speech: "ProSeller"
 ```
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -59,10 +60,11 @@ end
 ---
 ### useCat: true / false
 This enables or disables <Bl>Item Categories</Bl>.
-<br/>
+
 ```ruby
   useCat: true
 ```
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -78,10 +80,11 @@ end
 ---
 ### Discount: number
 Use this to apply a discount by refering a Game Variable ID:
-<br/>
+
 ```ruby
   discount: 26
 ```
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -101,10 +104,11 @@ Valid default values:
 - `"money"` or `"gold"`
 - `"coins"`
 - `"bp"` or `"battle points"`
-<br/>
+
 ```ruby 
   currency: "coins"
 ```
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -121,10 +125,11 @@ end
 ### cantSell: true / false 
 Disables the ability to sell items in this event.
 This is *optional* and defaults to `false` (meaning selling is allowed).
-<br/>
+
 ```ruby 
   cantSell: true
 ```
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -140,10 +145,11 @@ end
 ---
 ### billEnd: true / false 
 If enabled, the Mart event will end after paying the bill.
-<br/>
+
 ```ruby
   billEnd: true
 ```
+
 ```ruby 
 def pbSomeMart
   pbPokemonMart([
@@ -165,13 +171,16 @@ Use this to select a specific or random amount of items from the given item list
 Allowed refresh times are the same as the Refresh Rate for Item Limits with exception for `"random"` not being supported.
 <br/>
 - select a fixed amount.
+
 ```ruby 
   random: ["daily", 4]
 ```
+
 - select a random amount.
 ```ruby
   random: ["daily", rand(1..4)]
 ```
+
 ```ruby 
 def pbSomeMart
   pbPokemonMart([

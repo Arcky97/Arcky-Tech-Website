@@ -143,6 +143,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
         {
           path: "basic-setup",
           text: "Basic Setup",
+          noPage: true,
           subItems: [
             {
               path: "highlight-graphics",
@@ -199,10 +200,6 @@ export default function DocumentationLayout({ children }: { children: React.Reac
             {
               path: "berry-icons-and-preview",
               text: "Berry Icons and Preview"
-            },
-            {
-              path: "roaming-icons",
-              text: "Roaming Icons"
             },
             {
               path: "modular-ui-scenes",

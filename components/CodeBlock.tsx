@@ -46,7 +46,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
   };
 
   return (
-    <div className="relative mb-4 overflow-auto text-sm font-mono rounded-lg text-gray-300">
+    <div className="relative mt-6 mb-4 overflow-auto text-sm font-mono rounded-lg text-gray-300">
       <div className="pt-2 pb-2 border border-gray-600/75 px-2 leading-relaxed tracking-wider">
         {highlightedLines.map((line, i) => (
           <div

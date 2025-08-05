@@ -113,14 +113,14 @@ export default async function Page({
   const styles = getStyles(slug);
 
   return (
-    <article key={slug[0]} className={styles.wrapper}>
-      {styles.card && <section className="mb-6">
+    <article key={slug[0]} className={`${styles.wrapper} pb-4`} >
+      {styles.card && <section className="pb-6">
         {header && header.map(({Component}, i) => (
           <div key={i} >
             <Component/>
           </div>
         ))}
-        <h1 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h1>
+        <h3 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h3>
         <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
         <hr className="border-gray-600/75 border-t-1 mt-2"></hr>
       </section>}

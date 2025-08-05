@@ -5,7 +5,7 @@
 This setting is the most extensive one in the entire plugin. You can go as deep as you'd like customizing it — or choose not to use it at all.
 <br/>
 Adding a Seller Class to the event method is simple: after the list of items, just add the Seller Class using `speech: "ProSeller"`. Make sure the string matches the constant name defined for the class (explained below). Two example classes are included by default, including "ProSeller".
-<br/>
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -19,7 +19,7 @@ def pbSomeMart
 end
 ```
 The Seller Class defined everything the seller says to the player. Normally, the seller repeats the same generic lines — but with this setup, you can make them sound much more dynamic and natural by adding variation based on the player's actions.
-<br/>
+
 ```ruby
 ProSeller = {
   # Text when talking to them. This is the default one.

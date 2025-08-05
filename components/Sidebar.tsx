@@ -21,6 +21,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [footerHeightInView, setFooterHeightInView] = useState(0);
   const footerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
+  const previousPathRef = useRef<string | null>(null);
   const hasScrolledToActive = useRef(false);
 
   const isDashboard = pathname.startsWith("/doggo-bot/dashboard");
@@ -116,19 +117,26 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   useEffect(() => {
     if (isSmallScreen) {
       if (isSidebarVisible) {
+        previousPathRef.current = pathname;
         const scrollY = window.scrollY * -1;
         document.body.style.top = `${scrollY}px`
         document.body.classList.add("lock-scrollbar");
         document.body.style.overflow = "hidden";
       } else {
         const scrollY = parseInt(document.body.style.top) * -1;
+
         document.body.style.top = "";
         document.body.classList.remove("lock-scrollbar");
         document.body.style.overflow = "";
-        window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
+
+        if (previousPathRef.current === pathname) {
+          window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
+        }
+
+        previousPathRef.current = null;
       }
     }
-  }, [isSidebarVisible, isSmallScreen])
+  }, [isSidebarVisible, isSmallScreen, pathname])
   
   const toggleSidebarVisibility = () => {if ((isDocumentation && window.innerWidth < 1024) || isDashboard) setIsSidebarVisible((prev) => !prev)};
 

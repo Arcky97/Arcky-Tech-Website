@@ -17,7 +17,7 @@ These categories are shown at the top of the screen, along with the page number.
 This feature will split up the items in their respective category following the bag pocket names, they'll be ordered by alphabet. It is possible to set up custom categories as well, for example, evolution stones.
 <br/>
 You can change the display names of these default categories in the `000_PokeMarket_Settings_and_Setup.rb` file.
-<br/>
+
 ```ruby
 CategoryNames = [
   "Items",
@@ -36,7 +36,7 @@ This array matches the order of pockets in your game's Bag on defines how they a
 <Callout type="hint">
   **Translating your game?** If you're plannnig to localize your game, use this format instead to make the category names translatable:
 </Callout>
-<br/>
+
 ```ruby
 CategoryNames = [
   _INTL("Items"),
@@ -55,7 +55,7 @@ CategoryNames = [
 
 If you prefer a more dynamic solution — especially if your game modifies or adds new pockets — you can auto-generate the list like this:
 Or you can use the following line instead:
-<br/>
+
 ```ruby
 CategoryNames = PokemonBag.pocket_names.map { |pocket| pocket.to_s }
 ```

@@ -4,7 +4,7 @@
 
 This feature allows you to apply discounts to all items in a store.
 <br/>Currently, there's no way to exclude specific items - but that migiht change in the future.
-<br/>
+
 ```ruby
 def pbSomeMart
   pbPokemonMart([
@@ -28,7 +28,7 @@ You can set up discounts in three ways:
 ## First way - Game Variable + Array
 
 Use a Game Variable and assign it an array of percentage values (e.g., `4` = 4% discount).
-<br/>
+
 ```ruby
 DISCOUNTS = {
   27 => [0, 1, 4, 7, 11]
@@ -76,7 +76,6 @@ DISCOUNTS = {
 
 You can combine an **item requirement** with one or more **Game Variables**.
 
-<br/>
 ```ruby
 DISCOUNTS = {
   :COUPONA => { 
@@ -157,7 +156,7 @@ DISCOUNTS = {
 }
 ```
 Or with an item requirement:
-<br/>
+
 ```ruby
 DISCOUNTS = {
   :COUPONB => {
