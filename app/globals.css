@@ -38,6 +38,46 @@
   animation: blinkGlow 0.6s ease-in-out 3; /* Adjusted timing to make it smoother */
 }
 
+@keyframes ScrollToTopHover {
+  0%, 100% {
+    scale: 100%
+  }
+  25% {
+    scale: 160%
+  }
+  50% {
+    scale: 70%
+  }
+  75% {
+    scale: 120%
+  }
+}
+
+.ScrollToTopHover:hover {
+  animation: ScrollToTopHover 0.75s ease-in-out 1;
+}
+
+@keyframes ScrollToTopFade {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.ScrollToTopFadeIn {
+  animation: ScrollToTopFade 0.5s ease-in-out forwards;
+}
+
+.ScrollToTopFadeOut {
+  animation: ScrollToTopFade 0.5s ease-in-out backwards;
+}
+
+
+
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
@@ -53,7 +93,7 @@
   background-color: #4b5563;
 }
 
-.skeleton-shimmer::after {
+.skeleton-shimmer:after {
   content: "";
   position: absolute;
   inset: 0;
@@ -117,7 +157,8 @@ body.lock-scrollbar {
 
 .horRule {
   border-top: 1px solid rgba(75, 85, 99, 0.75);
-  margin: 2px, 0px 4px;
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
 /* Embla Carousel */

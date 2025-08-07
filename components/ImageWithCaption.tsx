@@ -82,7 +82,7 @@ export const ImageWithCaption = ({
           {isVideo(src) ? (
             <LoopingVideo
               src={src}
-              className="rounded-lg w-full h-full bg-transparent object-contain cursor-pointer select-none cursor-zoom-in"
+              className="rounded-lg w-full h-full bg-transparent object-contain select-none cursor-zoom-in"
               onClick={handleOpen}
             />
           ) : (
@@ -91,7 +91,7 @@ export const ImageWithCaption = ({
               alt={alt ?? "Image not found"}
               width={500}
               height={500}
-              className="rounded-lg border-white w-full cursor-pointer select-none cursor-zoom-in"
+              className="rounded-lg border-white w-full select-none cursor-zoom-in"
               onClick={handleOpen}
               ref={imageRef}
             />

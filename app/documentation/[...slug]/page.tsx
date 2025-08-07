@@ -84,7 +84,7 @@ export default async function Page({
 
       const match = raw.match(/^## (.+)$/m);
       const title = match?.[1] || file.replace('.mdx', '');
-      const anchorId = slugify(file.replace('.mdx', ''));
+      const anchorId = title.toLowerCase().replaceAll(" ", "-") //slugify(file.replace('.mdx', ''));
 
       let Component;
       try {

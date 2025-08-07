@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
+import { BackToTopButton } from "@/components/BackToTopButton";
 
 export const metadata: Metadata = {
   title: "Arcky-Tech",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1 bg-gray-900 pt-16">
           {children}
         </main>
+        <BackToTopButton/>
         <Footer/>
       </body>
     </html>

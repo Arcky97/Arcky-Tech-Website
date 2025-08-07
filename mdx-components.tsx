@@ -26,13 +26,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <p className="text-white text-base font-normal text-left">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-base font-normal text-left marker:text-white" style={{ listStyleType: "revert"}}>{children}</ul>
+      <ul className="text-base font-normal text-left marker:text-white mt-2 pb-2" style={{ listStyleType: "revert"}}>{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-base font-normal text-left marker:text-white" style={{ listStyleType: "decimal"}}>{children}</ol>
+      <ol className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "decimal"}}>{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="ml-6 text-gray-300 leading-relaxed text-md mb-1">{children}</li>
+      <li className="ml-6 text-gray-300 leading-relaxed text-md mb-2">{children}</li>
     ),
     code:({children}) => (
       <InlineCode>{children}</InlineCode>
