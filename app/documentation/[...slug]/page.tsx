@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getStyles } from '@/lib/documentation/layoutVariants';
-//import { slugify } from '@/lib/slugify';
+import { slugify } from '@/lib/slugify';
 import { generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/documentations/DocsTableOfContents';
 import { notFound, redirect } from 'next/navigation';
@@ -84,7 +84,7 @@ export default async function Page({
 
       const match = raw.match(/^## (.+)$/m);
       const title = match?.[1] || file.replace('.mdx', '');
-      const anchorId = title.toLowerCase().replaceAll(" ", "-") //slugify(file.replace('.mdx', ''));
+      const anchorId = slugify(title);
 
       let Component;
       try {
