@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getStyles } from '@/lib/documentation/layoutVariants';
-import { slugify } from '@/lib/slugify';
+//import { slugify } from '@/lib/slugify';
 import { generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/documentations/DocsTableOfContents';
 import { notFound, redirect } from 'next/navigation';
