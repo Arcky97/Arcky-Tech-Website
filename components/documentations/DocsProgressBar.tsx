@@ -26,7 +26,7 @@ export default function DocsProgressBar() {
 
     const delayTimeout = setTimeout(() => {
       setShowLoading(false);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(delayTimeout);
 

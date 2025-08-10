@@ -47,7 +47,12 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'location-preview': { group: "speechVariants" },
   'extended-location-preview': { group: "speechVariants" },
   'quest-icons-and-preview': { group: "speechVariants" },
-  'progress-counter': { group: 'speechVariants' }
+  'progress-counter': { group: 'speechVariants' },
+  'no-unvisited-info': { group: 'speechVariants' },
+  'location-search': { group: 'speechVariants' },
+  'region-district': { group: 'speechVariants' },
+  'region-map-connecting': {group: 'speechVariants' },
+  'extended': { group: 'speechVariants' }
 }
 
 export function getStyles(slug: string[]): StyleConfig {

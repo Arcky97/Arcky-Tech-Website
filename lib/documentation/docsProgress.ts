@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-const MinContentLength = 250;
+const MinContentLength = 225;
 
 export interface DocumentationProgress {
   totalFiles: number;
@@ -29,8 +29,8 @@ export async function getDocumentationProgress(rootDir: string): Promise<Array<{
           if (content.trim().length >= MinContentLength) {
             completeFiles++;
           } else {
-            const currLength = Math.round((content.trim().length / MinContentLength) * 10000) / 10000
-            completeFiles += currLength
+            const currLength = Math.round((content.trim().length / MinContentLength) * 10000) / 10000;
+            completeFiles += currLength;
           }
         } catch (error) {
           console.error("Failed to read file:", error);

@@ -1,6 +1,6 @@
 {
   "name": "arcky-tech",
-  "version": "1.7.1.0",
+  "version": "1.8.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -24,7 +24,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-select": "^5.10.1"
+    "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

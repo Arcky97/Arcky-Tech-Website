@@ -18,8 +18,8 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
-  const [footerHeightInView, setFooterHeightInView] = useState(0);
-  const footerRef = useRef<HTMLElement | null>(null);
+  //const [footerHeightInView, setFooterHeightInView] = useState(0);
+  //const footerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
   const previousPathRef = useRef<string | null>(null);
   const hasScrolledToActive = useRef(false);
@@ -85,7 +85,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
 
     setTimeout(scrollSidebarToActiveItem, 100);
   }, [pathname]);
-
+/*
   useEffect(() => {
     const footer = document.getElementById("footer");
     if (!footer) return;
@@ -113,7 +113,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
       observer.disconnect();
     };
   }, []);
-
+*/
   useEffect(() => {
     if (isSmallScreen) {
       if (isSidebarVisible) {
@@ -263,10 +263,10 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
           isSidebarVisible ? "translate-x-0 opacity-100" : "-translate-x-full"
         } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
         style={{
-          height: `calc(100vh - 47px - ${footerHeightInView}px)`,
+          height: `calc(100vh - 47px)`,
         }}
       >
-        <div id="sidebar" className="flex-1 overflow-y-auto">{renderMenuItems(menuItems)}</div>
+        <div id="sidebar" className="flex-1 overflow-y-auto pt-4 pb-16">{renderMenuItems(menuItems)}</div>
       </div>
 
       {/* Overlay on Small Screens */}
