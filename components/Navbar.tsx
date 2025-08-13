@@ -14,6 +14,7 @@ export default function Navbar() {
   const isHomePage = pathname === '/'; 
   const isDoggoBotPage = pathname.startsWith('/doggo-bot');
   const isDocumentationPage = pathname.startsWith('/documentation/');
+  const isScoreBoardPage = pathname.startsWith('/scoreboard');
   const hasSideNav = pathname.startsWith('/doggo-bot/dashboard') || pathname.startsWith('/documentation') || pathname.startsWith('/doggo-bot/database');
   const iconSizes = isSmallScreen ? { normal: 'w-6 h-6', shrunk: 'w-5 h-5' } : { normal: 'w-7 h-7', shrunk: 'w-6 h-6' };
 
@@ -21,7 +22,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
-      setIsShrunk(scrollPosition > 100 || hasSideNav);
+      setIsShrunk((scrollPosition > 100 || hasSideNav || isScoreBoardPage) || window.innerWidth <= 320);
     };
 
     const updateIsSmallScreen = () => {
@@ -40,7 +41,7 @@ export default function Navbar() {
       window.removeEventListener("resize", updateIsSmallScreen);
     }
 
-  }, [pathname, hasSideNav, isSmallScreen]);
+  }, [pathname, hasSideNav, isSmallScreen, isScoreBoardPage]);
 
   return (
     <nav
@@ -60,8 +61,8 @@ export default function Navbar() {
         <h1
           className={`${
             isShrunk
-              ? "text-2xl"
-              : "text-3xl"
+              ? "lg:text-2xl text-xl"
+              : "lg:text-3xl text-2xl"
             } font-bold transition-all duration-300 ease-in-out ${
             isHomePage
               ? isScrolled

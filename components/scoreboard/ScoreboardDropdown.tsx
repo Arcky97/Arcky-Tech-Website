@@ -1,34 +1,30 @@
-"use client"
-import { useEffect, useState } from "react"
 import Select from "react-select";
 
-export default function ScoreboardDropdown() {
-  //const [options, setOptions] = useState([]);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    async function fetchAllSpecies() {
-      try {
-        const res = await fetch("/api/scoreboard");
-        if (!res.ok) throw new Error('Failed to fetch');
-        //const data = await res.json();
-        //setOptions(data);
-      } catch (error) {
-        setError("An error occured while fetching Species Files from the server.");
-        console.error("Error fetching Species Files:", error);
-      }
-    }
+interface Props {
+  index: number;
+  options: { value: string, label: string}[];
+  onChange: (value: string) => void;
+}
 
-    fetchAllSpecies();
-
-  }, []);
-  
-  if (error) {
-    return <p className="text-red-500">{error}</p>
-  }
+export default function ScoreboardDropdown({ index, options, onChange }: Props) {
   return (
-    <div>
+    <>
       <Select
+        options={options}
+        placeholder="Type or Select"
+        menuPlacement={index >= 4 ? "top" : "bottom"}
+        styles={{
+          option: (provided, { isFocused, isSelected}) => ({
+            ...provided,
+            backgroundColor: isSelected ? '#081635' : isFocused ? '#2563eb' : 'transparent',
+            color: isFocused || isSelected ? 'fff' : 'gray'
+          })
+        }}
+        className="w-50"
+        onChange={(e) => onChange(e?.value ?? "")}
+        isClearable
+        isSearchable
       />
-    </div>
+    </>
   )
 }

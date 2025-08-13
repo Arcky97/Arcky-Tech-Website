@@ -10,9 +10,10 @@ interface Props {
   action?: () => void;
   extraClass?: string;
   href?: string;
+  disabled?: boolean;
 }
 
-export default function ColorButton({ color, text, action, extraClass = "", href }: Props) {
+export default function ColorButton({ color, text, action, extraClass = "", href, disabled }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const style = getColorFromTailwindString(color)
@@ -25,7 +26,7 @@ export default function ColorButton({ color, text, action, extraClass = "", href
     setIsHovered(false);
   }
 
-  const baseClass = "border select-none cursor-pointer hover:bg-transparent text-sm md:text-base text-white px-2 py-1 md:px-3 md:py-2 rounded-lg transition-all duration-300 ease-in-out";
+  const baseClass = `border select-none hover:bg-transparent text-sm md:text-base text-white px-2 py-1 md:px-3 md:py-2 rounded-lg transition-all duration-300 ease-in-out ${disabled ? "cursor-default" : "cursor-pointer"}`;
 
   if (href) {
     return (
@@ -33,8 +34,8 @@ export default function ColorButton({ color, text, action, extraClass = "", href
         href={href} 
         className={clsx(baseClass, extraClass)}
         style={{
-          borderColor: style,
-          backgroundColor: isHovered ? "transparent" : style,
+          borderColor: disabled ? "gray" : style,
+          backgroundColor: disabled ? "gray" : isHovered ? "transparent" : style,
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -48,12 +49,13 @@ export default function ColorButton({ color, text, action, extraClass = "", href
     <button
       className={clsx(baseClass, extraClass)}
       style={{
-        borderColor: style,
-        backgroundColor: isHovered ? "transparent" : style,
+        borderColor: disabled ? "gray" : style,
+        backgroundColor: disabled ? "gray" : isHovered ? "transparent" : style,
       }}
       onClick={action}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      disabled={disabled}
     >
       {text}
     </button>

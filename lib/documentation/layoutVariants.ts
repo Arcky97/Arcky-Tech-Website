@@ -51,7 +51,8 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'no-unvisited-info': { group: 'speechVariants' },
   'location-search': { group: 'speechVariants' },
   'region-district': { group: 'speechVariants' },
-  'region-map-connecting': {group: 'speechVariants' },
+  'region-map-connecting': { group: 'speechVariants' },
+  'fly': { group: 'speechVariants' },
   'extended': { group: 'speechVariants' }
 }
 

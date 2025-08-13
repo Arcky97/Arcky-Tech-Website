@@ -11,7 +11,7 @@ export interface DocsTableProps {
 
 export const DocsTable = ({ headers, alignment, rows }: DocsTableProps) => {
   return (
-    <div className="w-fit overflow-auto rounded-lg text-gray-300">
+    <div className="overflow-auto rounded-lg text-gray-300">
       <table className="border border-gray-600/75 px-2 select-none">
         <thead className="bg-blue-400/10">
           <tr className="">

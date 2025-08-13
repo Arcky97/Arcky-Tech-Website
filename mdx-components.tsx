@@ -67,6 +67,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Ye: ({children}) => (
       <TC color="yellow-400">{children}</TC>
     ),
+    Or: ({children}) => (
+      <TC color="orange-400">{children}</TC>
+    ),
     Header,
     ImageWithCaption,
     Callout,

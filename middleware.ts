@@ -8,6 +8,7 @@ const disabledRoutes = [
   '/documentation/region-map', 
   '/documentation/graphic-transparency', 
   '/documentation/vending-machine', 
+  '/scoreboard'
 ];
 
 export function middleware(request: NextRequest) {

@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex flex-col h-full">
         <Navbar />
         <CookieBanner/>
-        <main className="flex-1 bg-gray-900 pt-16">
+        <main className="flex-1 bg-gray-900 pt-12">
           {children}
         </main>
         <BackToTopButton/>
