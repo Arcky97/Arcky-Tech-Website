@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; 
-import { HomeIcon, BriefcaseIcon, UsersIcon, ChatAltIcon, InformationCircleIcon, BookOpenIcon, ChartBarIcon } from "@heroicons/react/outline"; // Importing Heroicons
 import { signIn, signOut, useSession } from "next-auth/react";
 import ColorButton from "./ColorButton";
+import NavbarItem from "./NavbarItem";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,12 +14,28 @@ export default function Navbar() {
   const { data: session } = useSession();
   const navbarRef = useRef<HTMLDivElement>(null);
 
+  const [loginInProgress, setLoginInProgress] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
   const isHomePage = pathname === '/'; 
   const isDoggoBotPage = pathname.startsWith('/doggo-bot');
   const isDocumentationPage = pathname.startsWith('/documentation/');
   const isScoreBoardPage = pathname.startsWith('/scoreboard');
   const hasSideNav = pathname.startsWith('/doggo-bot/dashboard') || pathname.startsWith('/documentation') || pathname.startsWith('/doggo-bot/database');
-  const iconSizes = isSmallScreen ? { normal: 'w-6 h-6', shrunk: 'w-5 h-5' } : { normal: 'w-7 h-7', shrunk: 'w-6 h-6' };
+
+  useEffect(() => {
+    setHydrated(true);
+    if (sessionStorage.getItem("discord-login-in-progress")) {
+      setLoginInProgress(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (session) {
+      sessionStorage.removeItem("discord-login-in-progress");
+      setLoginInProgress(false);
+    }
+  }, [session]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +61,23 @@ export default function Navbar() {
     }
 
   }, [pathname, hasSideNav, isSmallScreen, isScoreBoardPage]);
+
+  const handleDiscordLogin = () => {
+    if (loginInProgress) {
+      console.warn("Login already in progress");
+      return;
+    }
+
+    localStorage.setItem("discord-login-in-progress", "true");
+    setLoginInProgress(true);
+
+    setTimeout(() => {
+      localStorage.removeItem("discord-login-in-progress");
+      setLoginInProgress(false);
+    }, 30000);
+
+    signIn("discord", { callbackUrl: "/doggo-bot/servers" });
+  };
 
   return (
     <nav
@@ -76,60 +109,77 @@ export default function Navbar() {
         >
           <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">Arcky-Tech</Link>
         </h1>
-
-        {/* Desktop Navigation (Icons + Text) */}
+        {/* Icons and Name (desktop only) */}
         <div className={`flex ${isSmallScreen ? 'space-x-4' : 'space-x-5' }`}>
-          <Link href="/" className="flex items-center space-x-2 hover:text-gray-400">
-            <HomeIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
-            {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Home</span>)}
-          </Link>
-          <Link href="/projects" className="flex items-center space-x-2 hover:text-gray-400">
-            <BriefcaseIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
-            {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Projects</span>)}
-          </Link>
-          <Link href="https://discord.gg/HK99jTNqS2" className="flex items-center space-x-2 hover:text-gray-400">
-            <ChatAltIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
-            {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Discord</span>)}
-          </Link>
+          <NavbarItem
+            href="/"
+            icon="HomeIcon"
+            text="Home"
+            isSmallScreen={isSmallScreen}
+            isShrunk={isShrunk}
+          />
+          <NavbarItem
+            href="/projects"
+            icon="BriefcaseIcon"
+            text="Projects"
+            isSmallScreen={isSmallScreen}
+            isShrunk={isShrunk}
+          />
+          <NavbarItem
+            href="https://discord.gg/HK99jTNqS2"
+            icon="ChatAlt2Icon"
+            text="Discord"
+            isSmallScreen={isSmallScreen}
+            isShrunk={isShrunk}
+          />
           {isDocumentationPage && (
-            <Link href={`/documentation`} className="flex items-center space-x-2 hover:text-gray-400">
-              <BookOpenIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`}/>
-              {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg' } transition-all duration-300 ease-in-out`}>Documentation</span>)}
-            </Link>
+            <NavbarItem
+              href="/documentation"
+              icon="BookOpenIcon"
+              text="Documentation"
+              isSmallScreen={isSmallScreen}
+              isShrunk={isShrunk}
+            />
           )}
           {isDoggoBotPage ? (
             <>
-              <Link
-                href={`${session ? "/doggo-bot/servers" : "#" }`}
-                onClick={(e) => {
+              <NavbarItem
+                href={`${session ? "/doggo-bot/servers" : "#"}`}
+                icon="ChartBarIcon"
+                text="Dashboard"
+                isSmallScreen={isSmallScreen}
+                isShrunk={isShrunk}
+                action={(e) => {
                   if (!session) {
                     e.preventDefault();
                     signIn('discord', { callbackUrl: "/doggo-bot/servers" });
                   }
                 }}
-                className="flex items-center space-x-2 hover:text-gray-400"
-              >
-                <ChartBarIcon className={`${
-                  isShrunk ? iconSizes.shrunk : iconSizes.normal
-                } transition-all duration-300 ease-in-out`}/>
-                {!isSmallScreen && (<span className={`
-                  ${ isShrunk ? "text-md" : "text-lg" } transition-all duration-300 ease-in-out`}>Dashboard</span>)}
-              </Link>
-              <Link href="/documentation/doggo-bot" className="flex items-center space-x-2 hover:text-gray-400">
-                <BookOpenIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`}/>
-                {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg' } transition-all duration-300 ease-in-out`}>Documentation</span>)}
-              </Link>
+              />
+              <NavbarItem
+                href="/documentation/doggo-bot"
+                icon="BookOpenIcon"
+                text="Documentation"
+                isSmallScreen={isSmallScreen}
+                isShrunk={isShrunk}
+              />
             </>
           ) : (
             <>
-              <Link href="/about" className="flex items-center space-x-2 hover:text-gray-400">
-                <InformationCircleIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
-                {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>About</span>)}
-              </Link>
-              <Link href="/contact" className="flex items-center space-x-2 hover:text-gray-400">
-                <UsersIcon className={`${isShrunk ? iconSizes.shrunk : iconSizes.normal} transition-all duration-300 ease-in-out`} />
-                {!isSmallScreen && (<span className={`${ isShrunk ? 'text-md' : 'text-lg'} transition-all duration-300 ease-in-out`}>Contact</span>)}
-              </Link>
+              <NavbarItem
+                href="/about"
+                icon="InformationCircleIcon"
+                text="About"
+                isSmallScreen={isSmallScreen}
+                isShrunk={isShrunk}
+              />
+              <NavbarItem
+                href="/contact"
+                icon="UsersIcon"
+                text="Contact"
+                isSmallScreen={isSmallScreen}
+                isShrunk={isShrunk}
+              />
             </>
           )}
           {/* Auth Buttons */}
@@ -139,12 +189,15 @@ export default function Navbar() {
                 color="red-600"
                 text="Logout"
                 action={() => signOut()}
+                padding={`${isShrunk ? "px-2 py-1" : "px-2 py-1 lg:px-3 lg:py-2"}`}
               />
             ) : (
               <ColorButton
                 color="blue-600"
-                text="Login"
-                action={() => signIn("discord", { callbackUrl: "/doggo-bot/servers" })}
+                text={hydrated && loginInProgress ? "Logging in..." : "Login"}
+                disabled={hydrated && loginInProgress}
+                action={handleDiscordLogin}
+                padding={`${isShrunk ? "px-2 py-1" : "px-3 py-2"}`}
               />
             )
           )}
