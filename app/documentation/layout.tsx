@@ -281,6 +281,10 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                   path: "map-ui",
                   text: "Map UI Settings"
                 },
+                { 
+                  path: "zoom",
+                  text: "Map Zoom Settings"
+                },
                 {
                   path: "region-changing",
                   text: "Region Changing Settings"
@@ -343,6 +347,10 @@ export default function DocumentationLayout({ children }: { children: React.Reac
                 {
                   path: "roaming",
                   text: "Roaming Preview Settings"
+                },
+                {
+                  path: "trainer",
+                  text: "Trainer Preview Settings"
                 }
               ]
             }

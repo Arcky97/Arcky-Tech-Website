@@ -5,7 +5,7 @@ const disabledRoutes = [
   //'/doggo-bot/dashboard', 
   //'/doggo-bot/servers', 
   '/documentation/doggo-bot', 
-  '/documentation/region-map', 
+  //'/documentation/region-map', 
   '/documentation/graphic-transparency', 
   '/documentation/vending-machine', 
   '/scoreboard'

@@ -53,6 +53,8 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'region-district': { group: 'speechVariants' },
   'region-map-connecting': { group: 'speechVariants' },
   'fly': { group: 'speechVariants' },
+  'mode': { group: 'speechVariants' },
+  'music': { group: 'speechVariants' },
   'extended': { group: 'speechVariants' }
 }
 

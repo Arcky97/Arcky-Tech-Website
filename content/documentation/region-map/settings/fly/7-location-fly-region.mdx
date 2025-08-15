@@ -1,0 +1,24 @@
+## LocationFlyToOtherRegion
+
+Use this Setting to specify from which Game Maps you can fly to another Region.
+
+```ruby 
+LocationFlyToOtherRegion = {
+  :Essen => {
+    "Route 8" => [1, 3],
+    "Ingido Plateau" => [3]
+  },
+  :Tiall => {
+    "Tiall Region" => [0, 3]
+  }
+}
+```
+
+### Possible Values 
+
+- `:Essen` = Region name.
+  - `"Route 8"` = Name of the Game Map.
+    - `[1, 3]` = an Array of Region IDs.
+- `:Tiall` = Region name.
+  - `"Tial Region"` = Name of the Game Map.
+    - `[0, 3]` = an Array of Region IDs.
