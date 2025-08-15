@@ -10,11 +10,11 @@ interface Props {
   action?: () => void;
   padding?: string;
   href?: string;
-  extraClass: string;
+  extraClass?: string;
   disabled?: boolean;
 }
 
-export default function ColorButton({ color, text, action, padding, href, extraClass, disabled }: Props) {
+export default function ColorButton({ color, text, action, padding, href, extraClass = "", disabled }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const style = getColorFromTailwindString(color)
