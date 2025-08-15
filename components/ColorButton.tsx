@@ -1,5 +1,6 @@
 "use client"
 import { getColorFromTailwindString } from "@/utils/getTailwindColor";
+import clsx from "clsx";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 
@@ -9,10 +10,11 @@ interface Props {
   action?: () => void;
   padding?: string;
   href?: string;
+  extraClass: string;
   disabled?: boolean;
 }
 
-export default function ColorButton({ color, text, action, padding, href, disabled }: Props) {
+export default function ColorButton({ color, text, action, padding, href, extraClass, disabled }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   const style = getColorFromTailwindString(color)
@@ -31,7 +33,7 @@ export default function ColorButton({ color, text, action, padding, href, disabl
     return (
       <Link 
         href={href} 
-        className={baseClass}
+        className={clsx(baseClass, extraClass)}
         style={{
           borderColor: disabled ? "gray" : style,
           backgroundColor: disabled ? "gray" : isHovered ? "transparent" : style,
@@ -46,7 +48,7 @@ export default function ColorButton({ color, text, action, padding, href, disabl
 
   return (
     <button
-      className={baseClass}
+      className={clsx(baseClass, extraClass)}
       style={{
         borderColor: disabled ? "gray" : style,
         backgroundColor: disabled ? "gray" : isHovered ? "transparent" : style,
