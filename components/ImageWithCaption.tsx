@@ -94,6 +94,7 @@ export const ImageWithCaption = ({
               className="rounded-lg border-white w-full select-none cursor-zoom-in"
               onClick={handleOpen}
               ref={imageRef}
+              unoptimized
             />
           )}
         </div>

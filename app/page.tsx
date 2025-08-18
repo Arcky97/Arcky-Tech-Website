@@ -17,7 +17,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="w-7/8 lg:w-5/8">
         <h2 className="text-white text-4xl font-bold text-center mb-3">Projects</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4 ">
+        <div className="flex flex-wrap justify-center gap-8 p-4 ">
           {[
             { title: "Doggo Bot", desc: "A Bot for your Discord Server with a ton of features. Including a customizable level system, moderation commands, fun commands and even a chat function and so much more.", link: <ColorButton color="blue-600" text="View Info" href="/doggo-bot"/>},
             { title: "Region Map", desc: "A Plugin for your Game that brings the Region Map to a next level. Packed with a ton of features, there's nearly nothing this plugin doesn't do. Check it out below.", link: <ColorButton color="blue-600"  text="View Info" href="/documentation/region-map"/>},
@@ -27,7 +27,7 @@ export default function Home() {
           ].map((feature, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg min-w-[200px] transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-blue-500/50 hover:ring-2 hover:ring-blue-500"
+              className="bg-gray-800 p-6 rounded-lg shadow-lg w-[350px] transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-blue-500/50 hover:ring-2 hover:ring-blue-500"
             >
               <h3 className="text-xl font-semibold text-left">{feature.title}</h3>
               <p className="text-gray-400 mt-5">{feature.desc}</p>

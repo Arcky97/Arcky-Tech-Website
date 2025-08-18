@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 
-interface MenuItem {
+export interface MenuItem {
   name?: string;
   path: string;
   icon?: JSX.Element;
@@ -259,7 +259,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     <nav className="flex min-h-screen transition-all duration-300 ease-in-out">
       {/* Sidebar */}
       <div
-        className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-12 fixed left-0 z-51 bg-gray-800 text-white flex flex-col transition-all lg:transition-none duration-300 ease-in-out ${
+        className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-12 fixed left-0 z-51 bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out ${
           isSidebarVisible ? "translate-x-0 opacity-100" : "-translate-x-full"
         } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
         style={{

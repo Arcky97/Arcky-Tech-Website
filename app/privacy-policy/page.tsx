@@ -2,7 +2,7 @@ import { TextColor } from "@/components/TextColor";
 
 export default function PrivacyPolicy() {
   return (
-    <article className="flex flex-col min-h-screen bg-gray-900 text-white p-8 mx-auto lg:w-5/8">
+    <article className="flex flex-col min-h-[calc(100vh-189px)] bg-gray-900 text-white p-8 mx-auto lg:w-5/8">
       <h1 className="text-3xl font-bold mb-4 text-center">Privacy Policy</h1>
       <em className="text-sm text-gray-400 text-center">Effective Date: July 20, 2025</em>
 

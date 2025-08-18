@@ -62,7 +62,7 @@ export default function LinkWithPreview({ href = "", children, ...rest }: Props)
   return (
     <span
       ref={wrapperRef}
-      className="relative inline-block text-blue-400 hover:text-blue-500 transition-all duration-300 ease-in-out"
+      className="relative text-blue-400 hover:text-blue-500 transition-all duration-300 ease-in-out"
       onMouseEnter={showPreview}
       onMouseLeave={hidePreview}
     >
@@ -72,7 +72,7 @@ export default function LinkWithPreview({ href = "", children, ...rest }: Props)
 
       {isVisible && preview ? (
         <span
-          className="absolute bottom-full left-[-50] z-50 bg-[#1e1e1e] border border-gray-700 text-white text-sm rounded-xl px-4 py-3 shadow-lg max-w-sm w-80 transition-all duration-300 opacity-100"
+          className="absolute bottom-full -left-5 z-50 bg-[#1e1e1e] border border-gray-700 text-white text-sm rounded-xl px-4 py-3 min-w-5xs shadow-lg transition-all duration-300 opacity-100"
           onMouseEnter={showPreview}
           onMouseLeave={hidePreview}
         >

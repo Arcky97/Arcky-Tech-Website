@@ -1,5 +1,4 @@
-import { AuthAccount } from "@/types/db";
-import { RawAuthAccountRow } from "@/types/db/auth/rawAccount";
+import { AuthAccount, RawAuthAccountRow } from "@/types/db";
 
 export default function mapRawToAuthAccount(row: RawAuthAccountRow): AuthAccount {
   return {

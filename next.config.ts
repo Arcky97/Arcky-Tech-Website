@@ -9,7 +9,15 @@ const withMDX = createMDX({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx']
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com"
+      }
+    ]
+  }
 };
 
 export default withMDX(nextConfig);

@@ -23,7 +23,7 @@ export default function Projects() {
   const Options: EmblaOptionsType = { loop: true }
 
   return (
-    <article className="flex flex-col items-center min-h-screen bg-gray-900 text-white">
+    <article className="flex flex-col items-center min-h-[calc(100vh-189px)] bg-gray-900 text-white">
       <section className="text-center p-8 w-7/8 lg:w-5/8">
         <h1 className="text-3xl font-bold mb-4">Doggo Bot</h1>
         <a

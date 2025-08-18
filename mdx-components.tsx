@@ -32,7 +32,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ol className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "decimal"}}>{children}</ol>
     ),
     li: ({ children }) => (
-      <li className="ml-6 text-gray-300 leading-relaxed text-md mb-2">{children}</li>
+      <li className="ml-6 text-gray-300 leading-relaxed text-md mb-2 break-words">{children}</li>
     ),
     code:({children}) => (
       <InlineCode>{children}</InlineCode>

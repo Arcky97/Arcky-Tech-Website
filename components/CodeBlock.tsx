@@ -75,9 +75,8 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
 
 export const InlineCode = ({children}: { children: ReactNode }) => (
   <code
-    className="bg-gray-400/10 text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest"
+    className="bg-gray-400/10 text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest break-words"
   >
     {children}
   </code>
 )
-

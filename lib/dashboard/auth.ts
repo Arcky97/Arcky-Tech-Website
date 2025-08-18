@@ -53,7 +53,6 @@ export const authOptions: NextAuthOptions = {
           const res = await fetch("https://discord.com/api/users/@me/guilds", {
             headers: { Authorization: `Bearer ${token}` }
           });
-
           if (res.ok) {
             session.user.guilds = await res.json();
           }

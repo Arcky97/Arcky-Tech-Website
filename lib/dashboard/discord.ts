@@ -1,7 +1,7 @@
 import { authDb } from "./db";
 import { DiscordTokenResponse } from "@/types/authToken";
 import mapRawToAuthAccount from "../db/authAccountMapper";
-import { RawAuthAccountRow } from "@/types/db/auth/rawAccount";
+import { RawAuthAccountRow } from "@/types/db";
 
 export async function getDiscordAccessToken(userId: string) {
   const [rows] = await authDb.query<RawAuthAccountRow[]>(
@@ -25,7 +25,8 @@ export async function getDiscordAccessToken(userId: string) {
     client_id: process.env.DISCORD_CLIENT_ID!,
     client_secret: process.env.DISCORD_CLIENT_SECRET!,
     grant_type: "refresh_token",
-    refresh_token: account.refresh_token
+    refresh_token: account.refresh_token,
+    scope: "identify guilds"
   });
 
   const res = await fetch("https://discord.com/api/oauth2/token", {
@@ -35,11 +36,10 @@ export async function getDiscordAccessToken(userId: string) {
     cache: "no-store"
   });
 
+  console.log(res);
+
   if (!res.ok) {
-    await authDb.query(
-      "UPDATE accounts SET access_token = NULL, refresh_token = NULL, expires_at = 0 WHERE id = ?", 
-      [account.id]
-    );
+    console.error("Failed to refresh Discord token", await res.text());
     return null;
   }
 
