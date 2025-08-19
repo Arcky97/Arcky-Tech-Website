@@ -20,13 +20,15 @@ declare module "next-auth" {
 
   interface User {
     id: string;
-    guilds?: {
-      id: string;
-      name: string;
-      icon: string | null;
-      owner: boolean;
-      permissions: string;
-      features: string[];
-    }[];
+    guilds?: SessionGuild[];
   }
+}
+
+export interface SessionGuild {
+  id: string;
+  name: string;
+  icon: string | null;
+  owner: boolean;
+  permissions: string;
+  features: string[];
 }

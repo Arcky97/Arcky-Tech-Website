@@ -55,7 +55,21 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'fly': { group: 'speechVariants' },
   'mode': { group: 'speechVariants' },
   'music': { group: 'speechVariants' },
-  'extended': { group: 'speechVariants' }
+  'map-ui': { group: 'speechVariants' },
+  'zoom': { group: 'speechVariants' },
+  'region-changing': { group: 'speechVariants' },
+  'text-position': { group: 'speechVariants' },
+  'text-color': { group: 'speechVariants' },
+  'cursor': { group: 'speechVariants' },
+  'mouse-support': { group: 'speechVariants' },
+  'general': { group: 'speechVariants' },
+  'button': { group: 'speechVariants' },
+  'location': { group: 'speechVariants' },
+  'extended': { group: 'speechVariants' },
+  'weather': { group: 'speechVariants' },
+  'quest': { group: 'speechVariants' },
+  'berry': { group: 'speechVariants' },
+  'trainer': { group: 'speechVariants' }
 }
 
 export function getStyles(slug: string[]): StyleConfig {

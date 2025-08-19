@@ -1,6 +1,7 @@
 import GuildGrid from "@/components/dashboard/GuildGrid";
 import { authOptions } from "@/lib/dashboard/auth";
 import { getBotGuildIds } from "@/lib/db/getBotGuildIds";
+import { checkUserGuildPerms } from "@/lib/discord/permissions";
 import { GuildForGrid, GuildsForGrid } from "@/types/dashboard/guildForGrid";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -26,8 +27,7 @@ export default async function Servers() {
 
   (userGuilds || []).forEach(guild => {
     const botInGuild = botGuilds.has(guild.id);
-    const hasPerms = 
-      (BigInt(guild.permissions) & BigInt(0x20)) !== 0n || (BigInt(guild.permissions) & BigInt(0x8)) !== 0n;
+    const hasPerms = checkUserGuildPerms(guild);
 
     const entry: GuildForGrid = {
       id: guild.id,

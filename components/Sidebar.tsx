@@ -1,6 +1,6 @@
 "use client";
 import { JSX, useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 
@@ -21,6 +21,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   //const [footerHeightInView, setFooterHeightInView] = useState(0);
   //const footerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const previousPathRef = useRef<string | null>(null);
   const hasScrolledToActive = useRef(false);
 
@@ -149,6 +150,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
 
   const handleClick = async (e: React.MouseEvent<HTMLElement>, path: string, subPath: string) => {
     e.preventDefault();
+
     const applyHighlightEffect = (id: string) => {
       const target = document.getElementById(id);
       if (target) {
@@ -158,6 +160,13 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     };
 
     const target = document.getElementById(subPath.replace("#", ""));
+
+    const fullPath = path.replace(subPath, "");
+    if (pathname !== fullPath) {
+      router.push(fullPath);
+      return;
+    }
+
     if (target) {
       const offset = 90;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
