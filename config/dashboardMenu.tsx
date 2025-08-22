@@ -1,4 +1,4 @@
-import { HomeIcon, ChatIcon, DocumentTextIcon, ShieldCheckIcon, TagIcon, CodeIcon, CogIcon } from "@heroicons/react/outline";
+import { HomeIcon, ChatBubbleLeftRightIcon, DocumentTextIcon, ShieldCheckIcon, TagIcon, CodeBracketIcon, CogIcon } from "@heroicons/react/24/outline";
 
 export const dashboardMenuItems = [
   {
@@ -8,7 +8,7 @@ export const dashboardMenuItems = [
   },
   {
     path: "levels",
-    icon: <ChatIcon className="w-6 h-6"/>,
+    icon: <ChatBubbleLeftRightIcon className="w-6 h-6"/>,
     text: "Level System",
     subItems: [
       { path: "#lvsys-announce", text: "Announcements" },
@@ -51,7 +51,7 @@ export const dashboardMenuItems = [
   },
   {
     path: "embeds",
-    icon: <CodeIcon className="w-6 h-6"/>,
+    icon: <CodeBracketIcon className="w-6 h-6"/>,
     text: "Embeds"
   },
   {

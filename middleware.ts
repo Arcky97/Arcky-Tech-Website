@@ -3,8 +3,8 @@ import type { NextRequest } from "next/server";
 
 const disabledPatterns = [
   /^\/documentation\/doggo-bot/,
-  /^\/doggo-bot\/dashboard\/[^/]+\/levels$/,
-  /^\/doggo-bot\/dashboard\/[^/]+\/logging$/,
+  ///^\/doggo-bot\/dashboard\/[^/]+\/levels$/,
+  ///^\/doggo-bot\/dashboard\/[^/]+\/logging$/,
   /^\/doggo-bot\/dashboard\/[^/]+\/moderation$/,
   /^\/doggo-bot\/dashboard\/[^/]+\/reactionroles$/,
   /^\/doggo-bot\/dashboard\/[^/]+\/embeds$/,

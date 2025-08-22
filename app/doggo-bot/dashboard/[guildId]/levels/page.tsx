@@ -1,4 +1,6 @@
-export default async function Levels() {
+"use client"
+
+export default function Levels() {
   return(
     <div>
       

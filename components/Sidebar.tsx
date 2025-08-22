@@ -2,7 +2,7 @@
 import { JSX, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export interface MenuItem {
   name?: string;
@@ -163,7 +163,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
 
     const fullPath = path.replace(subPath, "");
     if (pathname !== fullPath) {
-      router.push(fullPath);
+      router.push(path);
       return;
     }
 

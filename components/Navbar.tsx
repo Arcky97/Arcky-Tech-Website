@@ -2,18 +2,17 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import ColorButton from "./ColorButton";
 import NavbarItem from "./NavbarItem";
+import type { Session } from "next-auth";
 
-export default function Navbar() {
+export default function Navbar({session}: {session?: Session | null}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false); 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const pathname = usePathname();
-  const { data: session } = useSession();
   const navbarRef = useRef<HTMLDivElement>(null);
-
   const [loginInProgress, setLoginInProgress] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
@@ -127,7 +126,7 @@ export default function Navbar() {
           />
           <NavbarItem
             href="https://discord.gg/HK99jTNqS2"
-            icon="ChatAlt2Icon"
+            icon="ChatBubbleLeftRightIcon"
             text="Discord"
             isSmallScreen={isSmallScreen}
             isShrunk={isShrunk}

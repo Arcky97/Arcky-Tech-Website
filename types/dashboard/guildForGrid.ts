@@ -10,5 +10,3 @@ export interface GuildForGrid {
   avatar: string | null;
   inviteUrl: string | undefined;
 }
-
-

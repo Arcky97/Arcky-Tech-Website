@@ -12,9 +12,9 @@ export default async function DashboardLayout({
   params 
 }: { 
   children: ReactNode; 
-  params: Promise<{ guildId: string }
-  >; 
+  params: Promise<{ guildId: string }>; 
 }) {
+
   const session = await getServerSession(authOptions);
 
   if (!session) redirect("/doggo-bot");
@@ -23,7 +23,7 @@ export default async function DashboardLayout({
 
   const guild = session.user.guilds?.find((g: SessionGuild) => g.id === guildId);
 
-  if (!guild || !checkUserGuildPerms(guild)) redirect("/doggo-bot");
+  if (!guild || !checkUserGuildPerms(guild)) redirect("/doggo-bot/servers");
 
   return (
     <div className="flex">

@@ -53,9 +53,9 @@ export default async function Page({
     }
   }
 
-  const isIndexedFormat = files.filter(file => file !== 'header.mdx').every(file => /^\d+-.*\.mdx$/.test(file));
-
-  if (!isIndexedFormat) {
+  const isIndexedFormat = files.filter(file => file !== 'header.mdx').every(file => /^\d+-[^0-9]+.*\.mdx$/i.test(file));
+  
+  if (isIndexedFormat) {
     // All files start with index: sort by numeric prefix ascending
     files.sort((a, b) => {
       const indexA = parseInt(a.split('-')[0], 10);

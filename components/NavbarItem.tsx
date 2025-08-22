@@ -1,10 +1,10 @@
 import Link from "next/link";
-import * as Icons from "@heroicons/react/outline";
+import * as Icons from "@heroicons/react/24/outline";
 import { ComponentType, SVGProps } from "react";
 
 interface NavbarItemProp  {
   href: string;
-  icon: keyof typeof Icons;
+  icon?: keyof typeof Icons;
   text?: string;
   isSmallScreen?: boolean;
   isShrunk?: boolean;
@@ -21,7 +21,7 @@ export default function NavbarItem({href, icon, text, isSmallScreen, isShrunk, a
       shrunk: 'w-6 h-6' 
     };
 
-  const IconComp = Icons[icon] as ComponentType<SVGProps<SVGSVGElement>>;
+  const IconComp = Icons[icon || "HomeIcon"] as ComponentType<SVGProps<SVGSVGElement>>;
   return (
     <>
       <Link

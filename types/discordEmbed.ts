@@ -1,0 +1,29 @@
+export interface DiscordEmbed {
+  message: string | null;
+  color: string | null;
+  author: EmbedAuthor;
+  title: string;
+  url: string | null;
+  description: string;
+  fields: EmbedField[];
+  imageUrl: string | null;
+  thumbnailUrl: string | null;
+  footer: EmbedFooter;
+}
+
+interface EmbedAuthor {
+  name: string | null;
+  url: string | null;
+  iconUrl: string | null;
+}
+
+interface EmbedField {
+  name: string;
+  value: string;
+  inline: boolean;
+}
+
+interface EmbedFooter {
+  text: string | null;
+  iconUrl: string | null;
+}

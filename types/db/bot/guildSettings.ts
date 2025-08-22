@@ -20,14 +20,14 @@ export interface GuildSettings {
   deletionDate: Date;
 }
 
-interface MessageConfig {
+export interface MessageConfig {
   all: boolean;
   edits: boolean;
   deletes: boolean;
   bulks: boolean;
 }
 
-interface MemberConfig {
+export interface MemberConfig {
   roles: ARConfig;
   names: {
     users: boolean;
@@ -42,7 +42,7 @@ interface MemberConfig {
   timeouts: ARConfig;
 }
 
-interface ServerConfig {
+export interface ServerConfig {
   channels: CUDConfig;
   roles: CUDConfig;
   updates: { all: boolean; }
@@ -50,7 +50,7 @@ interface ServerConfig {
   stickers: CUDConfig;
 }
 
-interface VoiceConfig {
+export interface VoiceConfig {
   joins: boolean;
   moves: boolean;
   leaves: boolean;
@@ -60,12 +60,12 @@ interface VoiceConfig {
   undeafens: boolean;
 }
 
-interface JoinLeaveConfig {
+export interface JoinLeaveConfig {
   joins: boolean;
   leaves: boolean;
 }
 
-interface ModerationConfig {
+export interface ModerationConfig {
   warns: ARCConfig;
   mutes: boolean;
   unmutes: boolean;
@@ -79,16 +79,16 @@ interface ModerationConfig {
   unbans: boolean;
 }
 
-interface ARConfig {
+export interface ARConfig {
   adds: boolean;
   removes: boolean;
 }
 
-interface ARCConfig extends ARConfig {
+export interface ARCConfig extends ARConfig {
   clears: boolean;
 }
 
-interface CUDConfig {
+export interface CUDConfig {
   creates: boolean;
   updates: boolean;
   deletes: boolean;

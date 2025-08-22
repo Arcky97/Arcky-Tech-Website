@@ -8,11 +8,11 @@ import { redirect } from "next/navigation";
 
 const INVITE_BASE = "https://discord.com/oauth2/authorize";
 const CLIENT_ID = "1270100901067100230";
-const REDIRECT_URI = encodeURIComponent("http://localhost:3000/api/auth/server") //encodeURIComponent("https://www.arcky-tech.be/api/auth/server");
+const REDIRECT_URI = encodeURIComponent("https://www.arcky-tech.be/api/auth/server");
 const PERMISSIONS = "10191898143990";
 
 export default async function Servers() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   if (!session) redirect("/doggo-bot");
 

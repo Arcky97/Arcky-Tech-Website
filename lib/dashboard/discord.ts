@@ -36,8 +36,6 @@ export async function getDiscordAccessToken(userId: string) {
     cache: "no-store"
   });
 
-  console.log(res);
-
   if (!res.ok) {
     console.error("Failed to refresh Discord token", await res.text());
     return null;

@@ -186,6 +186,25 @@ body.lock-scrollbar {
   margin-bottom: 8px;
 }
 
+.section-wrapper, .section-wrapper-history {
+  position: relative;
+}
+
+.section-wrapper h2, .section-wrapper-history h2 {
+  position: sticky;
+  top: 2.5rem;
+  z-index: 10;
+  padding: 0.4rem 0;
+}
+
+.section-wrapper h2 {
+  background: #111827;
+}
+
+.section-wrapper-history h2 {
+  background: #1e2939
+}
+
 /* Embla Carousel */
 .embla {
   max-width: 80rem;
