@@ -46,6 +46,7 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'manual-editing': { group: "speechVariants"},
   'location-preview': { group: "speechVariants" },
   'extended-location-preview': { group: "speechVariants" },
+  'trainer-preview': { group: 'speechVariants' },
   'quest-icons-and-preview': { group: "speechVariants" },
   'progress-counter': { group: 'speechVariants' },
   'no-unvisited-info': { group: 'speechVariants' },

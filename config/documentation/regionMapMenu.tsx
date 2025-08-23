@@ -55,7 +55,11 @@ export const regionMapMenu = {
         },
         {
           path: "extended-location-preview",
-          text: "Extended Preview"
+          text: "Extended Location Preview"
+        },
+        {
+          path: "trainer-preview",
+          text: "Trainer Rematch Preview"
         }
       ]
     },

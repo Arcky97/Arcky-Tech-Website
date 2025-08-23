@@ -26,7 +26,8 @@ export async function getDocumentationProgress(rootDir: string): Promise<Array<{
         totalFiles++;
         try {
           const content = await fs.readFile(fullPath, "utf-8");
-          if (content.trim().length >= MinContentLength) {
+          // function pages automatically marked as complete since this are usually short files.
+          if (content.trim().length >= MinContentLength || entry.name === "0-function.mdx") {
             completeFiles++;
           } else {
             const currLength = Math.round((content.trim().length / MinContentLength) * 10000) / 10000;

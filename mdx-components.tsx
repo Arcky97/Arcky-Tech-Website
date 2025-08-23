@@ -10,6 +10,7 @@ import { DocsPokeMarketSpeeches as PMSpeeches } from "./components/documentation
 import { DocsShelfSpeeches as SHSpeeches } from "./components/documentations/DocsShelfSpeeches";
 import { DocsSpeciesSpeeches as SPSpeeches } from "./components/documentations/DocsSpeciesSpeeches";
 import EmblaCarousel from "./components/EmblaCarousel";
+import YouTubeEmbed from "./components/YouTubeEmbed";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -78,6 +79,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     PMSpeeches,
     SHSpeeches,
     SPSpeeches,
+    YouTubeEmbed,
     EmblaCarousel,
     ...components
   }
