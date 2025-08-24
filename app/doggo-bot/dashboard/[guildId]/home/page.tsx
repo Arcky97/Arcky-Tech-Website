@@ -1,5 +1,4 @@
 "use client"
-import { CodeBlock } from "@/components/CodeBlock";
 import { useDashboardSession } from "@/components/dashboard/provider";
 import fetchTableData from "@/lib/db/fetchTableData";
 import { useQuery } from "@tanstack/react-query";
