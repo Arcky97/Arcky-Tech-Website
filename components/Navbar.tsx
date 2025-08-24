@@ -165,20 +165,24 @@ export default function Navbar({session}: {session?: Session | null}) {
             </>
           ) : (
             <>
-              <NavbarItem
-                href="/about"
-                icon="InformationCircleIcon"
-                text="About"
-                isSmallScreen={isSmallScreen}
-                isShrunk={isShrunk}
-              />
-              <NavbarItem
-                href="/contact"
-                icon="UsersIcon"
-                text="Contact"
-                isSmallScreen={isSmallScreen}
-                isShrunk={isShrunk}
-              />
+              {(!isDocumentationPage || (isDocumentationPage && !isSmallScreen)) && (
+                <>
+                  <NavbarItem
+                    href="/about"
+                    icon="InformationCircleIcon"
+                    text="About"
+                    isSmallScreen={isSmallScreen}
+                    isShrunk={isShrunk}
+                  />
+                  <NavbarItem
+                    href="/contact"
+                    icon="UsersIcon"
+                    text="Contact"
+                    isSmallScreen={isSmallScreen}
+                    isShrunk={isShrunk}
+                  />
+                </>
+              )}
             </>
           )}
           {/* Auth Buttons */}

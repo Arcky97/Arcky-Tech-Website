@@ -1,6 +1,6 @@
 import { ReactNode } 
 from "react"; 
-import { DashboardSessionProvider } from "../provider"; 
+import { DashboardSessionProvider } from "@/components/dashboard/provider"; 
 import Navbar from "@/components/Navbar"; 
 import { CookieBanner } from "@/components/CookieBanner"; 
 import { BackToTopButton } from "@/components/BackToTopButton"; import Footer from "@/components/Footer"; 

@@ -11,6 +11,7 @@ const disabledPatterns = [
   /^\/doggo-bot\/dashboard\/[^/]+\/settings$/,
   /^\/documentation\/graphic-transparency/,
   /^\/documentation\/vending-machine/,
+  /^\/projects/,
   /^\/scoreboard/,
   /^\/about/,
   /^\/contact/

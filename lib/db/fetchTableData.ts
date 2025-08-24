@@ -1,11 +1,15 @@
 export default async function fetchTableData(tableName: string, guildId?: string) {
   try {
-    let res;
-    if (guildId) {
-      res = await fetch(`/api/db/${tableName}/${guildId}`);
-    } else {
-      res = await fetch(`/api/db/${tableName}`)
-    }
+    const isServer = typeof window === "undefined";
+    const baseUrl = isServer
+      ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
+      : ""
+
+    const endPoint = guildId 
+    ? `${baseUrl}/api/db/${tableName}/${guildId}`
+    : `${baseUrl}/api/db/${tableName}`;
+
+    const res = await fetch(endPoint);
 
     if (!res.ok) {
       if (res.status === 404) return [];
