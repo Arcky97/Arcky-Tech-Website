@@ -7,24 +7,26 @@ export const dashboardMenuItems = [
     text: "Home"
   },
   {
-    path: "levels",
+    path: "level-system",
     icon: <ChatBubbleLeftRightIcon className="w-6 h-6"/>,
     text: "Level System",
+    disabled: true,
     subItems: [
-      { path: "#lvsys-announce", text: "Announcements" },
-      { path: "#lvsys-blacklist", text: "Blacklist" },
-      { path: "#lvsys-roles", text: "Levels" },
-      { path: "#lvsys-multipliers", text: "Multipliers" },
-      { path: "#lvsys-voice", text: "Voice" },
-      { path: "#lvsys-xp", text: "XP" },
-      { path: "#lvsys-modify", text: "Modify" },
-      { path: "#lvsys-reset", text: "Reset"}
+      { path: "#announcements", text: "Announcements" },
+      { path: "#blacklist", text: "Blacklist" },
+      { path: "#roles", text: "Levels" },
+      { path: "#multipliers", text: "Multipliers" },
+      { path: "#voice", text: "Voice" },
+      { path: "#xp", text: "XP" },
+      { path: "#modify", text: "Modify" },
+      { path: "#reset", text: "Reset"}
     ]
   },
   {
     path: "logging",
     icon: <DocumentTextIcon className="w-6 h-6"/>,
     text: "Logging",
+    disabled: true,
     subItems: [
       { path: "#message", text: "Message Logging"},
       { path: "#member", text: "Member Logging" },
@@ -38,26 +40,35 @@ export const dashboardMenuItems = [
     path: "moderation",
     icon: <ShieldCheckIcon className="w-6 h-6"/>,
     text: "Moderation",
+    disabled: true,
     subItems: [
-      { path: "#mod-settings", text: "Settings" },
-      { path: "#mod-mute", text: "Mute Role" },
-      { path: "#mod-join", text: "Join Roles" }
+      { path: "#settings", text: "Settings" },
+      { path: "#mute", text: "Mute Role" },
+      { path: "#join", text: "Join Roles" }
     ]
   },
   {
-    path: "reationroles",
+    path: "reation-roles",
     icon: <TagIcon className="w-6 h-6"/>,
-    text: "Reaction Roles"
+    text: "Reaction Roles",
+    disabled: true,
   },
   {
     path: "embeds",
     icon: <CodeBracketIcon className="w-6 h-6"/>,
-    text: "Embeds"
+    text: "Embeds",
+    subItems: [
+      { path: "#welcome", text: "Welcome Embed" },
+      { path: "#leave", text: "Leave Embed" },
+      { path: "#ban", text: "Ban Embed" },
+      { path: "#generated", text: "Generated Embeds" }
+    ]
   },
   {
     path: "settings",
     icon: <CogIcon className="w-6 h-6"/>,
     text: "Settings",
+    disabled: true,
     subItems: [
       { path: "#chatting", text: "Chatting" }
     ]

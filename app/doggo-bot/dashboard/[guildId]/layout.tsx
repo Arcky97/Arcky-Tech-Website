@@ -45,6 +45,16 @@ export default async function DashboardLayout({
       queryKey: ["levelSettings", guildId],
       queryFn: () => fetchTableData("LevelSettings", guildId),
       staleTime: staleTime
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["eventEmbeds", guildId],
+      queryFn: () => fetchTableData("EventEmbeds", guildId),
+      staleTime: staleTime
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["generatedEmbeds", guildId],
+      queryFn: () => fetchTableData("GeneratedEmbeds", guildId),
+      staleTime: staleTime
     })
   ]);
 

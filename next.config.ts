@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
         hostname: "cdn.discordapp.com"
       }
     ]
+  },
+  webpack: (config, { dev}) => {
+    if (dev) {
+      config.watchOptions = {
+        aggregateTimeout: 60000,
+        poll: 1000,
+      };
+    }
+    return config;
   }
 };
 

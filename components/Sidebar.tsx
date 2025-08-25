@@ -10,6 +10,7 @@ export interface MenuItem {
   icon?: JSX.Element;
   text: string;
   noPage?: boolean;
+  disabled?: boolean;
   subItems?: MenuItem[];
 }
 
@@ -181,7 +182,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   };
 
   const renderMenuItems = (items: MenuItem[], parentPath = "") => {
-    return items.map(({ name, path, icon, text, subItems, noPage }) => {
+    return items.map(({ name, path, icon, text, subItems, noPage, disabled }) => {
       const isHashLink = path.startsWith("#");
       const isAbsolutePath = path.startsWith("/");
       if (mainDocs && name) path = name;
@@ -200,12 +201,17 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
       const isActive = isDeepest
         ? pathname === fullPath
         : pathname.startsWith(fullPath + '/') || pathname === fullPath || path === '';
+      const isDisabled = disabled ?? false;
       const isExpanded = expandedMenu[fullPath];
       return (
         <div key={fullPath} className="w-full">
           <div
-            className={`flex items-center px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-blue-700 cursor-pointer ${
-              isActive ? "bg-blue-900" : "hover:bg-blue-700"
+            className={`flex items-center px-4 py-2 rounded-md transition-all duration-300 ease-in-out ${
+              isActive 
+                ? "bg-blue-900 hover:bg-blue-700 cursor-pointer" 
+                : isDisabled 
+                  ? "bg-gray-900 cursor-not-allowed"
+                  : "hover:bg-blue-700 cursor-pointer"
             }`}
           >
             {isDeepest && isHashLink ? (
@@ -220,14 +226,13 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
             ) : (
               <div className="flex items-center gap-3 w-full">
                 <>
-                {!noPage ? 
-                  (
-                    <Link href={fullPath} className="flex items-center gap-3 flex-grow">
+                  {!noPage && !isDisabled ? (
+                    <Link href={fullPath} className={`flex items-center gap-3 flex-grow ${isDisabled && "cursor-not-allowed"}`}>
                       {icon}
                       <span className="transition-opacity duration-300 ease-in-out">{text}</span>
                     </Link>
                   ) : (
-                    <div className="flex items-center gap-3 flex-grow" onClick={() => toggleSubmenu(fullPath)}>
+                    <div className={`flex items-center gap-3 flex-grow ${isDisabled && "text-gray-500"}`} onClick={() => { if (!isDisabled) toggleSubmenu(fullPath)}}>
                       {icon}
                       <span className="transition-opacity duration-300 ease-in-out">{text}</span>
                     </div>
@@ -236,8 +241,9 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
                 {!isDeepest && (
                   <button
                     onClick={() => toggleSubmenu(fullPath)}
-                    className="p-1 rounded hover:bg-blue-600 transition-colors"
+                    className={`p-1 rounded ${!isDisabled ?"hover:bg-blue-600" : "cursor-not-allowed text-gray-500"} transition-colors`}
                     aria-label="Toggle Submenu"
+                    disabled={isDisabled}
                   >
                     <ChevronDownIcon
                       className={`w-5 h-5 transition-transform duration-300 ease-in-out ${

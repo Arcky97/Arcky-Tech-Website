@@ -17,6 +17,13 @@ export default function Footer() {
         >
           Privacy Policy
         </Link>
+        <span>|</span>
+        <Link 
+          href="/cookie-policy"
+          className="text-gray-400 hover:text-white hover:text-[0.9rem] transition-all ease-in-out duration-300"
+        >
+          Cookie Policy
+        </Link>
       </div>
       <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} Arcky-Tech. All right reserved.</p>
     </footer>
