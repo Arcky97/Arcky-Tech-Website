@@ -14,7 +14,7 @@ export async function GET(
   }
 
   const apiToken = process.env.API_TOKEN;
-  const botApiUrl = `http://localhost:3011/api/discord/${guildId}/channels?token=${apiToken}`;
+  const botApiUrl = `http://172.17.0.3:3011/api/discord/${guildId}/channels?token=${apiToken}`;
   try {
     const res = await fetch(botApiUrl);
     
