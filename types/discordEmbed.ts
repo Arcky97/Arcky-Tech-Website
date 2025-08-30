@@ -7,7 +7,7 @@ export interface DiscordEmbed {
   description: string;
   fields: EmbedField[];
   imageUrl: string | null;
-  thumbnailUrl: string;
+  thumbnailUrl: string | null;
   footer: EmbedFooter;
   timeStamp: Date;
 }
