@@ -11,6 +11,7 @@ import { DocsShelfSpeeches as SHSpeeches } from "./components/documentations/Doc
 import { DocsSpeciesSpeeches as SPSpeeches } from "./components/documentations/DocsSpeciesSpeeches";
 import EmblaCarousel from "./components/EmblaCarousel";
 import YouTubeEmbed from "./components/YouTubeEmbed";
+import ColorButton from "./components/ColorButton";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -71,6 +72,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Or: ({children}) => (
       <TC color="orange-400">{children}</TC>
     ),
+    Cen: ({children}) => (
+      <div className="text-center mt-5">{children}</div>
+    ),
     Header,
     ImageWithCaption,
     Callout,
@@ -81,6 +85,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     SPSpeeches,
     YouTubeEmbed,
     EmblaCarousel,
+    ColorButton,
     ...components
   }
 }

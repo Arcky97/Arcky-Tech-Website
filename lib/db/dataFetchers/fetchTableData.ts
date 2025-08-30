@@ -1,13 +1,15 @@
 export default async function fetchTableData(tableName: string, guildId?: string) {
   try {
+    if (!tableName) throw new Error('No Tablename provided.');
+
     const isServer = typeof window === "undefined";
     const baseUrl = isServer
       ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
       : ""
 
     const endPoint = guildId 
-    ? `${baseUrl}/api/db/${tableName}/${guildId}`
-    : `${baseUrl}/api/db/${tableName}`;
+      ? `${baseUrl}/api/db/${tableName}/${guildId}`
+      : `${baseUrl}/api/db/${tableName}`;
 
     const res = await fetch(endPoint);
 

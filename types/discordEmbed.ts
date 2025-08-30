@@ -7,23 +7,24 @@ export interface DiscordEmbed {
   description: string;
   fields: EmbedField[];
   imageUrl: string | null;
-  thumbnailUrl: string | null;
+  thumbnailUrl: string;
   footer: EmbedFooter;
+  timeStamp: Date;
 }
 
-interface EmbedAuthor {
+export interface EmbedAuthor {
   name: string | null;
   url: string | null;
   iconUrl: string | null;
 }
 
-interface EmbedField {
+export interface EmbedField {
   name: string;
   value: string;
   inline: boolean;
 }
 
-interface EmbedFooter {
+export interface EmbedFooter {
   text: string | null;
   iconUrl: string | null;
 }

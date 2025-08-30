@@ -1,15 +1,15 @@
 import { DiscordEmbed } from "@/types/discordEmbed";
 
-export interface DBEmbeds extends DiscordEmbed {
+export interface DBEmbed extends DiscordEmbed {
   guildId: string;
-  channelId: string;
-  deletionDate: Date;
+  channelId: string | null;
+  deletionDate: boolean;
 }
 
-export interface EventEmbeds extends DBEmbeds {
+export interface EventEmbed extends DBEmbed {
   type: 'welcome' | 'leave' | 'ban';
 }
 
-export interface GeneratedEmbeds extends DBEmbeds {
+export interface GeneratedEmbed extends DBEmbed {
   messageId: string;
 }

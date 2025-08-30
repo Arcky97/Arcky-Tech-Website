@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  webpack: (config, { dev}) => {
+  webpack: (config, { dev }) => {
     if (dev) {
       config.watchOptions = {
         aggregateTimeout: 60000,

@@ -1,6 +1,5 @@
 import { InlineCode } from "../CodeBlock"
 
-
 export const DocsSpeciesSpeeches = ({speech}: {speech: string}) => {
   return (
     <>

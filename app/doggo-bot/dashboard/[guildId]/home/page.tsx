@@ -1,6 +1,6 @@
 "use client"
 import { useDashboardSession } from "@/components/dashboard/provider";
-import fetchTableData from "@/lib/db/fetchTableData";
+import fetchTableData from "@/lib/db/dataFetchers/fetchTableData";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation"
 

@@ -2,13 +2,16 @@ import QueryProvider from "@/components/dashboard/QueryProvider";
 import Sidebar from "@/components/Sidebar";
 import { dashboardMenuItems } from "@/config";
 import { authOptions } from "@/lib/dashboard/auth";
-import fetchTableData from "@/lib/db/fetchTableData";
+import fetchTableData from "@/lib/db/dataFetchers/fetchTableData";
+import fetchDiscordChannels from "@/lib/discord/fetchDiscordChannels";
 import { checkUserGuildPerms } from "@/lib/discord/permissions";
+import { createDefaultGeneratedEmbed } from "@/types/db/bot/defaults/defaultEmbed";
 import { SessionGuild } from "@/types/next-auth";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
+import normalizeEventEmbedData from "@/lib/db/dataNormalizers/normalizeEventEmbedData";
 
 export default async function DashboardLayout({
   children, 
@@ -48,12 +51,25 @@ export default async function DashboardLayout({
     }),
     queryClient.prefetchQuery({
       queryKey: ["eventEmbeds", guildId],
-      queryFn: () => fetchTableData("EventEmbeds", guildId),
+      queryFn: async () => {
+        const data = await fetchTableData("EventEmbeds", guildId);
+        return normalizeEventEmbedData(guildId, data);
+      },
       staleTime: staleTime
     }),
     queryClient.prefetchQuery({
       queryKey: ["generatedEmbeds", guildId],
-      queryFn: () => fetchTableData("GeneratedEmbeds", guildId),
+      queryFn: async () => {
+        const data = await fetchTableData("GeneratedEmbeds", guildId);
+        if (!data || data.length === 0) {
+          return [createDefaultGeneratedEmbed(guildId, "")]
+        }
+      },
+      staleTime: staleTime
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["guildChannels", guildId],
+      queryFn: () => fetchDiscordChannels(guildId),
       staleTime: staleTime
     })
   ]);

@@ -28,6 +28,7 @@ export default function GuildCard({guild, category}: {guild: GuildForGrid, categ
             className="rounded-full mx-auto"
             width={64}
             height={64}
+            unoptimized
           />
         ) : (
           <div className="w-16 h-16 rounded-full mx-auto flex items-center justify-center bg-gray-600 text-white font-bold text-lg">
