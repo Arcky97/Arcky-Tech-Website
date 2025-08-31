@@ -9,7 +9,7 @@ export interface DiscordEmbed {
   imageUrl: string | null;
   thumbnailUrl: string | null;
   footer: EmbedFooter;
-  timeStamp: Date;
+  timeStamp: boolean;
 }
 
 export interface EmbedAuthor {

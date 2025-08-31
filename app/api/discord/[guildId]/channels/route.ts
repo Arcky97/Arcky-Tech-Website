@@ -13,8 +13,9 @@ export async function GET(
     return NextResponse.json({ error: 'Guild ID is required' }, { status: 400 });
   }
 
+  const apiUrl = process.env.API_URL;
   const apiToken = process.env.API_TOKEN;
-  const botApiUrl = `http://172.17.0.3:3011/api/discord/${guildId}/channels?token=${apiToken}`;
+  const botApiUrl = `${apiUrl}/api/discord/${guildId}/channels?token=${apiToken}`;
   try {
     const res = await fetch(botApiUrl);
     

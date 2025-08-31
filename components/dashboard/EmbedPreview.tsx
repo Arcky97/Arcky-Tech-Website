@@ -52,9 +52,10 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
               {/* Author Icon */}
               {embed.author.iconUrl ? (
                 <Image
+                  unoptimized
                   className="rounded-full mr-2 object-contain"
-                  src={embedPlaceholder(embed.author.iconUrl)}
-                  alt="Author Icon"
+                  src={embedPlaceholder(embed.author.iconUrl.trim())}
+                  alt=""
                   height={24}
                   width={24}
                 />
@@ -136,26 +137,32 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
           {embed?.imageUrl ? (
             <div
               className={`min-w-0 block mt-4 max-w-[400px] max-h-[300px] justify-self-start rounded cursor-pointer overflow-hidden ${
-                embed.thumbnailUrl
-                  ? "col-[1/3]"
-                  : "col-[1-1]"
-              }`}
+							embed.thumbnailUrl 
+                ? "col-[1/3]" 
+                : "col-[1/1]"
+						}`}
             >
               <Image
                 className="object-contain max-h-full max-w-full"
                 src={embedPlaceholder(embed.imageUrl)}
                 alt="Image"
+                unoptimized
+                width={300}
+                height={300}
               />
             </div>
           ) : null}
 
           {/* Thumbnail */}
           {embed?.thumbnailUrl ? (
-            <div className="min-w-0 row-[1/8] col-[2/2] mt-2 ml-4 shrink-0 justify-self-end block max-w-20 max-h-20 rounded-[3px] cursor-pointer overflow-hidden">
+            <div className="min-w-0 row-[1/8] col-[2/2] mt-2 ml-4 shrink-0 justify-self-end block max-w-35 max-h-35 rounded-[3px] cursor-pointer overflow-hidden">
               <Image
                 className="object-contain max-h-full max-w-full"
                 src={embedPlaceholder(embed.thumbnailUrl)}
                 alt="Thumbnail"
+                unoptimized
+                width={140}
+                height={140}
               />
             </div>
           ) : null}
@@ -177,6 +184,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
                   alt="Footer Icon"
                   height={20}
                   width={20}
+                  unoptimized
                 />
               ) : null}
 

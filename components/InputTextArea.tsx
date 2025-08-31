@@ -1,28 +1,28 @@
 import { useLengthColor } from "@/hooks/useLengthColor";
 import clsx from "clsx";
 
-interface InputFieldProps {
+interface InputTextAreaProps {
   label: string;
   value: string;
+  rows: number;
   maxLength?: number;
   placeholder: string;
   onChange: (value: string) => void;
-  className?: string
+  className?: string;
 }
 
-export default function InputField({ label, value, maxLength, placeholder, onChange, className = "" }: InputFieldProps ) {
+export default function InputTextArea({ label, value, rows, maxLength, placeholder, onChange, className = ""}: InputTextAreaProps) {
   const length = value?.length || 0;
 
   const counterStyle = useLengthColor(length, maxLength);
 
   return (
-    <div className="flex flex-col gap-1">
-      <label className="block text-white text-lg font-bold">
-        {label}
-      </label>
-      <input
-        type="text"
+    <div className="flex flex-col gap-1 mb-4">
+      <label className="block text-white text-lg font-bold">{label}</label>
+      <textarea
+        name={label}
         value={value}
+        rows={rows}
         maxLength={maxLength || Infinity}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
