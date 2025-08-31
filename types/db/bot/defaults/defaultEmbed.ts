@@ -12,7 +12,7 @@ export const createDefaultDiscordEmbed = (): DiscordEmbed => ({
   imageUrl: null,
   thumbnailUrl: null,
   footer: { text: null, iconUrl: null },
-  timeStamp: new Date()
+  timeStamp: true
 });
 
 export const createDefaultDBEmbed = (
