@@ -39,5 +39,6 @@ export const createDefaultGeneratedEmbed = (
   channelId: DBEmbed["channelId"]
 ): GeneratedEmbed => ({
   ...createDefaultDBEmbed(guildId, channelId),
-  messageId: ""
+  messageId: "",
+  id: null
 });
