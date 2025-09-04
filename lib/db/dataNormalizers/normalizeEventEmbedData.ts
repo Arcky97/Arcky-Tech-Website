@@ -1,9 +1,15 @@
-import { EventEmbed } from "@/types/db";
+import { EventEmbed, GeneratedEmbed } from "@/types/db";
 import { createDefaultEventEmbed } from "@/types/db/bot/defaults/defaultEmbed";
 
 type EventEmbedType = "welcome" | "leave" | "ban";
 
 export type EventEmbedRaw = Omit<EventEmbed, "author" | "fields" | "footer"> & {
+  author: string | null;
+  fields: string | null;
+  footer: string | null;
+}
+
+export type GeneratedEmbedRaw = Omit<GeneratedEmbed, "author" | "fields" | "footer"> & {
   author: string | null;
   fields: string | null;
   footer: string | null;

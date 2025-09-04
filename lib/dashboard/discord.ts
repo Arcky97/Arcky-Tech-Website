@@ -1,7 +1,7 @@
 import { authDb } from "./db";
 import { DiscordTokenResponse } from "@/types/authToken";
 import mapRawToAuthAccount from "../db/authAccountMapper";
-import { RawAuthAccountRow } from "@/types/db";
+import { AuthAccount, RawAuthAccountRow } from "@/types/db";
 
 export async function getDiscordAccessToken(userId: string) {
   const [rows] = await authDb.query<RawAuthAccountRow[]>(
@@ -19,8 +19,15 @@ export async function getDiscordAccessToken(userId: string) {
     return account.access_token;
   }
 
-  if (!account.refresh_token) return null;
+  if (account.refresh_token) {
+    return await refreshToken(account);
+  };
 
+  return null;
+}
+
+async function refreshToken(account: AuthAccount) {
+  if (!account.refresh_token) return null;
   const body = new URLSearchParams({
     client_id: process.env.DISCORD_CLIENT_ID!,
     client_secret: process.env.DISCORD_CLIENT_SECRET!,

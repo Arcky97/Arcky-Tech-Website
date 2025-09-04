@@ -1,3 +1,4 @@
+import { a } from 'framer-motion/dist/types.d-Cjd591yU';
 import fs from 'fs';
 import path from 'path';
 
@@ -12,7 +13,12 @@ export function getHomeInfoCards(page: string) {
 
   const pageFiles = fs
     .readdirSync(path.join(ROOT, page))
-    .filter(file => file.endsWith('.mdx'));
+    .filter(file => file.endsWith('.mdx'))
+    .sort((a, b) => {
+      const indexA = parseInt(a.split('-')[0], 10);
+      const indexB = parseInt(b.split('-')[0], 10);
+      return indexA - indexB;
+    })
 
   for (const file of pageFiles) {
     const filePath = path.join(ROOT, page, file);

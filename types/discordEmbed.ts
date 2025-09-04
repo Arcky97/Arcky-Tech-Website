@@ -2,9 +2,9 @@ export interface DiscordEmbed {
   message: string | null;
   color: string | null;
   author: EmbedAuthor;
-  title: string;
+  title: string | null;
   url: string | null;
-  description: string;
+  description: string | null;
   fields: EmbedField[];
   imageUrl: string | null;
   thumbnailUrl: string | null;

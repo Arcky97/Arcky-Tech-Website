@@ -4,14 +4,15 @@ import { DiscordChannel } from "@/types/botAPI/discordChannels";
 import clsx from "clsx";
 
 interface ChannelProps {
-  label: string;
+  label?: string;
   value: string | string[] | null;
   onChange: (value: string | null) => void;
   channels: DiscordChannel[];
   className?: string;
+  widthFull?: boolean;
 }
 
-export default function ChannelDropdown({ label, value, onChange, channels, className = ""}: ChannelProps ) {
+export default function ChannelDropdown({ label, value, onChange, channels, className = "", widthFull = true}: ChannelProps ) {
   const groupedChannels: Record<string, { value: string; label: string}[]> = {};
 //  let options;
   channels.forEach(channel => {
@@ -27,10 +28,10 @@ export default function ChannelDropdown({ label, value, onChange, channels, clas
   }));*/
 
   return (
-    <div className={clsx("mb-4 py-3", className)}>
-      <label className="block text-white text-lg font-bold mb-2">{label}</label>
+    <div className={className}>
+      {label && <label className="block text-white text-lg font-bold mb-2 max-h-auto">{label}</label>}
       <select
-        className="bg-gray-800 text-white border-1 border-white/30 p-2.5 rounded-xl w-full"
+        className={clsx("bg-gray-800 text-white border-1 border-white/30 p-2.5 rounded-xl", widthFull ? "w-full" : "")}
         value={typeof value === "string" ? value : ""}
         onChange={(e) => onChange(e.target.value || null)}
       >

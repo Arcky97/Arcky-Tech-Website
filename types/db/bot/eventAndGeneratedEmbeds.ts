@@ -11,5 +11,6 @@ export interface EventEmbed extends DBEmbed {
 }
 
 export interface GeneratedEmbed extends DBEmbed {
-  messageId: string;
+  id: number | null;
+  messageId: string | null;
 }

@@ -1,5 +1,5 @@
 "use client"
-import { EventEmbed } from "@/types/db";
+import { EventEmbed, GeneratedEmbed } from "@/types/db";
 import { useEffect, useState } from "react";
 import ColorButton from "../ColorButton";
 import InputField from "../InputField";
@@ -9,16 +9,16 @@ import ColorPicker from "../ColorPicker";
 import { ToggleSwitch } from "../ToggleSwitch";
 
 interface BuilderProps {
-  embed: EventEmbed;
+  embed: EventEmbed | GeneratedEmbed;
   onClose: () => void;
-  onSave: (embed: EventEmbed, changedFields: Partial<EventEmbed>) => void;
+  onSave: (embed: EventEmbed | GeneratedEmbed, changedFields: Partial<EventEmbed | GeneratedEmbed>) => void;
 }
 
 export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: BuilderProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsclosing] = useState(false);
   const [embed, setEmbed] = useState(initialEmbed);
-  const [fields, setFields] = useState<Partial<EventEmbed>>({});
+  const [fields, setFields] = useState<Partial<EventEmbed | GeneratedEmbed>>({});
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,11 +27,12 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
-      const scrollY = window.scrollY * -1;
-      document.body.style.top = `${scrollY}px`;
-      document.body.classList.add("lock-scrollbar");
-      document.body.style.overflow = "hidden";
+    if (!isClosing) {
+      if (isVisible) {
+        const scrollY = window.scrollY * -1;
+        document.body.style.top = `${scrollY}px`;
+        document.body.classList.add("lock-scrollbar");
+      }
     } else {
       const scrollY = parseInt(document.body.style.top) * -1;
       document.body.style.top = "";
@@ -39,11 +40,11 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
       document.body.style.overflow = "";
       window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
     }
-  }, [isVisible]);
+  }, [isClosing, isVisible]);
 
-  const handleEmbedChange = <K extends keyof (EventEmbed)>(
+  const handleEmbedChange = <K extends keyof (EventEmbed | GeneratedEmbed)>(
     key: K,
-    value: (EventEmbed)[K]
+    value: (EventEmbed | GeneratedEmbed)[K]
   ) => {
     const originalValue = embed[key];
 
@@ -176,7 +177,7 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
               />
               <ColorPicker
                 label="Embed Color"
-                value={embed.color ?? ""}
+                value={embed.color ?? "#202225"}
                 onChange={(value) => handleEmbedChange("color", value)}
               />
               <div className="lg:flex lg:space-x-5">

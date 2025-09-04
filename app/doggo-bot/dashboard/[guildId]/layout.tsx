@@ -60,10 +60,7 @@ export default async function DashboardLayout({
     queryClient.prefetchQuery({
       queryKey: ["generatedEmbeds", guildId],
       queryFn: async () => {
-        const data = await fetchTableData("GeneratedEmbeds", guildId);
-        if (!data || data.length === 0) {
-          return [createDefaultGeneratedEmbed(guildId, "")]
-        }
+        return await fetchTableData("GeneratedEmbeds", guildId);
       },
       staleTime: staleTime
     }),

@@ -123,10 +123,8 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
         const scrollY = window.scrollY * -1;
         document.body.style.top = `${scrollY}px`
         document.body.classList.add("lock-scrollbar");
-        document.body.style.overflow = "hidden";
       } else {
         const scrollY = parseInt(document.body.style.top) * -1;
-
         document.body.style.top = "";
         document.body.classList.remove("lock-scrollbar");
         document.body.style.overflow = "";

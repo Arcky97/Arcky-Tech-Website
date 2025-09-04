@@ -1,23 +1,23 @@
-import { EventEmbedRaw } from "../dataNormalizers/normalizeEventEmbedData";
+import { EventEmbedRaw, GeneratedEmbedRaw } from "../dataNormalizers/normalizeEventEmbedData";
 
-/*export default function updateTableData(tableName: string, guildId: string, columns: string[]) {
+const isServer = typeof window === "undefined";
+const baseUrl = isServer 
+  ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
+  : "";
 
-}*/
 
-export const updateEventEmbedTableData = async (tableName: string, guildId: string, updatedData: Partial<EventEmbedRaw>) => {
+export const updateEventEmbedTableData = async (tableName: string, guildId: string, type: "welcome" | "leave" | "ban", updatedData: Partial<EventEmbedRaw>) => {
   try {
     if (!tableName) throw new Error('No Tablename provided.');
-
-    const isServer = typeof window === "undefined";
-    const baseUrl = isServer 
-      ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
-      : "";
 
     const endPoint = `${baseUrl}/api/db/${tableName}/${guildId}`;
 
     const res = await fetch(endPoint, {
-      method: "POST",
-      body: JSON.stringify(updatedData),
+      method: "PATCH",
+      body: JSON.stringify({
+        keys: { type: type },
+        data: updatedData
+      }),
       headers: { "Content-Type": "application/json" }
     });
 
@@ -25,5 +25,27 @@ export const updateEventEmbedTableData = async (tableName: string, guildId: stri
 
   } catch (error) {
     console.error('Failed to update Table Data for EventEmbed:', error);
+  }
+}
+
+export const updateGeneratedEmbedTableData = async (tableName: string, guildId: string, id: number | null, updatedData: Partial<GeneratedEmbedRaw>) => {
+  try {
+    if (!tableName) throw new Error('No Tablename provided.');
+    if (!id) throw new Error("ID cannot be null.");
+
+    const endPoint = `${baseUrl}/api/db/${tableName}/${guildId}`;
+
+    const res = await fetch(endPoint, {
+      method: "PATCH",
+      body: JSON.stringify({ 
+        keys: { id: id },
+        data: updatedData
+      }),
+      headers: { "Content-Type": "application/json"}
+    });
+
+    if (!res.ok) throw new Error('Failed to Update GeneratedEmbed Table');
+  } catch (error) {
+    console.error('Failed to update Table Data for GeneratedEmbed:', error);
   }
 }
