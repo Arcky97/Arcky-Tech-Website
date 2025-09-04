@@ -1,4 +1,3 @@
-import { a } from 'framer-motion/dist/types.d-Cjd591yU';
 import fs from 'fs';
 import path from 'path';
 

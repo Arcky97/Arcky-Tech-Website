@@ -5,7 +5,6 @@ import { authOptions } from "@/lib/dashboard/auth";
 import fetchTableData from "@/lib/db/dataFetchers/fetchTableData";
 import fetchDiscordChannels from "@/lib/discord/fetchDiscordChannels";
 import { checkUserGuildPerms } from "@/lib/discord/permissions";
-import { createDefaultGeneratedEmbed } from "@/types/db/bot/defaults/defaultEmbed";
 import { SessionGuild } from "@/types/next-auth";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";

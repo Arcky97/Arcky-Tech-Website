@@ -43,7 +43,7 @@ export default function GeneratedEmbedCard({ data: initialEmbeds, channels, onEd
   };
 
   const sendEmbed = (embed: GeneratedEmbed) => {
-
+    console.log(embed);
   }
 
   return (
