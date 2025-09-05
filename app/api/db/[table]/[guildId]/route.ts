@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { botDb } from "@/lib/dashboard/db";
-
-const allowedTables = ["GuildSettings", "LevelSettings", "LevelSystem", "GeneratedEmbeds", "EventEmbeds"];
+import { checkAllowedTables } from "@/lib/api/checkAllowedTables";
+import { checkRequestBody } from "@/lib/api/checkRequestBody";
 
 export async function GET(
   req: Request, {
@@ -13,9 +13,8 @@ export async function GET(
   try {
     const { table, guildId } = await params;
 
-    if (!allowedTables.includes(table)) return NextResponse.json(
-      { error: "Table not allowed"}, { status: 400 }
-    );
+    const validateTable = checkAllowedTables(table);
+    if (validateTable !== true) return validateTable;
 
     const query = `SELECT * FROM ?? WHERE guildId = ?`;
 
@@ -28,7 +27,7 @@ export async function GET(
     return NextResponse.json(rows);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
+    return NextResponse.json({ error: "Database Get Error" }, { status: 500 });
   }
 }
 
@@ -41,11 +40,14 @@ export async function POST(
 ) {
   try {
     const { table, guildId } = await params;
+
+    const validateTable = checkAllowedTables(table);
+    if (validateTable !== true) return validateTable;
+
     const body = await req.json();
     
-    if (!body || Object.keys(body).length === 0) {
-      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
-    }
+    const validateBody = checkRequestBody(body);
+    if (validateBody !== true) return validateBody;
 
     const keys = ["guildId", ...Object.keys(body)];
     const values = [guildId, ...Object.values(body)];
@@ -59,7 +61,7 @@ export async function POST(
     return NextResponse.json({ message: "Data inserted successfully", result});
   } catch (error) {
     console.error("Error inserting data:", error);
-    return NextResponse.json({ error: "Database insert error" }, { status: 500 });
+    return NextResponse.json({ error: "Database Insert Error" }, { status: 500 });
   }
 }
 
@@ -72,15 +74,14 @@ export async function PATCH(
 ) {
   try {
     const { table, guildId } = await params;
+
+    const validateTable = checkAllowedTables(table);
+    if (validateTable !== true) return validateTable;
+
     const { keys, data } = await req.json();
 
-    if (!data || Object.keys(data).length === 0) {
-      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
-    }
-
-    if (!allowedTables.includes(table)) return NextResponse.json(
-      { error: "Table not allowed"}, { status: 400 }
-    );
+    const validateBody = checkRequestBody(data);
+    if (validateBody !== true) return validateBody;
 
     const setClause = Object.keys(data)
       .map((key) => `\`${key}\` = ?`)
@@ -97,7 +98,7 @@ export async function PATCH(
     return NextResponse.json({ message: "Data updated successfully", result});
   } catch (error) {
     console.error("Error updating data:", error);
-    return NextResponse.json({ error: "Database update error" }, { status: 500 });
+    return NextResponse.json({ error: "Database Update Error" }, { status: 500 });
   }
 }
 
@@ -110,15 +111,14 @@ export async function DELETE(
 ) {
   try {
     const { table, guildId } = await params;
+
+    const validateTable = checkAllowedTables(table);
+    if (validateTable !== true) return validateTable;
+
     const body = await req.json();
 
-    if (!body || Object.keys(body).length === 0) {
-      return NextResponse.json({ error: "Invalid request body"}, { status: 400 });
-    }
-
-    if (!allowedTables.includes(table)) {
-      return NextResponse.json({ error: "Table not allowed" }, { status: 400 });
-    }
+    const validateBody = checkRequestBody(body);
+    if (validateBody !== true) return validateBody;
     
     const keys = Object.keys(body);
     const values = Object.values(body);
@@ -132,6 +132,6 @@ export async function DELETE(
     return NextResponse.json({ success: true, deleted: body });
   } catch (error) {
     console.error("Error deleting data:", error);
-    return NextResponse.json({ error: "Failed to remove row" }, { status: 500 });
+    return NextResponse.json({ error: "Database Remove Error" }, { status: 500 });
   }
 }

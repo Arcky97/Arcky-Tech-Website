@@ -1,23 +1,18 @@
-const isServer = typeof window === "undefined";
-const baseUrl = isServer 
-  ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
-  : "";
+import { createFetchRemoveInit } from "../createFetchRequestInit";
+import { createCatchErrorMessage, createResErrorMessage, createTableErrorMessage } from "../createErrorMessage";
+import getEndPointUrl from "../getEndPointUrl";
 
 export const deleteGeneratedEmbed = async (tableName: string, guildId: string, embedId: number) => {
   try {
-    if (!tableName) throw new Error('No Tablename provided.');
+    if (!tableName) throw new Error(createTableErrorMessage());
 
-    const endPoint = `${baseUrl}/api/db/${tableName}/${guildId}`;
+    const endPoint = getEndPointUrl(tableName, guildId);
 
-    const res = await fetch(endPoint, {
-      method: "DELETE",
-      body: JSON.stringify({ id: embedId}),
-      headers: { "Content-Type": "application/json" }
-    });
+    const res = await fetch(endPoint, createFetchRemoveInit({ id: embedId}));
 
-    if (!res.ok) throw new Error('Failed to remove embed from GeneratedEmbed Table.');
+    if (!res.ok) throw new Error(createResErrorMessage('remove embed', tableName));
 
   } catch (error) {
-    console.error('Failed to remove Table Data for GeneratedEmbed:', error);
+    console.error(createCatchErrorMessage('remove', tableName, error));
   }
 }

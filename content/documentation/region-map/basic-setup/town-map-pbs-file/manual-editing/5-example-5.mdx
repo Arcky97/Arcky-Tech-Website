@@ -4,7 +4,6 @@ The 9th 10th and 11th points are Route 3:
 <ImageWithCaption src="/images/documentation/region-map/Route3-0.png" caption="Route 3" align="left" size="tiny"/>
 
 This Location has a size of 2 by 2 tiles on the Region Map => 3 Points are defined (The bottom left point is not used and doesn't need a point):
-<br/>
 ```
 Point = 15,7,Route 3
 Point = 15,6,Route 3,Ice Cave
@@ -14,15 +13,12 @@ Looking into the Highlight folder, we'll find 2 Graphics this time.
 - For Route 3 we'll find a Graphic called "mapRoute3.png"
   - Graphics > Pictures > RegionMap > Highlights > Routes for v20.1
   - Graphics > UI > Town Map > Highlights > Routes for v21.1
-  <br/>Image (mapRoute3.png) missing.
 <br/>
 - For Ice Cave we'll find a Graphic called "mapSize1x1Small.png"
   - Graphics > Pictures > RegionMap > Highlights > Others for v20.1
   - Graphics > UI > Town Map > Highlights > Others for v21.1
-  <br/>Image (mapSize1x1Small.png) missing.
 <br/>
 To make the Script use one of these Graphics when the Cursor is on their respective point, we add "Route3" to the 1st and 3rd point and "Size1x1Small" to the 2nd Point at the end of each line for these Points:
-<br/>
 ```
 Point = 15,7,Route 3,,,,,,Route3
 Point = 15,6,Route 3,Ice Cave,,,,,Size1x1Small
@@ -52,15 +48,12 @@ You can also
 - add (for the 2nd point) "IceCaveSmall.png" instead of "Size1x1Small" (the Graphic name should then be "mapIceCaveSmall.png").
 <br/>For the 2nd point's Graphic name "Small" should still be included since the Graphic is only 16x16 in size and is in the "Others" folder. 
 <br/>This is because the Script add the offset by default, this won't be the case when "Small" is included.
-<br/>Image (mapIceCaveSmall.png) missing.
-<br/>
 ```
 Point = 15,7,Route 3,,,,,,TrainerRoute
 Point = 15,6,Route 3,Ice Cave,,,,,IceCaveSmall
 Point = 14,6,Route 3,,,,,,TrainerRoute
 ```
 Alternativly, you can also make the Graphic for the 2nd Point 48x48 and name it "mapIceCave.png"
-<br/>
 ```
 Point = 15,7,Route 3,,,,,,TrainerRoute
 Point = 15,6,Route 3,Ice Cave,,,,,IceCave

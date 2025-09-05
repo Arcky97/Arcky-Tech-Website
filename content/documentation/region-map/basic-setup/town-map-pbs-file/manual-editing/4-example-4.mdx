@@ -3,7 +3,6 @@
 The 8th point is Natural Park:
 <ImageWithCaption src="/images/documentation/region-map/Natural Park-0.png" caption="Natural Park" align="left" size="tiny"/>
 This Location has a size of 1 by 1 tiles on the Region Map => 1 Point is defined:
-<br/>
 ```
 Point = 16,8,Natural Park
 ```
@@ -11,13 +10,9 @@ Looking into the Highlight folder, we'll find a Graphic named "mapSize1x1Small.p
 - Graphics > Pictures > RegionMap > Highlights > Others for v20.1
 - Graphics > UI > Town Map > Highlights > Others for v21.1
 <br/>
-Image (mapSize1x1Small.png) missing.
-<br/>
 To make the Script use this Graphic when the Cursor is on this Point, we add "Size1x1Small" at the end of both line for this Point:
-<br/>
 ```
-Point = 14,9,Route 2,,,,,,Route2
-Point = 14,8,Route 2,,,,,,Route2
+Point = 14,9,Natural Park,,,,,,Size1x1Small
 ```
 Pay attention that before "Size1x1Small" I added 6 extra `,` as that would normally be where we define
 - a point of interest 
@@ -33,14 +28,10 @@ The difference here might not be that noticable but it's a nice little detail.
 You can also add "NaturalParkSmall" instead of "Size1x1Small" (the Graphic name should then be "mapNaturalParkSmall.png"). 
 <br/>"Small" should still be included since the Graphic is only 16x16 in size and is in the "Others" folder. 
 <br/>This is because the Script add the offset by default, this won't be the case when "Small" is included.
-<br/>
-Image (NaturalParkSmall.png) missing.
-<br/>
 ```
 Point = 16,8,Natural Park,,,,,,NaturalParkSmall
 ```
 Alternativly, you could also make this Graphic 48x48 and name it "mapNaturalPark.png".
-<br/>
 ```
 Point = 16,8,Natural Park,,,,,,NaturalPark
 ```

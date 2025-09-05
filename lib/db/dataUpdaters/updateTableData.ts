@@ -1,51 +1,33 @@
+import { createFetchPatchInit } from "../createFetchRequestInit";
 import { EventEmbedRaw, GeneratedEmbedRaw } from "../dataNormalizers/normalizeEventEmbedData";
-
-const isServer = typeof window === "undefined";
-const baseUrl = isServer 
-  ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
-  : "";
-
+import { createCatchErrorMessage, createIdErrorMessage, createResErrorMessage, createTableErrorMessage } from "../createErrorMessage";
+import getEndPointUrl from "../getEndPointUrl";
 
 export const updateEventEmbedTableData = async (tableName: string, guildId: string, type: "welcome" | "leave" | "ban", updatedData: Partial<EventEmbedRaw>) => {
   try {
-    if (!tableName) throw new Error('No Tablename provided.');
+    if (!tableName) throw new Error(createTableErrorMessage());
 
-    const endPoint = `${baseUrl}/api/db/${tableName}/${guildId}`;
+    const endPoint = getEndPointUrl(tableName, guildId);
 
-    const res = await fetch(endPoint, {
-      method: "PATCH",
-      body: JSON.stringify({
-        keys: { type: type },
-        data: updatedData
-      }),
-      headers: { "Content-Type": "application/json" }
-    });
+    const res = await fetch(endPoint, createFetchPatchInit({ keys: { type: type }, data: updatedData }));
 
-    if (!res.ok) throw new Error('Failed to Update EventEmbed Table');
-
+    if (!res.ok) throw new Error(createResErrorMessage('update', tableName));
   } catch (error) {
-    console.error('Failed to update Table Data for EventEmbed:', error);
+    console.error(createCatchErrorMessage('update', tableName, error));
   }
 }
 
 export const updateGeneratedEmbedTableData = async (tableName: string, guildId: string, id: number | null, updatedData: Partial<GeneratedEmbedRaw>) => {
   try {
-    if (!tableName) throw new Error('No Tablename provided.');
-    if (!id) throw new Error("ID cannot be null.");
+    if (!tableName) throw new Error(createTableErrorMessage());
+    if (!id) throw new Error(createIdErrorMessage());
 
-    const endPoint = `${baseUrl}/api/db/${tableName}/${guildId}`;
+    const endPoint = getEndPointUrl(tableName, guildId);
 
-    const res = await fetch(endPoint, {
-      method: "PATCH",
-      body: JSON.stringify({ 
-        keys: { id: id },
-        data: updatedData
-      }),
-      headers: { "Content-Type": "application/json"}
-    });
+    const res = await fetch(endPoint, createFetchPatchInit({ keys: { id: id }, data: updatedData }));
 
-    if (!res.ok) throw new Error('Failed to Update GeneratedEmbed Table');
+    if (!res.ok) throw new Error(createResErrorMessage('update', tableName));
   } catch (error) {
-    console.error('Failed to update Table Data for GeneratedEmbed:', error);
+    console.error(createCatchErrorMessage('update', tableName, error));
   }
 }

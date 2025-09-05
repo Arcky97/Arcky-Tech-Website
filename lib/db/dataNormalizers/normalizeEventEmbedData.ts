@@ -17,7 +17,8 @@ export type GeneratedEmbedRaw = Omit<GeneratedEmbed, "author" | "fields" | "foot
 
 const REQUIRED_EVENTS: EventEmbedType[] = ["welcome", "leave", "ban"];
 
-export default function normalizeEventEmbedData(
+
+export function normalizeEventEmbedData(
   guildId: string,
   data: EventEmbedRaw[]
 ) {
@@ -36,4 +37,19 @@ export default function normalizeEventEmbedData(
   );
 
   return [...parsedData, ...missing];
+}
+
+export function normalizeGeneratedEmbedData(
+  guildId: string,
+  data: GeneratedEmbedRaw[]
+) {
+
+  const parsedData = (data ?? []).map(embed => ({
+    ...embed,
+    author: embed.author ? JSON.parse(embed.author) : null,
+    fields: embed.fields ? JSON.parse(embed.fields) : [],
+    footer: embed.footer ? JSON.parse(embed.footer) : null
+  }));
+
+  return [...parsedData];
 }

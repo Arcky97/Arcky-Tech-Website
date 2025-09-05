@@ -10,7 +10,7 @@ import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
-import normalizeEventEmbedData from "@/lib/db/dataNormalizers/normalizeEventEmbedData";
+import { normalizeEventEmbedData, normalizeGeneratedEmbedData } from "@/lib/db/dataNormalizers/normalizeEventEmbedData";
 
 export default async function DashboardLayout({
   children, 
@@ -59,7 +59,8 @@ export default async function DashboardLayout({
     queryClient.prefetchQuery({
       queryKey: ["generatedEmbeds", guildId],
       queryFn: async () => {
-        return await fetchTableData("GeneratedEmbeds", guildId);
+        const data = await fetchTableData("GeneratedEmbeds", guildId);
+        return normalizeGeneratedEmbedData(guildId, data);
       },
       staleTime: staleTime
     }),

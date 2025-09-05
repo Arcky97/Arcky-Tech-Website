@@ -18,8 +18,8 @@ interface GeneratedEmbedCardProps {
   onChange: (data: GeneratedEmbed, channel: Partial<GeneratedEmbed>) => void;
 }
 
-export default function GeneratedEmbedCard({ data: initialEmbeds, channels, onEdit, onAdd, onRemove, onChange }: GeneratedEmbedCardProps ) {
-  const [embeds, setEmbeds] = useState(initialEmbeds);
+export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRemove, onChange }: GeneratedEmbedCardProps ) {
+  const [embeds, setEmbeds] = useState(data);
   const { guildId } = useParams<{ guildId: string }>();
 
   const handleEmbedCreate = async () => {

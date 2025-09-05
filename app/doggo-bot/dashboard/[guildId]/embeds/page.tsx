@@ -41,14 +41,14 @@ export default function Embeds() {
     queryFn: () => fetchTableData("GeneratedEmbeds", guildId),
     staleTime: 1000 * 60 * 5,
     enabled: !!guildId,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false
-  })
+    refetchOnMount: true,
+    refetchOnWindowFocus: true
+  });
   
   const [editingEmbed, setEditingEmbed] = useState<EventEmbed | GeneratedEmbed | null>(null);
 
-  const handleSetEditingEmbed = (embed: GeneratedEmbed) => {
-    console.log(embed);
+  const handleSetEditingEmbed = (embed: EventEmbed | GeneratedEmbed) => {
+    
     setEditingEmbed(embed);
   }
 
@@ -57,9 +57,11 @@ export default function Embeds() {
 
     (["author", "fields", "footer"] as const).forEach((key) => {
       if (dbFields[key] !== undefined) {
-        dbFields[key] = JSON.stringify(dbFields[key]) as unknown as EventEmbedRaw[typeof key] | GeneratedEmbedRaw[typeof key];
+        if (typeof dbFields[key] !== "string") {
+          dbFields[key] = JSON.stringify(dbFields[key]) as unknown as EventEmbedRaw[typeof key] | GeneratedEmbedRaw[typeof key];
+        }
       }
-    })
+    });
 
     if ("type" in updatedEmbed) {
       await updateEventEmbedTableData("EventEmbeds", guildId, updatedEmbed.type, dbFields);
@@ -71,15 +73,16 @@ export default function Embeds() {
             : e
         );
       });
-    } else {
+    } else if ("id" in updatedEmbed) {
       await updateGeneratedEmbedTableData("GeneratedEmbeds", guildId, updatedEmbed.id, dbFields);
       queryClient.setQueryData(["generatedEmbeds", guildId], (oldData: GeneratedEmbed[]) => {
         if (!oldData) return [updatedEmbed];
-        return oldData.map((e) => 
-          e.id === updatedEmbed.id
+        const newData = oldData.map((e) => 
+          e.id === updatedEmbed.id && e.guildId === updatedEmbed.guildId
             ? { ...e, ...changedFields } 
             : e
         );
+        return newData;
       });
     }
   };
@@ -103,6 +106,8 @@ export default function Embeds() {
     });
   };
 
+  console.log(generatedEmbeds);
+
   return (
     <div className="px-4">
       <h1 className="text-3xl font-bold mb-2">Event and Generated Embeds</h1>
@@ -119,7 +124,7 @@ export default function Embeds() {
             type="leave" 
             data={eventEmbeds.find((embed: EventEmbed) => embed.type === "leave")}
             channels={guildChannels || []} 
-            onEdit={setEditingEmbed}
+            onEdit={handleSetEditingEmbed}
             onChange={handleEmbedUpdate}
           />
           <EventEmbedCard 

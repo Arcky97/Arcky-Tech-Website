@@ -1,27 +1,24 @@
+import { createCatchErrorMessage, createResErrorMessage, createTableErrorMessage } from "../createErrorMessage";
+import getEndPointUrl from "../getEndPointUrl";
+
 export default async function fetchTableData(tableName: string, guildId?: string) {
   try {
-    if (!tableName) throw new Error('No Tablename provided.');
+    if (!tableName) throw new Error(createTableErrorMessage());
 
-    const isServer = typeof window === "undefined";
-    const baseUrl = isServer
-      ? process.env.NEXTAUTH_URL?.replace(/\$/, "")
-      : ""
-
-    const endPoint = guildId 
-      ? `${baseUrl}/api/db/${tableName}/${guildId}`
-      : `${baseUrl}/api/db/${tableName}`;
+    console.log("when do we do this?");
+    const endPoint = getEndPointUrl(tableName, guildId ?? undefined)
 
     const res = await fetch(endPoint);
 
     if (!res.ok) {
       if (res.status === 404) return [];
-      throw new Error(`Failed to fetch ${tableName}`);
+      throw new Error(createResErrorMessage('fetch', tableName));
     }
 
     const data = await res.json();
     return data ?? [];
   } catch (error: unknown) {
-    console.error(`Error fetching data from table "${tableName}" "${guildId ? `and guild "${guildId}"` : ""}:`, error);
+    console.error(createCatchErrorMessage('fetch', tableName, error));
     throw error;
   }
 }
