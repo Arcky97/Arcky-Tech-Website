@@ -5,7 +5,6 @@ export default async function fetchTableData(tableName: string, guildId?: string
   try {
     if (!tableName) throw new Error(createTableErrorMessage());
 
-    console.log("when do we do this?");
     const endPoint = getEndPointUrl(tableName, guildId ?? undefined)
 
     const res = await fetch(endPoint);

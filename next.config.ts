@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
     if (dev) {
       config.watchOptions = {
         aggregateTimeout: 60000,
-        poll: 1000,
+        poll: 10000,
       };
     }
     return config;

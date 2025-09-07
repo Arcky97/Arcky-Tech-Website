@@ -12,7 +12,7 @@ function createPool(database: string) {
     password: process.env.DB_PASS!,
     database,
     waitForConnections: true,
-    connectionLimit: 20,
+    connectionLimit: 15,
   });
 
   // Test connection once

@@ -5,7 +5,6 @@ import EmbedPreview from "./EmbedPreview";
 import { DiscordChannel } from "@/types/botAPI/discordChannels";
 import ChannelDropdown from "./ChannelDropdown";
 import ColorButton from "../ColorButton";
-import { useState } from "react";
 
 type EventType = "welcome" | "leave" | "ban";
 
@@ -18,19 +17,17 @@ interface EventEmbedCardProps {
 }
 
 export default function EventEmbedCard({ type, data, channels = [], onEdit, onChange }: EventEmbedCardProps ) {
-  const [embed, setEmbed] = useState(data);
   
   const handleChannelChange = (value: string | null) => {
-    setEmbed((prev) => ({ ...prev, channelId: value }));
-    onChange(embed, {channelId: value });
+    onChange(data, {channelId: value });
   }
 
   return (
     <div id={type} className="p-4 bg-gray-800 rounded-xl mb-4">
-      <h2 className="font-bold text-2xl">{type} Embed</h2>
+      <h2 className="sticky lg:top-28 top-33 pb-2 z-18 font-bold text-2xl bg-gray-800">{type} Embed</h2>
       <ChannelDropdown
         label="Channel Selection"
-        value={embed.channelId}
+        value={data.channelId}
         onChange={(value) => handleChannelChange(value)}
         channels={channels}
         className="py-3 mb-4"
