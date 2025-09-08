@@ -11,6 +11,7 @@ export default function Navbar({session}: {session?: Session | null}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false); 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isTinyScreen, setIsTinyScreen] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef<HTMLDivElement>(null);
   const [loginInProgress, setLoginInProgress] = useState(false);
@@ -45,7 +46,8 @@ export default function Navbar({session}: {session?: Session | null}) {
 
     const updateIsSmallScreen = () => {
       setIsSmallScreen(window.innerWidth < 1024);
-      return isSmallScreen;
+      setIsTinyScreen(window.innerWidth < 321);
+      return [isSmallScreen, isTinyScreen];
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -106,7 +108,7 @@ export default function Navbar({session}: {session?: Session | null}) {
               : "opacity-100"
           }`}
         >
-          <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">Arcky-Tech</Link>
+          <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">{!isTinyScreen ? "Arcky-Tech" : ""}</Link>
         </h1>
         {/* Icons and Name (desktop only) */}
         <div className={`flex ${isSmallScreen ? 'space-x-4' : 'space-x-5' }`}>

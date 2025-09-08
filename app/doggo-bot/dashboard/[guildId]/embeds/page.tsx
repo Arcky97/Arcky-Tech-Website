@@ -165,7 +165,7 @@ export default function Embeds() {
         <p className="font-bold my-2 lg:mr-4 ml-3 lg:pb-4 pb-2">last saved {displayTime}</p>
       </div>
         <div className="xl:flex space-x-4">
-          <div className="xl:w-[45%] w-full">
+          <div className="xl:w-[45%] max-w-full">
             <EventEmbedCard 
               type="welcome" 
               data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "welcome") ?? []} 
@@ -188,7 +188,7 @@ export default function Embeds() {
               onChange={handleEmbedUpdate}
             />
           </div>
-          <div className="xl:w-[55%] w-full">
+          <div className="xl:w-[55%] max-w-full">
             <GeneratedEmbedCard
               data={generatedEmbeds}
               channels={guildChannels || []}

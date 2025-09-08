@@ -39,7 +39,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code:({children}) => (
       <InlineCode>{children}</InlineCode>
     ),
-    pre:({children}: any) => {
+    pre:({children}) => {
       const codeString = children?.props?.children ?? "";
       const language = children?.props?.className?.replace("language-", "") ?? "text";
       return <CodeBlock language={language}>{codeString}</CodeBlock>

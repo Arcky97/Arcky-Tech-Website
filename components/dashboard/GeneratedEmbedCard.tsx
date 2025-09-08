@@ -69,7 +69,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
   }
   
   return (
-    <div id="generated" className="p-4 bg-gray-800 rounded-xl mb-4">
+    <div id="generated" className="p-4 bg-gray-800 rounded-xl mb-4 ">
       <h2 className="sticky lg:top-28 top-33 pb-2 z-18 font-bold text-2xl bg-gray-800">Generated Embeds</h2>
       <DashboardTable
         headers={["ID", "Channel", "Actions"]}
@@ -90,7 +90,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                     widthFull={true}
                   />
                 </span>,
-                <div key={`actons-${index}`} className="flex justify-evenly py-2">
+                <div key={`actons-${index}`} className="sm:flex sm:justify-evenly py-2">
                   <ColorButton
                     color={isShown ? "emerald-900" : "green-700"}
                     text={
@@ -103,7 +103,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                       startCooldown(`show-${embed.id}`);
                     }}
                     disabled={isCooldown}
-                    extraClass="min-w-22"
+                    extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
                   />
                   <ColorButton
                     color="amber-600"
@@ -113,7 +113,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                       startCooldown("edit-all");
                     }}
                     disabled={cooldowns.has("edit-all")}
-                    extraClass="min-w-22"
+                    extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
                   />
                   <ColorButton
                     color="red-700"
@@ -123,7 +123,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                       startCooldown("remove-all")
                     }}
                     disabled={cooldowns.has("remove-all")}
-                    extraClass="min-w-22"
+                    extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
                   />
                 </div>
               ],
@@ -142,7 +142,6 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                         />
                       </div>
                     </div>
-
                   </div>
                 ]]
               : [])
