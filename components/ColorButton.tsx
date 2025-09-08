@@ -27,7 +27,7 @@ export default function ColorButton({ color, text, action, padding, href, extraC
     setIsHovered(false);
   }
 
-  const baseClass = `border select-none hover:bg-transparent text-sm lg:text-base text-white ${padding ?? "px-2 py-1 lg:px-3 lg:py-2"} rounded-lg transition-all duration-300 ease-in-out ${disabled ? "cursor-default" : "cursor-pointer"} text-shadow-xl`;
+  const baseClass = `border select-none hover:bg-transparent text-sm md:text-base text-white ${padding ?? "px-2 py-1 md:px-3 md:py-2"} rounded-lg transition-all duration-300 ease-in-out ${disabled ? "cursor-default" : "cursor-pointer"} text-shadow-xl`;
 
   if (href) {
     return (

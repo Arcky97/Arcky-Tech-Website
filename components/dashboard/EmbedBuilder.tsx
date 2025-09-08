@@ -97,7 +97,7 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
     <div>
       <div className={`fixed inset-0 z-149 backdrop-blur-xl bg-tint-base/4 transition-opacity duration-300 ${isVisible && !isClosing ? 'opacity-100' : 'opacity-0'}`}></div>
       <div className={`fixed inset-0 tratnsition-all duration-300 ease-in-out flex justify-center z-150 my-10 ${isVisible && !isClosing ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-40'}`}>
-        <div className="bg-gray-800 rounded-lg shadow-lg w-[90%] max-w-[70%] lg:flex h-full overflow-y-auto">
+        <div className="bg-gray-800 rounded-lg shadow-lg w-[90%] lg:max-w-[70%] lg:flex h-full overflow-y-auto">
           <div className="lg:w-4/7 w-full flex flex-col overflow-hidden">
             <header className="flex justify-between items-center px-6 py-4 bg-gray-800 sticky top-0 z-10 w-full">
               <h2 className="text-white text-xl font-bold">Edit Embed</h2>
@@ -177,18 +177,18 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
               />
               <div>
                 <h3 className="block text-white text-lg font-bold mb-4">Fields ({embed.fields.length} / 25)</h3>
-                {embed.fields.map((field, index) => {
+                {embed.fields?.map((field, index) => {
                   const number = index + 1 
                   return (
                     <div key={`field-${index}`} className="mb-4 border border-gray-500/50 p-3 rounded-lg">
-                      <div className="flex justify-between">
+                      <div className="sm:flex justify-between">
                         <h4
                           className="text-white text-base md:text-lg font-bold mb-2 cursor-pointer"
                           onClick={() => handleFieldStateChange(index)}
                         >
                           Field {number}
                         </h4>
-                        <div className="flex space-x-6">
+                        <div className="sm:flex space-x-3 base:space-x-6">
                           <ColorButton
                             color="blue-800"
                             text="Move Up"
@@ -200,7 +200,7 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
                               setFieldState(newFieldState);
                             }}
                             disabled={index === 0}
-                            extraClass="min-w-22"
+                            extraClass="base:min-w-22 min-w-18"
                           />
                           <ColorButton
                             color="blue-800"
@@ -213,7 +213,7 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
                               setFieldState(newFieldState);
                             }}
                             disabled={index === embed.fields.length - 1}
-                            extraClass="min-w-22"
+                            extraClass="base:min-w-22 min-w-18"
                           />
                           <ColorButton
                             color="red-800"
@@ -222,7 +222,7 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
                               handleEmbedChange("fields", embed.fields.filter((_, i) => i !== index ));
                               setFieldState(prev => prev.filter((_, i) => i !== index));
                             }}
-                            extraClass="min-w-22"
+                            extraClass="base:min-w-22 min-w-18"
                           />
                         </div>
                       </div>

@@ -76,7 +76,7 @@ export default async function DashboardLayout({
     <QueryProvider dehydrateState={dehydratedState}>
       <div className="flex">
         <Sidebar menuItems={dashboardMenuItems}/>
-        <div className="flex-1">
+        <div className="flex-1 overflow-x-auto">
           {children}
         </div>
       </div>

@@ -23,7 +23,6 @@ export default function Embeds() {
   const updateBuffer = useRef<Map<string, Partial<EventEmbed | GeneratedEmbed>>>(new Map());
   const [lastSaved, setLastSaved] = useState<Date>(new Date());
   const [displayTime, setDisplayTime] = useState<string>(formatLastSaved(lastSaved)); 
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,19 +33,6 @@ export default function Embeds() {
 
     return () => clearInterval(interval);
   }, [lastSaved]);
-
-  useEffect(() => {
-    const updateIsSmallScreen = () => {
-      setIsSmallScreen(window.innerWidth < 426);
-    };
-
-    window.addEventListener("resize", updateIsSmallScreen);
-    updateIsSmallScreen();
-
-    return () => {
-      window.removeEventListener("resize", updateIsSmallScreen);
-    };
-  }, []);
 
   const { data: guildChannels } = useQuery({
     queryKey: ["guildChannels", guildId],
@@ -178,54 +164,45 @@ export default function Embeds() {
         <h1 className="flex-1 text-3xl font-bold ml-3 mb-2">Event and Generated Embeds</h1>
         <p className="font-bold my-2 lg:mr-4 ml-3 lg:pb-4 pb-2">last saved {displayTime}</p>
       </div>
-      {!isSmallScreen ? (
-        <>
-          <div className="xl:flex space-x-4">
-            <div className="xl:w-[45%] w-full">
-              <EventEmbedCard 
-                type="welcome" 
-                data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "welcome") ?? []} 
-                channels={guildChannels || []} 
-                onEdit={handleSetEditingEmbed}
-                onChange={handleEmbedUpdate}
-              />
-              <EventEmbedCard 
-                type="leave" 
-                data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "leave") ?? []}
-                channels={guildChannels || []} 
-                onEdit={handleSetEditingEmbed}
-                onChange={handleEmbedUpdate}
-              />
-              <EventEmbedCard 
-                type="ban" 
-                data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "ban") ?? []}
-                channels={guildChannels || []} 
-                onEdit={handleSetEditingEmbed}
-                onChange={handleEmbedUpdate}
-              />
-            </div>
-            <div className="xl:w-[55%] w-full">
-              <GeneratedEmbedCard
-                data={generatedEmbeds}
-                channels={guildChannels || []}
-                onEdit={handleSetEditingEmbed}
-                onAdd={handleGeneratedEmbedAdd}
-                onRemove={handleGeneratedEmbedRemove}
-                onChange={handleEmbedUpdate}
-              />
-            </div>
+        <div className="xl:flex space-x-4">
+          <div className="xl:w-[45%] w-full">
+            <EventEmbedCard 
+              type="welcome" 
+              data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "welcome") ?? []} 
+              channels={guildChannels || []} 
+              onEdit={handleSetEditingEmbed}
+              onChange={handleEmbedUpdate}
+            />
+            <EventEmbedCard 
+              type="leave" 
+              data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "leave") ?? []}
+              channels={guildChannels || []} 
+              onEdit={handleSetEditingEmbed}
+              onChange={handleEmbedUpdate}
+            />
+            <EventEmbedCard 
+              type="ban" 
+              data={eventEmbeds?.find((embed: EventEmbed) => embed.type === "ban") ?? []}
+              channels={guildChannels || []} 
+              onEdit={handleSetEditingEmbed}
+              onChange={handleEmbedUpdate}
+            />
           </div>
-          {/* show Embed Builder */}
-          {editingEmbed && (
-            <EmbedBuilder embed={editingEmbed} onClose={() => setEditingEmbed(null)} onSave={handleEmbedUpdate}/>
-          )}
-        </>
-      ) : (
-        <>
-          <p>Sorry, the Embed Builder is not available on small screens</p>
-        </>
-      )}
-
+          <div className="xl:w-[55%] w-full">
+            <GeneratedEmbedCard
+              data={generatedEmbeds}
+              channels={guildChannels || []}
+              onEdit={handleSetEditingEmbed}
+              onAdd={handleGeneratedEmbedAdd}
+              onRemove={handleGeneratedEmbedRemove}
+              onChange={handleEmbedUpdate}
+            />
+          </div>
+        </div>
+        {/* show Embed Builder */}
+        {editingEmbed && (
+          <EmbedBuilder embed={editingEmbed} onClose={() => setEditingEmbed(null)} onSave={handleEmbedUpdate}/>
+        )}
     </div>
   )
 }
