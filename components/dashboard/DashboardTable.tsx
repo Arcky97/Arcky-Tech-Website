@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-type Allignment = "right" | "center" | "left";
+type Allignment = "right" | "center" | "left" | null;
 
 interface DashboardTableProps {
   label?: string;

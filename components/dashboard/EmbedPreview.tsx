@@ -107,7 +107,7 @@ export default function EmbedPreview({ label, embed }: { label?: string, embed: 
           ) : null}
 
           {/* Fields */}
-          {embed?.fields && embed.fields.length ? (
+          {embed?.fields && embed.fields.length >= 1 ? (
             <div className="min-w-0 grid col-[1/1] mt-2 gap-2">
               {embed.fields.map((field, index) => (
                 <div

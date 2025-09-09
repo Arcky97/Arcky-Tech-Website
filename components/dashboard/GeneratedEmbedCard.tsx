@@ -9,6 +9,7 @@ import { createDefaultGeneratedEmbed } from "@/types/db/bot/defaults/defaultEmbe
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import EmbedPreview from "./EmbedPreview";
+import sendOrUpdateDiscordEmbed from "@/lib/discord/sendOrUpdateDiscordEmbed";
 
 interface GeneratedEmbedCardProps {
   data: GeneratedEmbed[];
@@ -23,6 +24,8 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
   const { guildId } = useParams<{ guildId: string }>();
   const [ shownEmbed, setShownEmbed ] = useState<GeneratedEmbed | null>(null);
   const [cooldowns, setCooldowns] = useState<Map<string, number>>(new Map());
+  const [warningMessage, setWarningMessage] = useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
 
   const handleEmbedCreate = async () => {
     const newEmbed = createDefaultGeneratedEmbed(guildId, "");
@@ -46,12 +49,28 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
     }
   }
 
-  const sendEmbed = (embed: GeneratedEmbed) => {
-    console.log(embed);
+  const sendEmbed = async (embed: GeneratedEmbed) => {
+    if (!embed.channelId) {
+      setWarningMessage("A Channel needs to be selected before sharing your embed to discord.");
+      return;
+    }
+    if (!embed.title && !embed.description) {
+      setWarningMessage("You embed should at least have a Title and Description before it can be shared on discord.");
+      return;
+    }
+    setWarningMessage(null);
+    startCooldown(`share-countdown-${embed.id}`, 15);
+    setTimeout(async () => {
+      const result = await sendOrUpdateDiscordEmbed(guildId, embed.id);
+      setInfoMessage(result.message);
+      startCooldown(`share-embed-${embed.id}`, 15);
+      setTimeout(() => setInfoMessage(null), 15000);
+    }, 15000);
   }
 
-  const startCooldown = (key: string) => {
-    setCooldowns((prev) => new Map(prev).set(key, 5));
+  const startCooldown = (key: string, duration: number) => {
+    setWarningMessage(null);
+    setCooldowns((prev) => new Map(prev).set(key, duration));
 
     const interval = setInterval(() => {
       setCooldowns((prev) => {
@@ -100,7 +119,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                     }
                     action={() => {
                       handleShowOrHideEmbed(embed);
-                      startCooldown(`show-${embed.id}`);
+                      startCooldown(`show-${embed.id}`, 5);
                     }}
                     disabled={isCooldown}
                     extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
@@ -110,7 +129,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                     text={`Edit${cooldowns.has("edit-all") ? ` (${cooldowns.get("edit-all")})` : ""}`}
                     action={() => {
                       onEdit(embed);
-                      startCooldown("edit-all");
+                      startCooldown("edit-all", 15);
                     }}
                     disabled={cooldowns.has("edit-all")}
                     extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
@@ -120,7 +139,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                     text={`Remove${cooldowns.has("remove-all") ? ` (${cooldowns.get("remove-all")})` : ""}`}
                     action={() => {
                       handleEmbedDelete(embed);
-                      startCooldown("remove-all")
+                      startCooldown("remove-all", 5)
                     }}
                     disabled={cooldowns.has("remove-all")}
                     extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
@@ -130,16 +149,38 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
               ...(isShown
                 ? [[
                   <div key={`preview-${embed.id}`}>
-                    <div className="p-4 rounded-lg mt-2">
-                      <h3 className="font-semibold text-lg mb-2">Embed Preview</h3>
+                    <div className="p-4 rounded-lg mt-2 items-center">
+                      <h3 className="font-semibold text-lg mb-2 text-center">Embed Preview</h3>
                       <EmbedPreview embed={embed}/>
-                      <div className="flex mt-4 justify-center">
-                        <ColorButton
-                          color="blue-700"
-                          text={embed.messageId ? "Update Shared Embed" : "Share Embed"}
-                          action={() => sendEmbed(embed)}
-                          extraClass="w-1/2"
-                        />
+                      <div className="mt-4 justify-center">
+                        {warningMessage && <p className="text-base font-semibold text-orange-400 pb-4">{warningMessage}</p>}
+                        {infoMessage && <p className="text-base font-semibold text-green-500 pb-4">{infoMessage}</p>}
+                        <div className="flex justify-center">
+                          <ColorButton
+                            color="blue-700"
+                            text={`${
+                              cooldowns.has(`share-countdown-${embed.id}`)
+                                ? `${embed.messageId 
+                                    ? "Updating" 
+                                    : "Sending"} 
+                                  Embed in ${
+                                    cooldowns.get(`share-countdown-${embed.id}`)
+                                  }`
+                                : `${`${embed.messageId 
+                                      ? "Update Shared Embed" 
+                                      : "Share Embed"} ${
+                                        cooldowns.has(`share-embed-${embed.id}`) 
+                                          ? ` (${cooldowns.get(`share-embed-${embed.id}`)})` 
+                                          : ""
+                                        }`
+                                    }`
+                                }`
+                            }
+                            action={() => sendEmbed(embed)}
+                            extraClass="w-1/2"
+                            disabled={cooldowns.has(`share-embed-${embed.id}`) || cooldowns.has(`share-countdown-${embed.id}`)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -147,7 +188,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
               : [])
           ]})
         }
-        align={["center", "center", "center"]}
+        align={[null, "center", "center"]}
         maxHeight="max-h-177"
       />
       <div className="flex mt-4 justify-center">
@@ -156,7 +197,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
           text={`Create New Embed${cooldowns.has("add-new") ? ` (${cooldowns.get("add-new")})` : "" }`}
           action={() => {
             handleEmbedCreate();
-            startCooldown("add-new");
+            startCooldown("add-new", 10);
           }}
           disabled={cooldowns.has("add-new")}
           extraClass="w-1/2"

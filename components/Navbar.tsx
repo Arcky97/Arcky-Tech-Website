@@ -61,7 +61,7 @@ export default function Navbar({session}: {session?: Session | null}) {
       window.removeEventListener("resize", updateIsSmallScreen);
     }
 
-  }, [pathname, hasSideNav, isSmallScreen, isScoreBoardPage]);
+  }, [pathname, hasSideNav, isSmallScreen, isTinyScreen, isScoreBoardPage]);
 
   const handleDiscordLogin = () => {
     if (loginInProgress) {
