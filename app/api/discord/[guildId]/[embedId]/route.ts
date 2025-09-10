@@ -4,7 +4,7 @@ export async function POST(
   req: Request, {
     params
   }: {
-    params: Promise<{guildId: string, embedId: number | null}>
+    params: Promise<{guildId: string, embedId: string}>
   }
 ) {
   const { guildId, embedId } = await params;
