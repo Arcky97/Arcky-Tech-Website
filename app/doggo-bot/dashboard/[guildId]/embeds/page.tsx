@@ -67,7 +67,7 @@ export default function Embeds() {
     setEditingEmbed(embed);
   }
 
-  const handleEmbedUpdate = async (updatedEmbed: EventEmbed | GeneratedEmbed, changedFields: Partial<EventEmbed | GeneratedEmbed>) => {
+  const handleEmbedUpdate = async (updatedEmbed: EventEmbed | GeneratedEmbed, changedFields: Partial<EventEmbed | GeneratedEmbed>, duration: number = 5000) => {
     if ("type" in updatedEmbed) {
       queryClient.setQueryData(["eventEmbeds", guildId], (oldData: EventEmbed[]) => {
         if (!oldData) return [updatedEmbed];
@@ -89,10 +89,10 @@ export default function Embeds() {
       });
     }
 
-    handleAutoSaveEmbed(updatedEmbed, changedFields);
+    handleAutoSaveEmbed(updatedEmbed, changedFields, duration);
   };
 
-  const handleAutoSaveEmbed = async (updatedEmbed: EventEmbed | GeneratedEmbed, changedFields: Partial<EventEmbed | GeneratedEmbed>) => {
+  const handleAutoSaveEmbed = async (updatedEmbed: EventEmbed | GeneratedEmbed, changedFields: Partial<EventEmbed | GeneratedEmbed>, duration: number = 5000) => {
     const embedKey = "type" in updatedEmbed ? `event-${updatedEmbed.type}` : `generated-${updatedEmbed.id}`;
 
     const existingBuffer = updateBuffer.current.get(embedKey) || {};
@@ -132,7 +132,7 @@ export default function Embeds() {
         updateBuffer.current.delete(embedKey);
         updateTimers.current.delete(embedKey);
       }
-    }, 15000);
+    }, duration);
 
     updateTimers.current.set(embedKey, timeout);
   } 

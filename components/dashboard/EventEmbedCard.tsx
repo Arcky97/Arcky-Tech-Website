@@ -5,6 +5,7 @@ import EmbedPreview from "./EmbedPreview";
 import { DiscordChannel } from "@/types/botAPI/discordChannels";
 import ChannelDropdown from "./ChannelDropdown";
 import ColorButton from "../ColorButton";
+import { useState } from "react";
 
 type EventType = "welcome" | "leave" | "ban";
 
@@ -17,9 +18,28 @@ interface EventEmbedCardProps {
 }
 
 export default function EventEmbedCard({ type, data, channels = [], onEdit, onChange }: EventEmbedCardProps ) {
+  const [cooldowns, setCooldowns] = useState<Map<string, number>>(new Map());
   
   const handleChannelChange = (value: string | null) => {
     onChange(data, {channelId: value });
+  }
+
+  const startCooldown = (key: string, duration: number) => {
+    setCooldowns((prev) => new Map(prev).set(key, duration));
+
+    const interval = setInterval(() => {
+      setCooldowns((prev) => {
+        const next = new Map(prev);
+        const timeLeft = (next.get(key) ?? 0) - 1;
+        if (timeLeft <= 0) {
+          next.delete(key);
+          clearInterval(interval);
+        } else {
+          next.set(key, timeLeft);
+        }
+        return next;
+      })
+    }, 1000);
   }
 
   return (
@@ -29,16 +49,25 @@ export default function EventEmbedCard({ type, data, channels = [], onEdit, onCh
         <ChannelDropdown
           label="Channel Selection"
           value={data.channelId}
-          onChange={(value) => handleChannelChange(value)}
-          channels={channels}
+          onChange={(value) => {
+            handleChannelChange(value)
+            startCooldown(`channel-${type}`, 5)
+          }}
+          channels={cooldowns.has(`channel-${type}`) ? [] : channels}
           className="py-3 mb-4"
+          defaultValue={cooldowns.has(`channel-${type}`) ? `Channel Cooldown (${cooldowns.get(`channel-${type}`)})` : null}
+          disabled={cooldowns.has(`channel-${type}`)}
         />
         <h3 className="font-bold text-lg mb-2">Embed Preview</h3>
         <EmbedPreview embed={data}/>
         <ColorButton 
           color="green-500" 
-          text="Edit Embed"
-          action={() => onEdit(data || {})}
+          text={`Edit Embed ${cooldowns.has(`edit-${type}`) ? `(${cooldowns.get(`edit-${type}`)})` : ""}`}
+          action={() => {
+            onEdit(data || {});
+            startCooldown(`edit-${type}`, 15);
+          }}
+          disabled={cooldowns.has(`edit-${type}`)}
         />
       </div>
     </div>

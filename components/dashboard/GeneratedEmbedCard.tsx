@@ -28,6 +28,7 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
 
   const handleEmbedCreate = async () => {
+
     const newEmbed = createDefaultGeneratedEmbed(guildId, "");
     await onAdd(newEmbed);
   };
@@ -59,17 +60,24 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
       return;
     }
     setWarningMessage(null);
-    startCooldown(`share-countdown-${embed.id}`, 15);
+    startCooldown(`share-countdown-${embed.id}`, 5);
     setTimeout(async () => {
       const result = await sendOrUpdateDiscordEmbed(guildId, embed.id);
-      setInfoMessage(result.message);
+      if (result.message.includes("Missing permissions")) {
+        setWarningMessage(result.message);
+      } else {
+        setInfoMessage(result.message);
+      }
+      
       startCooldown(`share-embed-${embed.id}`, 15);
-      setTimeout(() => setInfoMessage(null), 15000);
-    }, 15000);
+      setTimeout(() => {
+        setInfoMessage(null)
+        setWarningMessage(null);
+      }, 15000);
+    }, 5000);
   }
 
   const startCooldown = (key: string, duration: number) => {
-    setWarningMessage(null);
     setCooldowns((prev) => new Map(prev).set(key, duration));
 
     const interval = setInterval(() => {
@@ -104,9 +112,14 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                 <span key={`channel-${index}`}>
                   <ChannelDropdown
                     value={embed.channelId}
-                    channels={channels}
-                    onChange={(value) => handleChannelChange(embed, value)}
+                    channels={cooldowns.has(`channel-${embed.id}`) ? [] : channels}
+                    onChange={(value) => {
+                      handleChannelChange(embed, value)
+                      startCooldown(`channel-${embed.id}`, 5)
+                    }}
                     widthFull={true}
+                    defaultValue={cooldowns.has(`channel-${embed.id}`) ?  `Channel Cooldown (${cooldowns.get(`channel-${embed.id}`)})` : null}
+                    disabled={cooldowns.has(`channel-${embed.id}`)}
                   />
                 </span>,
                 <div key={`actons-${index}`} className="sm:flex sm:justify-evenly py-2">
@@ -126,12 +139,12 @@ export default function GeneratedEmbedCard({ data, channels, onEdit, onAdd, onRe
                   />
                   <ColorButton
                     color="amber-600"
-                    text={`Edit${cooldowns.has("edit-all") ? ` (${cooldowns.get("edit-all")})` : ""}`}
+                    text={`Edit ${cooldowns.has("edit-all") ? `(${cooldowns.get("edit-all")})` : ""}`}
                     action={() => {
                       onEdit(embed);
                       startCooldown("edit-all", 15);
                     }}
-                    disabled={cooldowns.has("edit-all")}
+                    disabled={cooldowns.has("edit-all") || !embed.channelId}
                     extraClass="lg:min-w-22 min-w-18 my-1 sm:my-0"
                   />
                   <ColorButton
