@@ -70,7 +70,8 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'weather': { group: 'speechVariants' },
   'quest': { group: 'speechVariants' },
   'berry': { group: 'speechVariants' },
-  'trainer': { group: 'speechVariants' }
+  'trainer': { group: 'speechVariants' },
+  'pokedex': { group: 'speechVariants' }
 }
 
 export function getStyles(slug: string[]): StyleConfig {

@@ -239,6 +239,10 @@ export const regionMapMenu = {
               text: "Trainer Preview Settings"
             }
           ]
+        },
+        {
+          path: "pokedex",
+          text: "Pokedex Settings",
         }
       ]
     }
