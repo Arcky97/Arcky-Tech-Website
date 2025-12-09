@@ -15,6 +15,7 @@ export default async function fetchTableData(tableName: string, guildId?: string
       throw new Error(createResErrorMessage('fetch', tableName));
     }
 
+    
     console.log("Endpoint url request successfull!");
     const data = await res.json();
     return data ?? [];
