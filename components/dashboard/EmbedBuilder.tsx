@@ -53,7 +53,6 @@ export default function EmbedBuilder({ embed: initialEmbed, onClose, onSave}: Bu
 
     setEmbed((prev) => ({ ...prev, [key]: value }));
 
-    console.log([key, value]);
     if (JSON.stringify(originalValue) === JSON.stringify(value)) {
       setFields(({... prev}) => {
         const updated = { ...prev };

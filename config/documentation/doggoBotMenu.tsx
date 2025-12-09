@@ -1,6 +1,6 @@
 import { HomeIcon } from "@heroicons/react/24/outline";
 
-export const doggoBotMenu =     {
+export const doggoBotMenu = {
   name: "doggo-bot",
   path: "",
   icon: <HomeIcon className="w-6 h-6"/>,

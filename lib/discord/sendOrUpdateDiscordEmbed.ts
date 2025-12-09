@@ -11,7 +11,6 @@ export default async function sendOrUpdateDiscordEmbed (guildId: string, embedId
 
     const res = await fetch(endPoint, { method: "POST" });
     const data = await res.json();
-    console.log(data);
 
     if (!res.ok) throw new Error('Failed to send Embed request');
 
