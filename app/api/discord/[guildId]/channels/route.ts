@@ -18,12 +18,14 @@ export async function GET(
   const botApiUrl = `${apiUrl}/api/discord/${guildId}/channels?token=${apiToken}`;
   
   try {
+    console.log("Attempting request fetch channels from discord.")
     const res = await fetch(botApiUrl);
     
     const data = await res.json();
     
     if (!res.ok) throw new Error(data.message || "Failed to fetch channels");
 
+    console.log("Request fetching channels from discord successfull!")
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error fetching channels:', error);

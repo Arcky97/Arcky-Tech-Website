@@ -18,11 +18,13 @@ export async function POST(
   const botApiUrl = `${apiUrl}/api/discord/${guildId}/${embedId}/send-embed?token=${apiToken}`;
 
   try {
+    console.log('Attempting request send or update Embed.');
     const res = await fetch(botApiUrl, { method: "POST" });
 
     if (!res.ok) throw new Error("Failed to request send or update Embed.");
 
     const botResponse = await res.json();
+    console.log("Request send or update embed successfull!")
     return NextResponse.json(botResponse, { status: res.status });
   } catch (error) {
     console.error('Error requesting to send embed:', error);

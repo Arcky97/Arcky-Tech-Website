@@ -6,12 +6,14 @@ export const deleteGeneratedEmbed = async (tableName: string, guildId: string, e
   try {
     if (!tableName) throw new Error(createTableErrorMessage());
 
+    console.log("Getting Endpoint url from removeTableData.ts.");
     const endPoint = getEndPointUrl(tableName, guildId);
 
     const res = await fetch(endPoint, createFetchRemoveInit({ id: embedId}));
 
     if (!res.ok) throw new Error(createResErrorMessage('remove embed', tableName));
-
+    
+    console.log("Endpoint url request successfull!");
   } catch (error) {
     console.error(createCatchErrorMessage('remove', tableName, error));
   }

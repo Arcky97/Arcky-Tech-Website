@@ -7,6 +7,7 @@ export const updateEventEmbedTableData = async (tableName: string, guildId: stri
   try {
     if (!tableName) throw new Error(createTableErrorMessage());
 
+    console.log("Getting Endpoint url from updateEventEmbedTableData function in updateTableData.ts.");
     const endPoint = getEndPointUrl(tableName, guildId);
 
     const res = await fetch(endPoint, createFetchPatchInit({ keys: { type: type }, data: updatedData }));
@@ -22,11 +23,13 @@ export const updateGeneratedEmbedTableData = async (tableName: string, guildId: 
     if (!tableName) throw new Error(createTableErrorMessage());
     if (!id) throw new Error(createIdErrorMessage());
 
+    console.log("Getting Endpoint url from updateGeneratedEmbedTableData function in updateTableData.ts");
     const endPoint = getEndPointUrl(tableName, guildId);
 
     const res = await fetch(endPoint, createFetchPatchInit({ keys: { id: id }, data: updatedData }));
 
     if (!res.ok) throw new Error(createResErrorMessage('update', tableName));
+    console.log("Endpoint url request successfull!");
   } catch (error) {
     console.error(createCatchErrorMessage('update', tableName, error));
   }

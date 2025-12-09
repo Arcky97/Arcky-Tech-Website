@@ -18,6 +18,16 @@ const disabledPatterns = [
 ];
 
 export function middleware(request: NextRequest) {
+  const badIPs = ["172.237.55.180", "149.248.44.88"];
+
+  const xfwd = request.headers.get("x-forwarded-for");
+
+  const ip = xfwd?.split(",")[0]?.trim() || "0.0.0.0";
+
+  if (badIPs.includes(ip)) {
+    return new NextResponse("Blocked", { status: 403 });
+  }
+  
   const { pathname } = request.nextUrl;
 
   const isDisabled = disabledPatterns.some(pattern => pattern.test(pathname));

@@ -36,6 +36,7 @@ async function refreshToken(account: AuthAccount) {
     scope: "identify guilds"
   });
 
+  console.log("Attempting request oauth2 token");
   const res = await fetch("https://discord.com/api/oauth2/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -48,9 +49,11 @@ async function refreshToken(account: AuthAccount) {
     return null;
   }
 
+  console.log("Request oauth2 token successfull!");
   const data: DiscordTokenResponse = await res.json();
   const expiresAt = Math.floor(Date.now() / 1000) + (data.expires_in ?? 3600);
 
+  console.log("Updating token in database...");
   await authDb.query(
     "UPDATE accounts SET access_token = ?, refresh_token = ?, expires_at = ?, token_type = ?, scope = ? WHERE id = ?",
     [
@@ -63,5 +66,6 @@ async function refreshToken(account: AuthAccount) {
     ]
   );
 
+  console.log("Returning oauth2 access token.");
   return data.access_token;
 }

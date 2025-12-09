@@ -50,14 +50,17 @@ export const authOptions: NextAuthOptions = {
         const token = await getDiscordAccessToken(user.id);
 
         if (token) {
+          console.log("Attempting discord login.");
           const res = await fetch("https://discord.com/api/users/@me/guilds", {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.ok) {
+            console.log("Discord login successfull!");
             session.user.guilds = await res.json();
           }
         }
       }
+      console.log("Redirecting from discord login!");
       return session;
     }
   },

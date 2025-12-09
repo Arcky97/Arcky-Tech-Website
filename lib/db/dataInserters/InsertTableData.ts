@@ -7,12 +7,14 @@ export const insertGeneratedEmbed = async (tableName: string, guildId: string, e
   try {
     if (!tableName) throw new Error(createTableErrorMessage());
 
+    console.log("Getting Endpoint url from insertTableData.ts.");
     const endPoint = getEndPointUrl(tableName, guildId);
 
     const res = await fetch(endPoint, createFetchPostInit({ channelId: embed.channelId, title: embed.title, description: embed.description }));
 
     if (!res.ok) throw new Error(createResErrorMessage('add embed', tableName));
 
+    console.log("Endpoint url request successfull!");
     const data = await res.json();
 
     return data.result.insertId ?? null;
