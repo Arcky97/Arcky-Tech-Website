@@ -22,6 +22,8 @@ export async function GET(
     const res = await fetch(botApiUrl);
     
     const data = await res.json();
+
+    console.log("Bot API url:", botApiUrl);
     
     if (!res.ok) throw new Error(data.message || "Failed to fetch channels");
 
