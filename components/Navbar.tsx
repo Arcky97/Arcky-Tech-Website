@@ -144,6 +144,7 @@ export default function Navbar({session}: {session?: Session | null}) {
           )}
           {isDoggoBotPage ? (
             <>
+              {/*}
               <NavbarItem
                 href={`${session ? "/doggo-bot/servers" : "#"}`}
                 icon="ChartBarIcon"
@@ -156,7 +157,7 @@ export default function Navbar({session}: {session?: Session | null}) {
                     signIn('discord', { callbackUrl: "/doggo-bot/servers" });
                   }
                 }}
-              />
+              />*/}
               <NavbarItem
                 href="/documentation/doggo-bot"
                 icon="BookOpenIcon"
@@ -188,6 +189,7 @@ export default function Navbar({session}: {session?: Session | null}) {
             </>
           )}
           {/* Auth Buttons */}
+          {/*
           {isDoggoBotPage && (
             session ? (
               <ColorButton
@@ -205,7 +207,7 @@ export default function Navbar({session}: {session?: Session | null}) {
                 padding={`${isShrunk ? "px-2 py-1" : "px-3 py-2"}`}
               />
             )
-          )}
+          )}*/}
         </div>
       </div>
     </nav>
