@@ -1,21 +1,16 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; 
-import { signIn, signOut } from "next-auth/react";
-import ColorButton from "./ColorButton";
+import { usePathname } from "next/navigation";
 import NavbarItem from "./NavbarItem";
-import type { Session } from "next-auth";
 
-export default function Navbar({session}: {session?: Session | null}) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false); 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isTinyScreen, setIsTinyScreen] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef<HTMLDivElement>(null);
-  const [loginInProgress, setLoginInProgress] = useState(false);
-  const [hydrated, setHydrated] = useState(false);
 
   const isHomePage = pathname === '/'; 
   const isDoggoBotPage = pathname.startsWith('/doggo-bot');
@@ -23,19 +18,6 @@ export default function Navbar({session}: {session?: Session | null}) {
   const isScoreBoardPage = pathname.startsWith('/scoreboard');
   const hasSideNav = pathname.startsWith('/doggo-bot/dashboard') || pathname.startsWith('/documentation') || pathname.startsWith('/doggo-bot/database');
 
-  useEffect(() => {
-    setHydrated(true);
-    if (sessionStorage.getItem("discord-login-in-progress")) {
-      setLoginInProgress(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (session) {
-      sessionStorage.removeItem("discord-login-in-progress");
-      setLoginInProgress(false);
-    }
-  }, [session]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,23 +44,6 @@ export default function Navbar({session}: {session?: Session | null}) {
     }
 
   }, [pathname, hasSideNav, isSmallScreen, isTinyScreen, isScoreBoardPage]);
-
-  const handleDiscordLogin = () => {
-    if (loginInProgress) {
-      console.warn("Login already in progress");
-      return;
-    }
-
-    localStorage.setItem("discord-login-in-progress", "true");
-    setLoginInProgress(true);
-
-    setTimeout(() => {
-      localStorage.removeItem("discord-login-in-progress");
-      setLoginInProgress(false);
-    }, 30000);
-
-    signIn("discord", { callbackUrl: "/doggo-bot/servers" });
-  };
 
   return (
     <nav
@@ -144,20 +109,6 @@ export default function Navbar({session}: {session?: Session | null}) {
           )}
           {isDoggoBotPage ? (
             <>
-              {/*}
-              <NavbarItem
-                href={`${session ? "/doggo-bot/servers" : "#"}`}
-                icon="ChartBarIcon"
-                text="Dashboard"
-                isSmallScreen={isSmallScreen}
-                isShrunk={isShrunk}
-                action={(e) => {
-                  if (!session) {
-                    e.preventDefault();
-                    signIn('discord', { callbackUrl: "/doggo-bot/servers" });
-                  }
-                }}
-              />*/}
               <NavbarItem
                 href="/documentation/doggo-bot"
                 icon="BookOpenIcon"
@@ -189,25 +140,6 @@ export default function Navbar({session}: {session?: Session | null}) {
             </>
           )}
           {/* Auth Buttons */}
-          {/*
-          {isDoggoBotPage && (
-            session ? (
-              <ColorButton
-                color="red-600"
-                text="Logout"
-                action={() => signOut()}
-                padding={`${isShrunk ? "px-2 py-1" : "px-2 py-1 lg:px-3 lg:py-2"}`}
-              />
-            ) : (
-              <ColorButton
-                color="blue-600"
-                text={hydrated && loginInProgress ? "Logging in..." : "Login"}
-                disabled={hydrated && loginInProgress}
-                action={handleDiscordLogin}
-                padding={`${isShrunk ? "px-2 py-1" : "px-3 py-2"}`}
-              />
-            )
-          )}*/}
         </div>
       </div>
     </nav>
