@@ -19,7 +19,7 @@ export default async function DoggoBotLayout({
 
   return ( 
     <DashboardSessionProvider session={session}> 
-      <Navbar session={session} /> 
+      <Navbar/> 
       <CookieBanner /> 
       <main className="flex-1 bg-gray-900 pt-12"> 
         {children} 
