@@ -72,7 +72,7 @@ export default function LinkWithPreview({ href = "", children, ...rest }: Props)
 
       {isVisible && preview ? (
         <span
-          className="absolute bottom-full -left-5 z-50 bg-[#1e1e1e] border border-gray-700 text-white text-sm rounded-xl px-4 py-3 min-w-5xs lg:min-w-3xs shadow-lg transition-all duration-300 opacity-100"
+          className="absolute bottom-full -left-5 z-50 bg-[#1e1e1e] border border-gray-700 text-white text-sm rounded-xl px-4 py-3 min-w-3xs lg:min-w-1xs shadow-lg transition-all duration-300 opacity-100"
           onMouseEnter={showPreview}
           onMouseLeave={hidePreview}
         >
