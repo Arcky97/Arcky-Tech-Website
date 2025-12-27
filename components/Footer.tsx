@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return(
-    <footer id="footer" className="flex flex-col h-30 bg-gray-900 border-gray-600/75 border-t-1 text-white py-8 text-center w-full items-center mx-auto">
+    <footer id="footer" className="flex flex-col h-30 bg-gray-900 border-gray-600/75 border-t text-white py-8 text-center w-full items-center mx-auto">
       <div className="flex gap-4 text-sm mb-2">
         <Link 
           href="/terms-of-service"  

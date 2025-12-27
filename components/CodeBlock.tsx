@@ -1,5 +1,5 @@
 "use client"
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import hljs from "highlight.js/lib/core";
 
 import javascript from "highlight.js/lib/languages/javascript";
@@ -21,22 +21,22 @@ interface CodeBlockProps {
 
 export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
-  const [highlightedLines, setHighlightedLines] = useState<string[]>([]);
 
-  useEffect(() => {
-    const lines = children.trimEnd().split('\n');
+  const highlightedLines = useMemo(() => {
+    const lines = children.trimEnd().split("\n");
 
-    const highlighted = lines.map(line => {
+    return lines.map((line) => {
       try {
-        const { value } = hljs.highlight(line, { language, ignoreIllegals: true });
+        const { value } = hljs.highlight(line, {
+          language,
+          ignoreIllegals: true,
+        });
         return value;
       } catch (error) {
         console.error(error);
         return line;
       }
     });
-
-    setHighlightedLines(highlighted);
   }, [children, language]);
 
   const handleCopy = () => {
@@ -75,7 +75,7 @@ export const CodeBlock = ({ children, language = "text" }: CodeBlockProps) => {
 
 export const InlineCode = ({children}: { children: ReactNode }) => (
   <code
-    className="bg-gray-400/10 text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest break-words"
+    className="bg-gray-400/10 text-gray-300 px-1 py-1 rounded-md text-sm font-mono tracking-widest wrap-break-word"
   >
     {children}
   </code>

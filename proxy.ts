@@ -21,7 +21,7 @@ const disabledPatterns = [
 
 const blockedIPs = ["172.237.55.180", "149.248.44.88"];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Only use x-forwarded-for header for IP
   const xfwd = request.headers.get("x-forwarded-for");
   const ip = xfwd?.split(",")[0]?.trim() || "0.0.0.0";

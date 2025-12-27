@@ -203,7 +203,7 @@ export const CookieBanner = () => {
           `}
         >
           <CogIcon
-            className="w-6 h-6 text-gray-200 transition-transform duration-500 group-hover:rotate-[360deg] cursor-pointer"
+            className="w-6 h-6 text-gray-200 transition-transform duration-500 group-hover:rotate-360 cursor-pointer"
           />
           <span
             

@@ -7,27 +7,27 @@ interface ColorPickerProps {
   onChange: (value: string) => void;
 }
 
-export default function ColorPicker({ label, value: initialValue, onChange}: ColorPickerProps) {
-  const [localValue, setLocalValue] = useState(initialValue);
+export default function ColorPicker({ label, value, onChange}: ColorPickerProps) {
+  const [localValue, setLocalValue] = useState(value);
   const [errorValue, setErrorValue] = useState<string | null>(null);
   
-  useEffect(() => {
-    setLocalValue(initialValue);
+  const handleTextChange = (next: string) => {
+    setLocalValue(next);
     setErrorValue(null);
-  }, [initialValue]);
+  };
   
   const handleBlur = () => {
-    let value = localValue;
+    let next = localValue;
 
-    if (!value.startsWith("#")) value = "#" + value;
+    if (!next.startsWith("#")) next = `#${next}`;
 
-    if (!/^#([0-9A-Fa-f]{6})$/.test(value)) {
-      setErrorValue(value);
-      value = initialValue ?? "#000000";
+    if (!/^#([0-9A-Fa-f]{6})$/.test(next)) {
+      setErrorValue(next);
       setLocalValue(value);
     }
 
-    onChange(value);
+    setLocalValue(next);
+    onChange(next);
   }
   
   return (
@@ -43,7 +43,7 @@ export default function ColorPicker({ label, value: initialValue, onChange}: Col
         <input
           type="text"
           value={localValue}
-          onChange={(e) => setLocalValue(e.target.value)}
+          onChange={(e) => handleTextChange(e.target.value)}
           onBlur={handleBlur}
           className="p-2 rounded-md bg-gray-800 text-white border border-gray-600 focus:ring-2 focus:ring-blue-500 w-30 text-center"
         />
