@@ -2,20 +2,28 @@
 FROM node:24 AS builder
 
 WORKDIR /usr/app
-COPY ./ /usr/app
 
-# Install dependencies
-RUN npm install
+# Copy only dependency manifests first (better caching + safety)
+COPY package.json package-lock.json ./
 
-# Build the Next.js app
+# Reproducible install
+RUN npm ci
+
+# Copy the rest of the source (NO .next allowed)
+COPY . .
+
+# HARD guarantee of a clean build
+RUN rm -rf .next
 RUN npm run build
+
 
 # ---------- STAGE 2: Production ----------
 FROM node:24 AS runner
 
 WORKDIR /usr/app
+ENV NODE_ENV=production
 
-# Copy only necessary files from the build stage
+# Copy only what is required to run
 COPY --from=builder /usr/app/package.json ./
 COPY --from=builder /usr/app/package-lock.json ./
 COPY --from=builder /usr/app/.next ./.next
@@ -25,5 +33,4 @@ COPY --from=builder /usr/app/content ./content
 
 EXPOSE 3000
 
-# Start in production mode
 CMD ["npm", "run", "start"]
