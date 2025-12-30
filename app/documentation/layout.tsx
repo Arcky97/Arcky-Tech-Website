@@ -1,6 +1,6 @@
 "use client"
 import Sidebar from "@/components/Sidebar"
-import { doggoBotMenu, graphicsTransparencyMenu, pokeMarketMenu, regionMapMenu, vendingMachineMenu } from "@/config";
+import { graphicsTransparencyMenu, pokeMarketMenu, regionMapMenu, vendingMachineMenu } from "@/config";
 import { pbsEditorMenu } from "@/config/documentation/pbsEditorMenu";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,6 @@ export default function DocumentationLayout({ children }: { children: React.Reac
 
   const menuItems = [
     pbsEditorMenu,
-    doggoBotMenu,
     regionMapMenu,
     pokeMarketMenu,
     graphicsTransparencyMenu,

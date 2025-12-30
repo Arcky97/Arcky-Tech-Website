@@ -104,7 +104,10 @@ Valid default values:
 - `"money"` or `"gold"`
 - `"coins"`
 - `"bp"` or `"battle points"`
+- `:Item` (new v1.7.0)
 
+<br/>
+**Using a Default Currency (none Item)**
 ```ruby 
   currency: "coins"
 ```
@@ -121,6 +124,57 @@ def pbSomeMart
 end
 ```
 
+<br/>
+**Using an Item Currency**
+<br/>
+If you want to use an Item as the currency for a mart store, this is not *possible since v1.7.0*. 
+```ruby 
+  currency: ":HEARTSCALE"
+```
+
+The one thing you need to **keep in mind** when using an **Item as the Currency** is that you still need to **define the price** for each item. Because otherwise the **default price** will be **1**.
+
+If you're familiar with the item limit system in this plugin then understanding the little code below should not be a problem. 
+
+The **Script** sees the **last element in the array** for an **Item slot** as **the Price**. But **only** when the **Currency** is set to **an Item**. **Otherwise** this will **be the limit** for **Poke balls** if a **Refresh Rate** was given, **if not** this number **will be ignored**.
+```ruby
+  [:POKEBALL, 5]
+```
+So now **1 Poke ball** will **cost 5 Heart scales**. But what if you want **1 Poke ball** to **cost 5 Red Shards**. Well then you can do it like this:
+```ruby
+  [:POKEBALL, [5, :REDSHARD]]
+```
+
+Once you did this for the other Items you should get a similar result to this:
+```ruby
+def pbSomeMart
+  pbPokemonMart([
+    [:POKEBALL, [5, :REDSHARD]], [:GREATBALL, [10, :REDSHARD]], [:ULTRABALL, [20, :REDSHARD]],
+    [:ESCAPEROPE, 8],
+    [:REPEL, [3, :YELLOWSHARD]], [:SUPERREPEL, [7, :YELLOWSHARD]], [:MAXREPEL, [15, :YELLOWSHARD]],
+    [:GRASSMAIL, 4], [:FLAMEMAIL, 4],
+    [:BUBBLEMAIL, 4], [:SPACEMAIL, 6]
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: :HEARTSCALE)
+end
+```
+
+Or when you're using the Item Limit System as well:
+```ruby
+def pbSomeMart
+  pbPokemonMart(["2daily",
+    [:POKEBALL, 10, 15, [5, :REDSHARD]], [:GREATBALL, 12, 16, [10, :REDSHARD]], [:ULTRABALL, 15, 18, [20, :REDSHARD]],
+    [:ESCAPEROPE, 1, 8],
+    [:REPEL, 20, 25, [3, :YELLOWSHARD]], [:SUPERREPEL, 15, [7, :YELLOWSHARD]], [:MAXREPEL, 12, [15, :YELLOWSHARD]],
+    [:GRASSMAIL, 5, 4], [:FLAMEMAIL, 5, 4],
+    [:BUBBLEMAIL, 5, 4], [:SPACEMAIL, 3, 6]
+  ], speech: "ProSeller", useCat: true, discount: 26, currency: :HEARTSCALE)
+end
+```
+
+<Callout type="attention">
+  **<Rd>Very important</Rd>** is that **first comes the Price** and **then the Currency**. If you **only put the Currency** then this will be **ignored**.
+  You can also not set the Item specific Currency to a none Item Currency, this will give you a warning in the console and will be ignored to prevent issues. 
+</Callout>
 ---
 ### cantSell: true / false 
 Disables the ability to sell items in this event.

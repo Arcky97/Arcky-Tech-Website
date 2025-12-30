@@ -11,10 +11,10 @@ export interface DocsTableProps {
 
 export const DocsTable = ({ headers, alignment, rows }: DocsTableProps) => {
   return (
-    <div className="overflow-auto rounded-lg text-gray-300">
-      <table className="border border-gray-600/75 px-2 select-none">
+    <div className="inline-block rounded-lg overflow-hidden">
+      <table className="select-none border border-gray-600/75">
         <thead className="bg-blue-400/10">
-          <tr className="">
+          <tr>
             {headers.map((header, i) => (
               <th key={i} className="px-12 py-2 text-center font-bold">
                 {header}
@@ -26,12 +26,16 @@ export const DocsTable = ({ headers, alignment, rows }: DocsTableProps) => {
           {rows.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className="border-t border-gray-600/75 hover:bg-blue-400/5 transition-all duration-300 ease-in-out"
+              className="transition-all duration-300 ease-in-out hover:bg-blue-400/5"
             >
               {row.map((cell, colIndex) => (
-                <td 
+                <td
                   key={colIndex}
-                  className={clsx("px-4 py-2 hover:bg-blue-400/5 transition-all duration-300 ease-in-out", `text-${alignment && alignment[colIndex]}`)}
+                  className={clsx(
+                    "px-4 py-2 border-t border-gray-600/75",
+                    "hover:bg-blue-400/5 transition-all duration-300 ease-in-out",
+                    alignment && `text-${alignment[colIndex]}`
+                  )}
                 >
                   {cell}
                 </td>
@@ -41,5 +45,5 @@ export const DocsTable = ({ headers, alignment, rows }: DocsTableProps) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
