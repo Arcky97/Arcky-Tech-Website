@@ -12,6 +12,7 @@ import { DocsSpeciesSpeeches as SPSpeeches } from "./components/documentations/D
 import EmblaCarousel from "./components/EmblaCarousel";
 import YouTubeEmbed from "./components/YouTubeEmbed";
 import ColorButton from "./components/ColorButton";
+import { SettingsVersions as SetVer } from "./components/documentations/SettingsVersions";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -86,6 +87,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     YouTubeEmbed,
     EmblaCarousel,
     ColorButton,
+    SetVer,
     ...components
   }
 }

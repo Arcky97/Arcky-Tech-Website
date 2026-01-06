@@ -1,26 +1,12 @@
 "use client";
-import { JSX, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-
-export interface MenuItem {
-  name?: string;
-  path: string;
-  icon?: JSX.Element;
-  text: string;
-  noPage?: boolean;
-  disabled?: boolean;
-  subItems?: MenuItem[];
-}
+import { SidebarItem, MenuItem } from "./SidebarItem"; // ← nieuw: import subcomponent
 
 export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: boolean }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
-  const [expandedMenu, setExpandedMenu] = useState<{ [key: string]: boolean }>({});
-  //const [footerHeightInView, setFooterHeightInView] = useState(0);
-  //const footerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const previousPathRef = useRef<string | null>(null);
@@ -30,53 +16,36 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const isDocumentation = pathname.startsWith("/documentation");
   const isDatabasePage = pathname.startsWith("/doggo-bot/database");
 
-  // Automatically get /documentation/[project] base path
   const basePath = (() => {
     if (isDocumentation || isDatabasePage) {
       const segments = pathname.split("/").filter(Boolean);
-      return `/${segments.slice(0, 2).join("/")}`; // e.g., "/documentation/doggo-bot"
+      return `/${segments.slice(0, 2).join("/")}`; // bv. "/documentation/doggo-bot"
     } else {
-      const segments = pathname.split('/').filter(Boolean);
-      return `/${segments.slice(0, 3).join('/')}`;
-    };
+      const segments = pathname.split("/").filter(Boolean);
+      return `/${segments.slice(0, 3).join("/")}`;
+    }
   })();
-
 
   useEffect(() => {
     const updateIsSmallScreen = () => {
       setIsSmallScreen(window.innerWidth < 1024);
-      setIsSidebarVisible(window.innerWidth >= 1024 || isDocumentation && window.innerWidth >= 1024);
+      setIsSidebarVisible(window.innerWidth >= 1024 || (isDocumentation && window.innerWidth >= 1024));
       setIsSidebarFrozen(isDocumentation && window.innerWidth >= 1024);
     };
-
     window.addEventListener("resize", updateIsSmallScreen);
     updateIsSmallScreen();
-
     return () => {
       window.removeEventListener("resize", updateIsSmallScreen);
     };
   }, [pathname, isDocumentation]);
 
   useEffect(() => {
-    const splitPath = pathname.split('/');
-    const basePath = splitPath.slice(0, 3).join('/');
-    toggleSubmenu(`${basePath}/`, true);
-    let newPath = basePath;
-    splitPath.slice(3, -1).forEach(path => {
-      newPath += `/${path}`;
-      toggleSubmenu(newPath, true);
-    });
-  }, [pathname, menuItems]);
-
-  useEffect(() => {
     if (hasScrolledToActive.current) return;
-
     const scrollSidebarToActiveItem = () => {
       const sidebar = document.getElementById("sidebar");
       if (!sidebar) return;
       const activeItems = Array.from(sidebar.querySelectorAll(".bg-blue-900"));
-      if (activeItems.length === 0) return
-
+      if (activeItems.length === 0) return;
       const deepestActive = activeItems[activeItems.length - 1];
       const sidebarRect = sidebar.getBoundingClientRect();
       const activeRect = deepestActive.getBoundingClientRect();
@@ -84,72 +53,37 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
       sidebar.scrollTo({ top: offsetTop, behavior: "smooth" });
       hasScrolledToActive.current = true;
     };
-
     setTimeout(scrollSidebarToActiveItem, 100);
   }, [pathname]);
-/*
-  useEffect(() => {
-    const footer = document.getElementById("footer");
-    if (!footer) return;
 
-    footerRef.current = footer;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const visible = entry.intersectionRect.height;
-          setFooterHeightInView(visible);
-        } else {
-          setFooterHeightInView(0);
-        }
-      },
-      {
-        root: null,
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100)
-      }
-    );
-
-    observer.observe(footer);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-*/
   useEffect(() => {
     if (isSmallScreen) {
       if (isSidebarVisible) {
         previousPathRef.current = pathname;
         const scrollY = window.scrollY * -1;
-        document.body.style.top = `${scrollY}px`
+        document.body.style.top = `${scrollY}px`;
         document.body.classList.add("lock-scrollbar");
       } else {
         const scrollY = parseInt(document.body.style.top) * -1;
         document.body.style.top = "";
         document.body.classList.remove("lock-scrollbar");
         document.body.style.overflow = "";
-
         if (previousPathRef.current === pathname) {
-          window.scrollTo({ top: scrollY || 0, behavior: 'instant' });
+          window.scrollTo({ top: scrollY || 0, behavior: "instant" });
         }
-
         previousPathRef.current = null;
       }
     }
-  }, [isSidebarVisible, isSmallScreen, pathname])
-  
-  const toggleSidebarVisibility = () => {if ((isDocumentation && window.innerWidth < 1024) || isDashboard) setIsSidebarVisible((prev) => !prev)};
+  }, [isSidebarVisible, isSmallScreen, pathname]);
 
-  const toggleSubmenu = (path: string, value?: boolean) => {
-    setExpandedMenu((prev) => ({
-      ...prev,
-      [path]: value ? value : !prev[path],
-    }));
+  const toggleSidebarVisibility = () => {
+    if ((isDocumentation && window.innerWidth < 1024) || isDashboard) {
+      setIsSidebarVisible((prev) => !prev);
+    }
   };
 
   const handleClick = async (e: React.MouseEvent<HTMLElement>, path: string, subPath: string) => {
     e.preventDefault();
-
     const applyHighlightEffect = (id: string) => {
       const target = document.getElementById(id);
       if (target) {
@@ -157,15 +91,12 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
         setTimeout(() => target.classList.remove("highlight-blink"), 2000);
       }
     };
-
     const target = document.getElementById(subPath.replace("#", ""));
-
     const fullPath = path.replace(subPath, "");
     if (pathname !== fullPath) {
       router.push(path);
       return;
     }
-
     if (target) {
       const offset = 90;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
@@ -175,97 +106,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
     if (window.innerWidth < 1024) {
       setIsSidebarVisible(false);
     }
-
     history.pushState(null, "", path);
-  };
-
-  const renderMenuItems = (items: MenuItem[], parentPath = "") => {
-    return items.map(({ name, path, icon, text, subItems, noPage, disabled }) => {
-      const isHashLink = path.startsWith("#");
-      const isAbsolutePath = path.startsWith("/");
-      if (mainDocs && name) path = name;
-      const prefix = parentPath || basePath;
-      const normalizePath = (base: string, sub: string) =>
-        `${base.replace(/\/$/, "")}/${sub.replace(/^\//, "")}`;
-      // In renderMenuItems:
-      const fullPath = isHashLink
-        ? normalizePath(prefix, path) // For hash links
-        : isAbsolutePath
-          ? path
-          : prefix
-            ? normalizePath(prefix, path)
-            : path;
-      const isDeepest = !subItems || subItems.length === 0;
-      const isActive = isDeepest
-        ? pathname === fullPath
-        : pathname.startsWith(fullPath + '/') || pathname === fullPath || path === '';
-      const isDisabled = disabled ?? false;
-      const isExpanded = expandedMenu[fullPath];
-      return (
-        <div key={fullPath} className="w-full">
-          <div
-            className={`flex items-center px-4 py-2 rounded-md transition-all duration-300 ease-in-out ${
-              isActive 
-                ? "bg-blue-900 hover:bg-blue-700 cursor-pointer" 
-                : isDisabled 
-                  ? "bg-gray-900 cursor-not-allowed"
-                  : "hover:bg-blue-700 cursor-pointer"
-            }`}
-          >
-            {isDeepest && isHashLink ? (
-              <Link
-                href={fullPath.replace('/#', '#')}
-                className="flex items-center gap-3"
-                onClick={(e) => handleClick(e, fullPath.replace('/#', '#'), path)}
-              >
-                {icon}
-                <span className="transition-opacity duration-300 ease-in-out">{text}</span>
-              </Link>
-            ) : (
-              <div className="flex items-center gap-3 w-full">
-                <>
-                  {!noPage && !isDisabled ? (
-                    <Link href={fullPath} className={`flex items-center gap-3 flex-grow ${isDisabled && "cursor-not-allowed"}`}>
-                      {icon}
-                      <span className="transition-opacity duration-300 ease-in-out">{text}</span>
-                    </Link>
-                  ) : (
-                    <div className={`flex items-center gap-3 flex-grow ${isDisabled && "text-gray-500"}`} onClick={() => { if (!isDisabled) toggleSubmenu(fullPath)}}>
-                      {icon}
-                      <span className="transition-opacity duration-300 ease-in-out">{text}</span>
-                    </div>
-                  )}
-                </>
-                {!isDeepest && (
-                  <button
-                    onClick={() => toggleSubmenu(fullPath)}
-                    className={`p-1 rounded ${!isDisabled ?"hover:bg-blue-600" : "cursor-not-allowed text-gray-500"} transition-colors`}
-                    aria-label="Toggle Submenu"
-                    disabled={isDisabled}
-                  >
-                    <ChevronDownIcon
-                      className={`w-5 h-5 transition-transform duration-300 ease-in-out ${
-                        isExpanded ? "rotate-180" : "rotate-0"
-                      }`}
-                    />
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-
-          {subItems && (
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isExpanded ? "max-h-[9000px]" : "max-h-0"
-              }`}
-            >
-              <div className="ml-6 pt-2">{renderMenuItems(subItems, fullPath)}</div>
-            </div>
-          )}
-        </div>
-      );
-    });
   };
 
   return (
@@ -275,11 +116,21 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
         className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-12 fixed left-0 z-51 bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out ${
           isSidebarVisible ? "translate-x-0 opacity-100" : "-translate-x-full"
         } overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
-        style={{
-          height: `calc(100vh - 47px)`,
-        }}
+        style={{ height: `calc(100vh - 47px)` }}
       >
-        <div id="sidebar" className="flex-1 overflow-y-auto pt-4 pb-16">{renderMenuItems(menuItems)}</div>
+        <div id="sidebar" className="flex-1 overflow-y-auto pt-4 pb-16">
+          {menuItems.map((item) => (
+            <SidebarItem
+              key={item.path}
+              item={item}
+              parentPath=""
+              basePath={basePath}
+              pathname={pathname}
+              mainDocs={mainDocs}
+              onLeafClick={handleClick}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Overlay on Small Screens */}
@@ -288,21 +139,21 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
           isSidebarVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsSidebarVisible(false)}
-      ></div>
+      />
 
       {/* Main Content Wrapper */}
       <div
         className="flex-1 transition-all duration-300 ease-in-out"
         style={{
-          marginLeft: 
+          marginLeft:
             isSidebarVisible
-              ? isDashboard && !isSmallScreen 
+              ? isDashboard && !isSmallScreen
                 ? "232px"
                 : isDocumentation && !isSmallScreen
-                  ? "342px"
-                  : isDatabasePage && !isSmallScreen
-                    ? "252px"
-                    : "0px"
+                ? "342px"
+                : isDatabasePage && !isSmallScreen
+                ? "252px"
+                : "0px"
               : "0px",
         }}
       >
@@ -316,21 +167,29 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
               className={`block w-6 h-1 bg-white transition-all duration-300 ease-in-out ${
                 isSidebarFrozen
                   ? ""
-                  : `${isSidebarVisible
-                    ? "group-hover:rotate-[-45deg] group-hover:translate-y-[0px]"
-                    : "group-hover:rotate-[45deg] group-hover:translate-y-[0px]"} group-hover:scale-110 group-hover:bg-gray-400`
-                }`}
-            ></span>
-            <span className={`block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out ${isSidebarFrozen ? "": "group-hover:opacity-0 group-hover:bg-gray-400"}`}></span>
+                  : `${
+                      isSidebarVisible
+                        ? "group-hover:-rotate-45 group-hover:translate-y-0"
+                        : "group-hover:rotate-45 group-hover:translate-y-0"
+                    } group-hover:scale-110 group-hover:bg-gray-400`
+              }`}
+            />
+            <span
+              className={`block w-6 h-1 bg-white transition-opacity duration-300 ease-in-out ${
+                isSidebarFrozen ? "" : "group-hover:opacity-0 group-hover:bg-gray-400"
+              }`}
+            />
             <span
               className={`block w-6 h-1 bg-white transition-all duration-300 ease-in-out ${
                 isSidebarFrozen
                   ? ""
-                  : `${isSidebarVisible
-                    ? "group-hover:rotate-[45deg] group-hover:-translate-y-[0px]"
-                    : "group-hover:rotate-[-45deg] group-hover:-translate-y-[0px]"} group-hover:scale-110 group-hover:bg-gray-400`
+                  : `${
+                      isSidebarVisible
+                        ? "group-hover:rotate-45 group-hover:translate-y-0"
+                        : "group-hover:-rotate-45 group-hover:translate-y-0"
+                    } group-hover:scale-110 group-hover:bg-gray-400`
               }`}
-            ></span>
+            />
           </button>
         </div>
       </div>
