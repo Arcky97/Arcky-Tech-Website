@@ -38,7 +38,7 @@ export const SettingsVersions = ({ v201, v211 }: { v201: string; v211: string })
                 onClick={toggle}
                 aria-expanded={isOpen}
                 aria-controls={`code-${version}`}
-                disabled={animating} // ✅ voorkom flip-flop tijdens animatie
+                disabled={animating}
               >
                 {isOpen ? "Collapse" : "Expand"}
               </button>
@@ -57,7 +57,7 @@ export const SettingsVersions = ({ v201, v211 }: { v201: string; v211: string })
               style={panelStyle}
               onTransitionEnd={onTransitionEnd}
             >
-              <CodeBlock language="ruby">{code}</CodeBlock>
+              <CodeBlock language="ruby">{code || "#No Essentials version specific code added."}</CodeBlock>
             </div>
           </div>
         );

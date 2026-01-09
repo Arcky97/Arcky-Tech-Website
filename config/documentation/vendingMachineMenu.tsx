@@ -7,12 +7,105 @@ export const vendingMachineMenu = {
   text: "Arcky's Vending Machine",
   subItems: [
     {
+      path: "features",
+      text: "Feature Overview"
+    },
+    {
       path: "update-history",
       text: "Update History"
     },
     {
       path: "installation",
       text: "Installation"
+    },
+    {
+      path: "setup",
+      text: "Event Setup"
+    },
+    {
+      path: "settings",
+      text: "Settings",
+      subItems: [
+        {
+          path: "badge-items",
+          text: "Badge Items"
+        },
+        {
+          path: "discounts",
+          text: "Discounts"
+        },
+        {
+          path: "text-color",
+          text: "Text Color"
+        },
+        {
+          path: "speeches",
+          text: "Speeches",
+          noPage: true,
+          subItems: [
+            {
+              path: "into-text",
+              text: "IntroText"
+            },
+            {
+              path: "choice-kick-text",
+              text: "ChoiceKickText"
+            },
+            {
+              path: "discount-text",
+              text: "DiscountText"
+            },
+            {
+              path: "item-amount-select",
+              text: "ItemAmountSelect"
+            },
+            {
+              path: "item-bonus-drop-text",
+              text: "ItemBonusDropText"
+            },
+            {
+              path: "item-drop-text",
+              text: "ItemDropText"
+            },
+            {
+              path: "item-select-text",
+              text: "ItemSelectText"
+            },
+            {
+              path: "item-stuck-text",
+              text: "ItemStuckText"
+            },
+            {
+              path: "kick-bonus-text",
+              text: "KickBonusText"
+            },
+            {
+              path: "kick-no-success-text",
+              text: "KickNoSuccessText"
+            },
+            {
+              path: "kick-success-text",
+              text: "KickSuccessText"
+            },
+            {
+              path: "no-kick-text",
+              text: "NoKickText"
+            },
+            {
+              path: "no-room-in-bag",
+              text: "NoRoomInBag"
+            },
+            {
+              path: "not-enough-money",
+              text: "NotEnoughMoney"
+            },
+            {
+              path: "overcharge-text",
+              text: "OverchargeText"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

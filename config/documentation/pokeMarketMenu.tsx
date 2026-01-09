@@ -8,7 +8,7 @@ export const pokeMarketMenu = {
   subItems: [
     {
       path: "features",
-      text: "Feature Overview"
+      text: "Features Overview"
     },
     {
       path: "update-history",
