@@ -22,6 +22,7 @@ FROM node:24 AS runner
 
 WORKDIR /usr/app
 ENV NODE_ENV=production
+ENV RESEND_API_KEY=${RESEND_API_KEY}
 
 # Copy only what is required to run
 COPY --from=builder /usr/app/package.json ./
