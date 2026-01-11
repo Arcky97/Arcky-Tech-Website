@@ -10,7 +10,7 @@ export default function Home() {
         <p className="text-lg text-gray-300 max-w mb-2">
           Hello, my name is Arcky. For years I&#39;ve been fascinated by coding, so I&#39;ve been working on a lot of different projects over the years. You can take a look yourself down below!
         </p>
-        <hr className="border-gray-600/75 border-t-1 mt-2 mb-4"/>
+        <hr className="border-gray-600/75 border-t mt-2 mb-4"/>
       </section>
       {/* News Section */}
       <LatestUpdates/>

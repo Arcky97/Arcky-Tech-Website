@@ -1,7 +1,31 @@
 export default function About() {
   return (
-    <div className="flex flex-col h-full items-center justify-center text-white">
-      <h1 className="text-3xl font-bold">About Us</h1>
-    </div>
+    <article className="flex flex-col pt-10 h-full items-center text-white text-center">
+      <section className="w-7/8 lg:w-5/8">
+        <h1 className="head2">About Me</h1>
+
+        <p className="text-lg text-gray-300 mb-4">
+          Hello! My name is Arcky. I&#39;m 28 years old and I live in Belgium.
+          I currently work full-time at a factory that specializes in developing
+          and building public transport buses, primarily for the European market,
+          with Belgium, France, the Netherlands, and Germany as key customers.
+        </p>
+
+        <p className="text-lg text-gray-300 mb-4">
+          In my free time, I work on various personal projects. These include my
+          own Discord bot called <strong>Doggo Bot</strong>, this website, several
+          plugins for the Essentials project, and more recently, a PBS editor
+          built specifically for Essentials.
+        </p>
+
+        <p className="text-lg text-gray-300">
+          Outside of development, I enjoy staying active through fitness, gaming,
+          and building LEGO sets. I&#39;m also a fan of anime and have started learning
+          Japanese out of curiosity and appreciation for the culture. Most of my
+          hobbies revolve around building, learning, or improving — whether
+          that&#39;s through code, fitness, or studying a new language.
+        </p>
+      </section>
+    </article>
   );
 }

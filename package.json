@@ -1,6 +1,6 @@
 {
   "name": "arcky-tech",
-  "version": "1.19.1.0",
+  "version": "1.20.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -29,6 +29,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-select": "^5.10.2",
+    "resend": "^6.7.0",
     "simple-markdown": "^0.7.3",
     "typeorm": "^0.3.28",
     "zod": "^4.2.1"

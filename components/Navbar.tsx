@@ -69,7 +69,7 @@ export default function Navbar() {
             isHomePage
               ? isScrolled
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-[-20px]"
+                : "opacity-0 -translate-y-5"
               : "opacity-100"
           }`}
         >

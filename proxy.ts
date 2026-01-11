@@ -12,11 +12,11 @@ const disabledPatterns = [
   /^\/doggo-bot\/dashboard\/[^/]+\/embeds$/,
   /^\/doggo-bot\/dashboard\/[^/]+\/settings$/,
   /^\/documentation\/graphic-transparency/,
-  /^\/documentation\/vending-machine/,
+  ///^\/documentation\/vending-machine/,
   /^\/projects/,
   /^\/scoreboard/,
-  /^\/about/,
-  /^\/contact/
+  ///^\/about/,
+  ///^\/contact/
 ];
 
 const blockedIPs = ["172.237.55.180", "149.248.44.88"];
