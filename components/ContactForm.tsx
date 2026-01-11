@@ -21,8 +21,7 @@ export default function ContactForm() {
 
       setStatus("success");
       //e.currentTarget.reset();
-    } catch(e) {
-      console.log(e);
+    } catch {
       setStatus("error");
     }
   }
