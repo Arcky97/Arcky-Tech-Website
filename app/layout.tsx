@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MainLayoutWrapper from "@/components/MainLayoutWrapper";
+import PageVisitTracker from "@/components/PageVisitTracker";
 
 export const metadata: Metadata = {
   title: "Arcky-Tech",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="./favicon.png" type="image/png"/>
       </head>
       <body className="flex flex-col h-full">
+        <PageVisitTracker />
         <MainLayoutWrapper>{children}</MainLayoutWrapper>
       </body>
     </html>

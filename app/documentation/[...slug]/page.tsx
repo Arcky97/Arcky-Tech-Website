@@ -122,7 +122,7 @@ export default async function Page({
         ))}
         <h3 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h3>
         <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
-        <hr className="border-gray-600/75 border-t-1 mt-2"></hr>
+        <hr className="border-gray-600/75 border-t mt-2"></hr>
       </section>}
 
       <section className={styles.section}>

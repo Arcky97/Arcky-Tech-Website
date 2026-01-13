@@ -27,7 +27,7 @@ export const vendingMachineMenu = {
       text: "Settings",
       subItems: [
         {
-          path: "badge-items",
+          path: "badges-items",
           text: "Badge Items"
         },
         {
@@ -35,16 +35,15 @@ export const vendingMachineMenu = {
           text: "Discounts"
         },
         {
-          path: "text-color",
+          path: "text-colors",
           text: "Text Color"
         },
         {
           path: "speeches",
           text: "Speeches",
-          noPage: true,
           subItems: [
             {
-              path: "into-text",
+              path: "intro-text-vm",
               text: "IntroText"
             },
             {

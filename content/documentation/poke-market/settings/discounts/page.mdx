@@ -30,7 +30,7 @@ You can set up discounts in three ways:
 Use a Game Variable and assign it an array of percentage values (e.g., `4` = 4% discount).
 
 ```ruby
-DISCOUNTS = {
+Discounts = {
   27 => [0, 1, 4, 7, 11]
 }
 ```
@@ -77,7 +77,7 @@ DISCOUNTS = {
 You can combine an **item requirement** with one or more **Game Variables**.
 
 ```ruby
-DISCOUNTS = {
+Discounts = {
   :COUPONA => { 
     26 => [0, 3, 6, 8, 10],
     28 => [0, -2, -5] 
@@ -151,14 +151,14 @@ You can  combine discount and overcharge values - just be careful not to duplica
 ### Example - Scaling Discounts and Overcharges
 
 ```ruby
-DISCOUNTS = {
+Discounts = {
   29 => [10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -12]
 }
 ```
 Or with an item requirement:
 
 ```ruby
-DISCOUNTS = {
+Discounts = {
   :COUPONB => {
     29 => [10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -12]
   }
