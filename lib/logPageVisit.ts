@@ -1,6 +1,6 @@
 export async function logPageVisit(path: string) {
   try {
-    await fetch("http://144.91.102.161:3012/api/visits", {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/visits`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
