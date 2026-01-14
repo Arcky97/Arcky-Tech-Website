@@ -1,6 +1,6 @@
 export async function logPageVisit(path: string) {
   try {
-    await fetch(`https://api.arcky-tech.be/api/visits/v1`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/visits/v1`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
