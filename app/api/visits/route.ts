@@ -1,10 +1,19 @@
-// /app/api/visits/route.ts
+import { NextResponse } from "next/server";
+
 export async function POST(req: Request) {
-  return fetch(`${process.env.API_BASE}/api/visits/v1`, {
+  const body = await req.json();
+
+  const res = await fetch(`${process.env.API_BASE}/api/visits/v1`, {
     method: "POST",
     headers: {
-      "x-api-key": process.env.API_KEY!
+      "Content-Type": "application/json",
+      "x-api-key": process.env.API_KEY_WEBSITE!
     },
-    body: await req.text()
+    body: JSON.stringify(body)
   });
+
+  return NextResponse.json(
+    { success: true },
+    { status: res.status }
+  );
 }

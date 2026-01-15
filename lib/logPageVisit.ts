@@ -11,7 +11,7 @@ export async function logPageVisit(path: string) {
         userAgent: navigator.userAgent
       })
     });
-  } catch {
+  } catch(error) {
     // fail silently
   }
 }
