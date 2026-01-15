@@ -1,10 +1,10 @@
 export async function logPageVisit(path: string) {
   try {
-    await fetch(`https://api.arcky-tech.be/api/visits/v1`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/visits/v1`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "ebc905a8edad5cdf605d9ad5d13f5d0873f0c8e661e3a48192d281e74def447d"
+        "x-api-key": process.env.NEXT_PUBLIC_API_KEY_WEBSITE!
       },
       body: JSON.stringify({
         path,
