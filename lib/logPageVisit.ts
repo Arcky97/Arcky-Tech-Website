@@ -1,10 +1,9 @@
 export async function logPageVisit(path: string) {
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/visits/v1`, {
+    await fetch("/api/visits", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.NEXT_PUBLIC_API_KEY_WEBSITE!
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         path,
@@ -13,6 +12,6 @@ export async function logPageVisit(path: string) {
       })
     });
   } catch {
-    
+    // fail silently
   }
 }
