@@ -1,6 +1,6 @@
 {
   "name": "arcky-tech",
-  "version": "1.21.1.6",
+  "version": "1.21.1.7",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
