@@ -36,7 +36,7 @@
     "next.config.mjs",
     "mdx-componenents.tsx",
     ".next/dev/types/**/*.ts"
-  ],
+, "content/documentation/pbs-editor/pages/town-map/page.mdx"  ],
   "exclude": [
     "node_modules"
   ]
