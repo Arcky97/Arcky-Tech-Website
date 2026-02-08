@@ -52,6 +52,10 @@ export const pbsEditorMenu = {
           text: "Pokémon Forms"
         },
         {
+          path: "town-map",
+          text: "Town Map"
+        },
+        {
           path: "trainers",
           text: "Trainers"
         },
