@@ -9,6 +9,11 @@ const withMDX = createMDX({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
+  generateBuildId: async () => {
+    return process.env.GIT_COMMIT_SHA || Date.now().toString();
+  },
+  
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   images: {
     remotePatterns: [

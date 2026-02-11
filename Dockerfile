@@ -3,6 +3,8 @@ FROM node:24 AS builder
 
 WORKDIR /usr/app
 
+ARG COMMIT_SHA
+ENV GIT_COMMIT_SHA=$COMMIT_SHA
 # Copy only dependency manifests first (better caching + safety)
 COPY package.json package-lock.json ./
 
