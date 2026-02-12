@@ -1,6 +1,6 @@
 "use client"
 import Sidebar from "@/components/Sidebar"
-import { graphicsTransparencyMenu, pokeMarketMenu, regionMapMenu, vendingMachineMenu } from "@/config";
+import { arckyTutorialsMenu, graphicsTransparencyMenu, pokeMarketMenu, regionMapMenu, vendingMachineMenu } from "@/config";
 import { pbsEditorMenu } from "@/config/documentation/pbsEditorMenu";
 import { usePathname } from "next/navigation";
 
@@ -12,7 +12,8 @@ export default function DocumentationLayout({ children }: { children: React.Reac
     regionMapMenu,
     pokeMarketMenu,
     graphicsTransparencyMenu,
-    vendingMachineMenu
+    vendingMachineMenu,
+    arckyTutorialsMenu
   ];
 
   const menuItemToUse = pathname.startsWith('/documentation/') 

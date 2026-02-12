@@ -3,3 +3,4 @@ export * from "./documentation/pokeMarketMenu";
 export * from "./documentation/regionMapMenu";
 export * from "./documentation/vendingMachineMenu";
 export * from "./documentation/pbsEditorMenu";
+export * from "./documentation/arckyTutorials";
