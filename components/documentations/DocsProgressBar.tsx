@@ -38,7 +38,7 @@ export default function DocsProgressBar() {
 
   if (!progressData || showLoading) {
     return (
-      <div className="space-y-4">
+      <div className="space-y-4 mb-4">
         {Array.from({ length: 5 }).map((_, index) => (
           <Skeleton key={`sleleton-${index}`} color="bg-gray-800" width="w-full" height="h-full" rounded="rounded-xl" className="p-4 shadow border border-gray-600/75" variant="pulse"> 
             <Skeleton width="w-1/2" height="h-6" className="mx-auto mb-3"/>
@@ -51,7 +51,7 @@ export default function DocsProgressBar() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mb-4">
       {progressData.map((data, index) => (
         <div key={`progress-${index}]`} className="w-full p-4 bg-gray-800 rounded-xl shadow border border-gray-600/75">
           <h2 className="text-lg font-semibold mb-2 text-white text-center">{data.project} Documentation Progress</h2>

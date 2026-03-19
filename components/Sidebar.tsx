@@ -150,7 +150,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
               ? isDashboard && !isSmallScreen
                 ? "232px"
                 : isDocumentation && !isSmallScreen
-                ? "342px"
+                ? "275px"
                 : isDatabasePage && !isSmallScreen
                 ? "252px"
                 : "0px"

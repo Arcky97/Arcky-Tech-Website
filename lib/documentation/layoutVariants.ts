@@ -71,7 +71,20 @@ const layoutVariants: Record<string, LayoutVariants> = {
   'quest': { group: 'speechVariants' },
   'berry': { group: 'speechVariants' },
   'trainer': { group: 'speechVariants' },
-  'pokedex': { group: 'speechVariants' }
+  'pokedex': { group: 'speechVariants' },
+  'vaultwarden-self-host-vps': { group: 'speechVariants' },
+  'episode-1': { group: 'speechVariants' },
+  'episode-2': { group: 'speechVariants' },
+  'episode-3': { group: 'speechVariants' },
+  'episode-4': { group: 'speechVariants' },
+  'episode-5': { group: 'speechVariants' },
+  'episode-6': { group: 'speechVariants' },
+  'episode-7': { group: 'speechVariants' },
+  'episode-8': { group: 'speechVariants' },
+  'episode-9': { group: 'speechVariants' },
+  'episode-10': { group: 'speechVariants' },
+  'episode-11': { group: 'speechVariants' },
+  'episode-12': { group: 'speechVariants' }
 }
 
 export function getStyles(slug: string[]): StyleConfig {

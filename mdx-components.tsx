@@ -42,8 +42,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     pre:({children}) => {
       const codeString = children?.props?.children ?? "";
-      const language = children?.props?.className?.replace("language-", "") ?? "text";
-      return <CodeBlock language={language}>{codeString}</CodeBlock>
+      const className = children?.props?.className ?? "";
+
+      let language = "text";
+      let filename: string | undefined;
+
+      if (className.startsWith("language-")) {
+        const parts = className.replace("language-", "").split(":");
+        language = parts[0];
+        if (parts[1]) filename = parts[1];
+      }
+      return <CodeBlock language={language} filename={filename}>{codeString}</CodeBlock>
     },
     hr: () => (
       <hr className="horRule"/>
@@ -54,6 +63,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     em: ({children}) => (
       <em className="text-orange-100">{children}</em>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-gray-600 pl-4 italic text-gray-200 my-4 bg-linear-85 from-gray-800/80 to-gray-900">
+        {children}
+      </blockquote>
     ),
     Bl: ({children}) => (
       <TC color="blue-400">{children}</TC>

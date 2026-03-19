@@ -63,8 +63,8 @@ export default function Navbar() {
         <h1
           className={`${
             isShrunk
-              ? "lg:text-2xl text-xl"
-              : "lg:text-3xl text-2xl"
+              ? "lg:text-2xl sm:text-xl text-base"
+              : "lg:text-3xl sm:text-2xl text-base"
             } font-bold transition-all duration-300 ease-in-out ${
             isHomePage
               ? isScrolled
@@ -73,7 +73,7 @@ export default function Navbar() {
               : "opacity-100"
           }`}
         >
-          <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">{!isTinyScreen ? "Arcky-Tech" : ""}</Link>
+          <Link href="/" className="hover:text-gray-400 transition-all duration-300 ease-in-out">{!isTinyScreen || !hasSideNav ? "Arcky-Tech" : ""}</Link>
         </h1>
         {/* Icons and Name (desktop only) */}
         <div className={`flex ${isSmallScreen ? 'space-x-4' : 'space-x-5' }`}>
@@ -107,7 +107,7 @@ export default function Navbar() {
               isShrunk={isShrunk}
             />
           )}
-          {isDoggoBotPage ? (
+          {isDoggoBotPage && (
             <>
               <NavbarItem
                 href="/documentation/doggo-bot"
@@ -117,28 +117,21 @@ export default function Navbar() {
                 isShrunk={isShrunk}
               />
             </>
-          ) : (
-            <>
-              {(!isDocumentationPage || (isDocumentationPage && !isSmallScreen)) && (
-                <>
-                  <NavbarItem
-                    href="/about"
-                    icon="InformationCircleIcon"
-                    text="About"
-                    isSmallScreen={isSmallScreen}
-                    isShrunk={isShrunk}
-                  />
-                  <NavbarItem
-                    href="/contact"
-                    icon="UsersIcon"
-                    text="Contact"
-                    isSmallScreen={isSmallScreen}
-                    isShrunk={isShrunk}
-                  />
-                </>
-              )}
-            </>
           )}
+          <NavbarItem
+            href="/about"
+            icon="InformationCircleIcon"
+            text="About"
+            isSmallScreen={isSmallScreen}
+            isShrunk={isShrunk}
+          />
+          <NavbarItem
+            href="/contact"
+            icon="UsersIcon"
+            text="Contact"
+            isSmallScreen={isSmallScreen}
+            isShrunk={isShrunk}
+          />
           {/* Auth Buttons */}
         </div>
       </div>
