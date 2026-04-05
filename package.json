@@ -1,6 +1,6 @@
 {
   "name": "arcky-tech",
-  "version": "1.23.0.0",
+  "version": "1.24.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -21,6 +21,7 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.34.0",
     "highlight.js": "^11.11.1",
+    "lightgallery": "^2.9.0",
     "lucide-react": "^0.563.0",
     "mysql2": "^3.17.0",
     "next": "^16.1.6",

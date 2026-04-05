@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import LinkWithPreview from "./components/LinkWithPreview";
 import { ImageWithCaption } from "./components/ImageWithCaption";
+import { MediaGallery } from "./components/MediaGallery";
 import { CodeBlock, InlineCode } from "./components/CodeBlock";
 import { Callout } from "./components/Callout";
 import { TextColor as TC } from "./components/TextColor"
@@ -92,6 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     Header,
     ImageWithCaption,
+    MediaGallery,
     Callout,
     TC,
     Table,
