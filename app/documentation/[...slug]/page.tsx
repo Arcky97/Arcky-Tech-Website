@@ -129,7 +129,7 @@ export default async function Page({
         {tablePosts.map(({ name, anchorId, Component }, i) => (
           <div key={`section-${i}`} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
             {styles.date && <h4 className={styles.date}>{name}</h4>}
-            <Component key={`comp-${i}`}/>
+            <Component/>
           </div>
         ))}
       </section>

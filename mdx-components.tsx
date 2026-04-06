@@ -14,6 +14,14 @@ import EmblaCarousel from "./components/EmblaCarousel";
 import YouTubeEmbed from "./components/YouTubeEmbed";
 import ColorButton from "./components/ColorButton";
 import { SettingsVersions as SetVer } from "./components/documentations/SettingsVersions";
+import React from "react";
+
+function wrapWithKeys(children: React.ReactNode) {
+  return React.Children.map(children, (child, i) => {
+    if (!React.isValidElement(child)) return child;
+    return React.cloneElement(child, { key: i });
+  });
+}
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -30,10 +38,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <p className="text-white text-base font-normal text-left">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "revert"}}>{children}</ul>
+      <ul className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "revert"}}>
+        {wrapWithKeys(children)}
+      </ul>
     ),
     ol: ({ children }) => (
-      <ol className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "decimal"}}>{children}</ol>
+      <ol className="text-base font-normal text-left marker:text-white mt-2" style={{ listStyleType: "decimal"}}>
+        {wrapWithKeys(children)}
+      </ol>
     ),
     li: ({ children }) => (
       <li className="ml-6 text-gray-300 leading-relaxed text-md mb-2 wrap-break-word">{children}</li>

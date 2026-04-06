@@ -18,7 +18,7 @@ const sizeValues: Record<Size, string> = {
   full: "max-w-full",
   tiny: "max-w-1/5",
   small: "max-w-2/5",
-  medium: "max-w-3/5",
+  medium: "max-w-1/2",
   large: "max-w-4/5"
 };
 
@@ -33,18 +33,22 @@ interface MediaGalleryProps {
   items: MediaItem[];
   size: Size;
   align: Align;
-  backdropOpacity?: number; // optional, default 0.7
+  backdropOpacity?: number;
 }
 
-export const MediaGallery: React.FC<MediaGalleryProps> = ({ items, size, align, backdropOpacity = 0.9 }) => {
+export const MediaGallery: React.FC<MediaGalleryProps> = ({
+  items,
+  size,
+  align,
+  backdropOpacity = 0.9
+}) => {
 
   useEffect(() => {
-    // Initialize PhotoSwipe
     const lightbox = new PhotoSwipeLightbox({
       gallery: "#pswp-gallery",
       children: "a",
       pswpModule: () => import("photoswipe"),
-      showHideAnimationType: "zoom", // smooth zoom
+      showHideAnimationType: "zoom",
       bgOpacity: backdropOpacity,
       easing: 'cubic-bezier(.4,0,.22,1)',
       zoomAnimationDuration: 300,
@@ -54,9 +58,7 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ items, size, align, 
     
     lightbox.init();
 
-    return () => {
-      lightbox.destroy();
-    };
+    return () => lightbox.destroy();
   }, [backdropOpacity]);
 
   return (
@@ -66,33 +68,37 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ items, size, align, 
         "my-5 grid gap-3",
         sizeValues[size],
         alignMargins[align],
-        items.length === 1
-          ? "grid-cols-1"
-          : items.length === 2
-            ? "md:grid-cols-2"
-            : "md:grid-cols-2 lg:grid-cols-3"
+        `${items.length >= 3
+          ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          : items.length == 2
+            ? "grid-cols-1 sm:grid-cols-2"
+            : "grid-cols-1"
+        }`
       )}
     >
-      {items.map((item, idx) => (
-        <a
-          key={idx}
-          href={item.src}
-          data-pswp-width={item.width}
-          data-pswp-height={item.height}
-          data-caption={item.alt || ""}
-        >
-          <Image
-            src={item.src}
-            alt={item.alt || ""}
-            width={item.width}
-            height={item.height}
-            style={{ display: "block" }}
-          />
-          {item.alt && (
-            <p className="text-center text-[#ccc] text-sm mt-2">{item.alt}</p>
-          )}
-        </a>
-      ))}
+      {items.map((item, idx) => {
+        return (
+          <div key={`gallery-${idx}`} className="relative">
+            <a
+              href={"/images/" + item.src}
+              data-pswp-width={item.width}
+              data-pswp-height={item.height}
+              data-caption={item.alt || ""}
+            >
+              <Image
+                src={"/images/" + item.src}
+                alt={item.alt || ""}
+                width={item.width}
+                height={item.height}
+                style={{ display: "block" }}
+              />
+            </a>
+            {item.alt && (
+              <p className="text-center text-[#ccc] text-sm mt-2">{item.alt}</p>
+            )}
+          </div>
+        )
+      })}
     </div>
   );
 };
