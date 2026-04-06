@@ -116,7 +116,7 @@ export default async function Page({
     <article key={slug[0]} className={`${styles.wrapper} pb-4`} >
       {styles.card && <section className="pb-6">
         {header && header.map(({Component}, i) => (
-          <div key={i} >
+          <div key={`header-${i}`} >
             <Component/>
           </div>
         ))}
@@ -127,9 +127,9 @@ export default async function Page({
 
       <section className={styles.section}>
         {tablePosts.map(({ name, anchorId, Component }, i) => (
-          <div key={i} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
+          <div key={`section-${i}`} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
             {styles.date && <h4 className={styles.date}>{name}</h4>}
-            <Component/>
+            <Component key={`comp-${i}`}/>
           </div>
         ))}
       </section>
