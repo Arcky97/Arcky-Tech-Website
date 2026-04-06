@@ -79,7 +79,7 @@ export const MediaGallery: React.FC<MediaGalleryProps> = ({ items, size, align }
         const isVideo = item.type === "video" || item.src.match(/\.(mp4|webm|ogg)$/i);
         return (
           <>
-            <Link key={idx} href={item.src} data-sub-html={item.alt || ""} data-lg-size={`${item.width}-${item.height}`}
+            <Link key={`media-${idx}`} href={item.src} data-sub-html={item.alt || ""} data-lg-size={`${item.width}-${item.height}`}
             >
               {isVideo ? (
                 <video
