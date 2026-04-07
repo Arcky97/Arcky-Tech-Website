@@ -69,6 +69,9 @@ export const pbsEditorMenu = {
         }
       ]
     },
-
+    {
+      path: "import",
+      text: "Importing Entries"
+    }
   ]
 }
