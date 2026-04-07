@@ -14,6 +14,7 @@ import EmblaCarousel from "./components/EmblaCarousel";
 import YouTubeEmbed from "./components/YouTubeEmbed";
 import ColorButton from "./components/ColorButton";
 import { SettingsVersions as SetVer } from "./components/documentations/SettingsVersions";
+import { DocsVersionBlock as VerBlock } from "./components/documentations/DocsVersionBlock";
 import React from "react";
 
 function wrapWithKeys(children: React.ReactNode) {
@@ -116,6 +117,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     EmblaCarousel,
     ColorButton,
     SetVer,
+    VerBlock,
     ...components
   }
 }
