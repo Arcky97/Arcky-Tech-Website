@@ -69,7 +69,7 @@ export const DocsVersionBlock = ({
   return (
     <div>
       <br/>
-      {versions.map(({ key, title, code }) => {{
+      {versions.map(({ key, title, code }) => {
         const isOpen = openMap[key];
 
         return (
@@ -106,7 +106,7 @@ export const DocsVersionBlock = ({
             </div>
           </div>
         )
-      }})}
+      })}
     </div>
   )
 }
