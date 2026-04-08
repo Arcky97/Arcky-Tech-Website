@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
-import { generateStaticParams } from '@/lib/documentation/mdxParams';
 import DocsTableOfContents from '@/components/documentations/DocsTableOfContents';
 import { notFound, redirect } from 'next/navigation';
+import matter from 'gray-matter';
 
 export default async function Page({
   params
@@ -85,13 +85,16 @@ export default async function Page({
       const match = raw.match(/^## (.+)$/m);
       const title = match?.[1] || file.replace('.mdx', '');
       const anchorId = slugify(title);
-
+      
       let Component;
+      let layout = null;
+      
       try {
         const mod = await import(
           `@/content/documentation/${nestedPath}/${file}`
         );
         Component = mod.default;
+        layout = mod.layout || null;
       } catch (err) {
         console.error(`❌ Error loading MDX file: ${nestedPath}/${file}`, err);
         Component = function FailedToLoadComponent() {
@@ -103,23 +106,25 @@ export default async function Page({
         }
       }
 
-      return { name: file.replace('.mdx', ''), title, anchorId, Component }
+      return { name: file.replace('.mdx', ''), title, anchorId, Component, layout }
     })
   );
 
   const tablePosts = posts.filter(({name}) => name !== 'header');
-  const header = posts.filter(({name}) => name === 'header');
+  const headerPost = posts.find(p => p.name === 'header');
 
-  const styles = getStyles(slug);
+  const pageLayout = headerPost?.layout || null;
+
+  const styles = getStyles(slug, pageLayout);
 
   return (
     <article key={slug[0]} className={`${styles.wrapper} pb-4`} >
       {styles.card && <section className="pb-6">
-        {header && header.map(({Component}, i) => (
-          <div key={`header-${i}`} >
-            <Component/>
+        {headerPost && (
+          <div>
+            <headerPost.Component/>
           </div>
-        ))}
+        )}
         <h3 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h3>
         <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
         <hr className="border-gray-600/75 border-t mt-2"></hr>
@@ -136,5 +141,3 @@ export default async function Page({
     </article>
   )
 }
-
-generateStaticParams();
