@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CodeBlock } from "../CodeBlock";
 
 interface DocsVersionBlockProps {
@@ -23,6 +23,18 @@ export const DocsVersionBlock = ({
 }: DocsVersionBlockProps ) => {
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
   const refs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [heights, setHeights] = useState<Record<string, number>>({});
+
+  useLayoutEffect(() => {
+    const nextHeights = { ...heights };
+
+    versions.forEach(v => {
+      const el = refs.current[v.key];
+      if (el) nextHeights[v.key] = el.scrollHeight;
+    });
+
+    setHeights(nextHeights);
+  }, [versions, heights]);
 
   useEffect(() => {
     try {
@@ -55,13 +67,10 @@ export const DocsVersionBlock = ({
   };
 
   const getStyle = (key: string): React.CSSProperties => {
-    const el = refs.current[key];
     const isOpen = openMap[key];
 
-    if (!el) return { height: 0, opacity: 0 };
-
     return {
-      height: isOpen ? el.scrollHeight : 0,
+      height: isOpen ? heights[key] ?? 0 : 0,
       opacity: isOpen ? 1 : 0
     };
   };

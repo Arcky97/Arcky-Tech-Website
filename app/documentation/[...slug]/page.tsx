@@ -4,7 +4,7 @@ import { getStyles } from '@/lib/documentation/layoutVariants';
 import { slugify } from '@/lib/slugify';
 import DocsTableOfContents from '@/components/documentations/DocsTableOfContents';
 import { notFound, redirect } from 'next/navigation';
-import matter from 'gray-matter';
+
 
 export default async function Page({
   params
