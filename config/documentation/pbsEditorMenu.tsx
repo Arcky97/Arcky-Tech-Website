@@ -21,11 +21,111 @@ export const pbsEditorMenu = {
         },
         {
           path: "abilities",
-          text: "Abilities"
+          text: "Abilities",
+          subItems: [
+            {
+              path: "#overview",
+              text: "Overview"
+            },
+            {
+              path: "#wiki",
+              text: "Wiki"
+            },
+            {
+              path: "#settings",
+              text: "Settings"
+            },
+            {
+              path: "#import-abilities",
+              text: "Import Abilities"
+            },
+            {
+              path: "#file-selection",
+              text: "File Selection"
+            },
+            {
+              path: "#ability-selection",
+              text: "Ability Selection"
+            },
+            {
+              path: "#id",
+              text: "ID"
+            },
+            {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#description",
+              text: "Description"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#other-parameters",
+              text: "Other Parameters"
+            },
+            {
+              path: "#ability-overwrite",
+              text: "Ability Overwrite"
+            }
+          ]
         },
         {
           path: "berry-plants",
-          text: "Berry Plants"
+          text: "Berry Plants",
+          subItems: [
+                        {
+              path: "#overview",
+              text: "Overview"
+            },
+            {
+              path: "#wiki",
+              text: "Wiki"
+            },
+            {
+              path: "#settings",
+              text: "Settings"
+            },
+            {
+              path: "#import-berry-plants",
+              text: "Import Berry Plants"
+            },
+            {
+              path: "#file-selection",
+              text: "File Selection"
+            },
+            {
+              path: "#berry-plant-selection",
+              text: "Berry Plant Selection"
+            },
+            {
+              path: "#id",
+              text: "ID"
+            },
+            {
+              path: "#hours-per-stage",
+              text: "Hours per Stage"
+            },
+            {
+              path: "#drying-per-hour",
+              text: "Drying per Hour"
+            },
+            {
+              path: "#yield",
+              text: "Yield"
+            },
+            {
+              path: "#other-parameters",
+              text: "Other Parameters"
+            },
+            {
+              path: "#berry-plant-overwrite",
+              text: "Berry Plant Overwrite"
+            }
+          ]
         },
         {
           path: "encounters",

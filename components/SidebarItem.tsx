@@ -97,7 +97,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
         {isDeepest && isHashLink ? (
           <Link
             href={fullPath.replace("/#", "#")}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 w-full"
             onClick={(e) => onLeafClick?.(e, fullPath.replace("/#", "#"), path)}
           >
             {icon}

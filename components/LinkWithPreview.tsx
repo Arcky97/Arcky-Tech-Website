@@ -21,7 +21,7 @@ export default function LinkWithPreview({ href = "", children, ...rest }: Props)
       setPreview(
         <>
           <strong className="block">External link:</strong>
-          <span className="text-gray-300 break-words">{href}</span>
+          <span className="text-gray-300 wrap-break-word">{href}</span>
         </>
       );
     } else if (isAnchor) {

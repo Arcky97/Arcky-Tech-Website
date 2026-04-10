@@ -12,7 +12,7 @@ type Props = {
   offset?: number;
 }
 
-export default function DocsTableOfContents({ items, offset = 65 }: Props) {
+export default function DocsTableOfContents({ items, offset = 60 }: Props) {
   const columns = useResponsiveColumns(Math.ceil(items.length / 15));
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
