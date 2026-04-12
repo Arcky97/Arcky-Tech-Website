@@ -119,25 +119,28 @@ export default async function Page({
 
   return (
     <article key={slug[0]} className={`${styles.wrapper} pb-4`} >
-      {styles.card && <section className="pb-6">
-        {headerPost && (
-          <div>
-            <headerPost.Component/>
-          </div>
-        )}
-        <h3 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h3>
-        <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
-        <hr className="border-gray-600/75 border-t mt-2"></hr>
-      </section>}
-
-      <section className={styles.section}>
+      {styles.card && 
+        <>
+          {headerPost && (
+            <>
+              <headerPost.Component/>
+            </>
+          )}
+          <section className="pb-6">
+            <h3 className="text-2xl lg:text-3xl mt-4 font-bold mb-4">Table of Contents</h3>
+            <DocsTableOfContents items={tablePosts.map(({ title, anchorId }) => ({ title, anchorId }))}/>
+            <hr className="border-gray-600/75 border-t mt-2"></hr>
+          </section>
+        </>
+      }
+      <div className={styles.section}>
         {tablePosts.map(({ name, anchorId, Component }, i) => (
-          <div key={`section-${i}`} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
+          <section key={`section-${i}`} id={anchorId} className={`anchor-target ${styles.card ?? ''}`}>
             {styles.date && <h4 className={styles.date}>{name}</h4>}
             <Component/>
-          </div>
+          </section>
         ))}
-      </section>
+      </div>
     </article>
   )
 }

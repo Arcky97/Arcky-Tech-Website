@@ -1,4 +1,5 @@
 "use client";
+import { useRef } from "react";
 import LinkWithPreview from "../LinkWithPreview";
 import { useResponsiveColumns } from "@/hooks/useResponsiveColumns";
 
@@ -13,6 +14,8 @@ type Props = {
 }
 
 export default function DocsTableOfContents({ items, offset = 60 }: Props) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const columns = useResponsiveColumns(Math.ceil(items.length / 15));
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -31,20 +34,24 @@ export default function DocsTableOfContents({ items, offset = 60 }: Props) {
   };
 
   return (
-    <div className="w-full flex justify-left">
+    <div ref={containerRef} className="w-full flex justify-left">
       <ul 
-        className="pb-4 space-y-2 list-disc list-inside [&>li]:break-inside-avoid"
+        className="list-none pl-0 pb-4 space-y-2"
         style={{
           columnCount: columns,
           columnGap: "2rem",
         }}  
       >
         {items.map(({ title, anchorId }) => (
-          <li key={anchorId}>
+          <li key={anchorId} className="flex gap-2">
+            <span className="shrink-0 text-gray-400">•</span>
             <LinkWithPreview
               href={`#${anchorId}`}
+              title={title}
               className="text-blue-400 hover:underline"
               onClick={(e) => handleClick(e, anchorId)}
+              containerRef={containerRef}
+
             >
               {title}
             </LinkWithPreview>
@@ -52,6 +59,5 @@ export default function DocsTableOfContents({ items, offset = 60 }: Props) {
         ))}
       </ul>
     </div>
-
-  )
+  );
 }

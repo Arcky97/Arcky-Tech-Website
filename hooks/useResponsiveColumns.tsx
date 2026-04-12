@@ -9,7 +9,7 @@ export function useResponsiveColumns(ideal: number) {
       const width = window.innerWidth;
 
       let maxColumns;
-      if (width < 440) maxColumns = 1;
+      if (width < 455) maxColumns = 1;
       else if (width < 640) maxColumns = 2;
       else if (width < 1024) maxColumns = 3;
       else maxColumns = 4;
