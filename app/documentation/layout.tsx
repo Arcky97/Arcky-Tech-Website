@@ -19,10 +19,10 @@ export default function DocumentationLayout({ children }: { children: React.Reac
   const menuItemToUse = pathname.startsWith('/documentation/') 
     ? menuItems.filter(menuItem => pathname.includes(menuItem.name))
     : menuItems.map(({ ...rest }) => rest )
-  
+
   return (
     <div className="flex h-full">
-      <Sidebar menuItems={menuItemToUse} mainDocs={!pathname.startsWith('/documentation/')}/>
+      <Sidebar menuItems={menuItems} docType={menuItemToUse.length === 1 ? menuItemToUse[0].name : "main"} mainDocs={!pathname.startsWith('/documentation/')}/>
       <>
         {children}
       </>

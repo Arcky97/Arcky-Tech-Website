@@ -3,7 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { SidebarItem, MenuItem } from "./SidebarItem"; // ← nieuw: import subcomponent
 
-export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]; mainDocs?: boolean }) {
+type DocType = "main" | "region-map" | "arcky-tutorials" | "pbs-editor" | "poke-market" | "vending-machine" | string;
+
+export default function Sidebar({ menuItems, docType, mainDocs }: { menuItems: MenuItem[];  docType?: DocType, mainDocs?: boolean }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isSidebarFrozen, setIsSidebarFrozen] = useState(false);
@@ -11,6 +13,7 @@ export default function Sidebar({ menuItems, mainDocs }: { menuItems: MenuItem[]
   const router = useRouter();
   const previousPathRef = useRef<string | null>(null);
   const hasScrolledToActive = useRef(false);
+  const activeItem = menuItems.find(item => item.name === docType)?.name;
 
   const isDashboard = pathname.startsWith("/doggo-bot/dashboard");
   const isDocumentation = pathname.startsWith("/documentation");
