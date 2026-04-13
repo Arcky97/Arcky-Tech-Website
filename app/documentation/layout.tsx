@@ -22,7 +22,7 @@ export default function DocumentationLayout({ children }: { children: React.Reac
 
   return (
     <div className="flex h-full">
-      <Sidebar menuItems={menuItems} docType={menuItemToUse.length === 1 ? menuItemToUse[0].name : "main"} mainDocs={!pathname.startsWith('/documentation/')}/>
+      <Sidebar menuItems={menuItemToUse} docType={menuItemToUse.length === 1 ? menuItemToUse[0].name : "main"} mainDocs={!pathname.startsWith('/documentation/')}/>
       <>
         {children}
       </>

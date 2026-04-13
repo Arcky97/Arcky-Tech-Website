@@ -1,1 +1,18 @@
 ## Import Berry Plants
+
+To Import one or more Berry Plants into the Berry Plant Page Editor, your data must be provided in a **TSV file**.
+<br/>
+The easiest way to create such a file is by using **Google Sheets**, which can export directly to the required TSV format.
+<br/>
+You can refer to the following example to see how the file should be structured:
+<br/>
+[TSV Berry Plants Example](https://drive.google.com/file/d/1eT6ylkMAlfq_BmMmukd9Wf5qMXLxgGX_/view?usp=sharing)
+<br/>
+Each Berry Plant entry must contain the following required parameters:
+
+- **ID** 
+- **hoursPerStage**
+- **dryingPerHour**
+- **yield**
+
+If any of these fields are missing, the editor will skip that entry and report wich required values are not present.

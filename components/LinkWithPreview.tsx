@@ -167,7 +167,7 @@ export default function LinkWithPreview({
       </span>
 
       {preview && (
-        <div
+        <span
           ref={tooltipRef}
           className={`fixed z-9999 bg-[#1e1e1e] border border-gray-700 text-white text-sm rounded-xl px-4 py-3 shadow-lg transition-all duration-200 ease-in-out 
             ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
@@ -183,7 +183,7 @@ export default function LinkWithPreview({
           {preview}
 
           {/* Arrow */}
-          <div
+          <span
             className={`absolute w-3 h-3 bg-[#1e1e1e] border border-gray-700 rotate-45 ${
               tooltip.position === "bottom"
                 ? "-top-1.5 border-b-0 border-r-0"
@@ -191,7 +191,7 @@ export default function LinkWithPreview({
             }`}
             style={{ left: tooltip.arrowLeft }}
           />
-        </div>
+        </span>
       )}
 
       {/* Hidden measurer */}
