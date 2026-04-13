@@ -86,7 +86,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Bl: ({children}) => (
       <TC color="blue-400">{children}</TC>
     ),
-    Gn: ({children}) => (
+    Gr: ({children}) => (
       <TC color="green-500">{children}</TC>
     ),
     Rd: ({children}) => (
@@ -95,7 +95,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Gy: ({children}) => (
       <TC color="gray-300">{children}</TC> 
     ),
-    Ye: ({children}) => (
+    Yl: ({children}) => (
       <TC color="yellow-400">{children}</TC>
     ),
     Or: ({children}) => (
