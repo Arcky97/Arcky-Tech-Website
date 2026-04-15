@@ -367,7 +367,6 @@ body.lock-scrollbar {
   color: white;
   background-color: #1e2939;
   transition: all 0.3s ease-in-out;
-  margin-bottom: 16px;
   display: flex;
 }
 

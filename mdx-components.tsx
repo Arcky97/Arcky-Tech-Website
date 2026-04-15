@@ -17,8 +17,11 @@ import { SettingsVersions as SetVer } from "./components/documentations/Settings
 import { DocsVersionBlock as VerBlock } from "./components/documentations/DocsVersionBlock";
 import React from "react";
 import { DocsInputText as InputText } from "./components/documentations/docInputs/DocsInputText";
+import { DocsInputNumber as InputNumber } from "./components/documentations/docInputs/DocsInputNumber"
 import { DocsInputSelect as InputSelect } from "./components/documentations/docInputs/DocsInputSelect";
+import { DocsInputMultiSelect as InputMultiSelect } from "./components/documentations/docInputs/DocsInputMultiSelect";
 import { DocsInputToggle as InputToggle } from "./components/documentations/docInputs/DocsInputToggle"
+import { DocsInputTextArea as InputTextArea } from "./components/documentations/docInputs/DocsInputTextArea";
 
 function wrapWithKeys(children: React.ReactNode) {
   return React.Children.map(children, (child, i) => {
@@ -122,8 +125,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     SetVer,
     VerBlock,
     InputText,
+    InputNumber,
     InputSelect,
+    InputMultiSelect,
     InputToggle,
+    InputTextArea,
     ...components
   }
 }

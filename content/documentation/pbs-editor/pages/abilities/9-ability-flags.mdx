@@ -1,7 +1,14 @@
 ## Flags
 
-### Overview
-
+<InputMultiSelect
+  label="Flags:"
+  maxWidth={500}
+  initValue="FasterEggHatching"
+  placeholder="Select Flags"
+  options={[
+    { label: "FasterEggHatching",  value: "FasterEggHatching" }
+  ]}
+/>
 The Flags field is a <Gr>multi-select dropdown</Gr>, allowing you to assign multiple values to an Ability at the same time.
 <br/>
 All selected flags are stored in the PBS file as a <Yl>comma-separated list</Yl>, ensuring compatibility with the underlying data format.
