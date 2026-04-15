@@ -16,6 +16,8 @@ import ColorButton from "./components/ColorButton";
 import { SettingsVersions as SetVer } from "./components/documentations/SettingsVersions";
 import { DocsVersionBlock as VerBlock } from "./components/documentations/DocsVersionBlock";
 import React from "react";
+import { DocsInputText as InputText } from "./components/documentations/docInputs/DocsInputText";
+import { DocsInputSelect as InputSelect } from "./components/documentations/docInputs/DocsInputSelect";
 
 function wrapWithKeys(children: React.ReactNode) {
   return React.Children.map(children, (child, i) => {
@@ -118,6 +120,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ColorButton,
     SetVer,
     VerBlock,
+    InputText,
+    InputSelect,
     ...components
   }
 }

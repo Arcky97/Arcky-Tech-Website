@@ -476,6 +476,54 @@ export const pbsEditorMenu = {
               text: "ID"
             },
             {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#type",
+              text: "Type"
+            },
+            {
+              path: "#category",
+              text: "Category"
+            },
+            {
+              path: "#power",
+              text: "Power"
+            },
+            {
+              path: "#accuracy",
+              text: "Accuracy"
+            },
+            {
+              path: "#total-pp",
+              text: "Total PP"
+            },
+            {
+              path: "#target",
+              text: "Target"
+            },
+            {
+              path: "#priority",
+              text: "Priority"
+            },
+            {
+              path: "#function-code",
+              text: "Function Code"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#effect-chance",
+              text: "Effect Chance"
+            },
+            {
+              path: "#description",
+              text: "Description"
+            },
+            {
               path: "#other-parameters",
               text: "Other Parameters"
             },
@@ -518,6 +566,134 @@ export const pbsEditorMenu = {
               text: "ID"
             },
             {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#form-name",
+              text: "Form Name"
+            },
+            {
+              path: "#types",
+              text: "Types"
+            },
+            {
+              path: "#base-stats",
+              text: "Base Stats"
+            },
+            {
+              path: "#gender-ratio",
+              text: "Gender Ratio"
+            },
+            {
+              path: "#growth-rate",
+              text: "Growth Rate"
+            },
+            {
+              path: "#base-exp",
+              text: "Base Exp"
+            },
+            {
+              path: "#evs",
+              text: "EVs"
+            },
+            {
+              path: "#catch-rate",
+              text: "Catch Rate"
+            },
+            {
+              path: "#happiness",
+              text: "Happiness"
+            },
+            {
+              path: "#abilities",
+              text: "Abilities"
+            },
+            {
+              path: "#hidden-abilities",
+              text: "Hidden Abilities"
+            },
+            {
+              path: "#moves",
+              text: "Moves"
+            },
+            {
+              path: "#tutor-moves",
+              text: "Tutor Moves"
+            },
+            {
+              path: "#egg-moves",
+              text: "Egg Moves"
+            },
+            {
+              path: "#egg-groups",
+              text: "Egg Groups"
+            },
+            {
+              path: "#hatch-steps",
+              text: "Hatch Steps"
+            },
+            {
+              path: "#incense",
+              text: "Incense"
+            },
+            {
+              path: "#offspring",
+              text: "Offspring"
+            },
+            {
+              path: "#height",
+              text: "Height"
+            },
+            {
+              path: "#weight",
+              text: "Weight"
+            },
+            {
+              path: "#color",
+              text: "Color"
+            },
+            {
+              path: "#shape",
+              text: "Shape"
+            },
+            {
+              path: "#habitat",
+              text: "Habitat"
+            },
+            {
+              path: "#category",
+              text: "Category"
+            },
+            {
+              path: "#pokedex",
+              text: "Pokedex"
+            },
+            {
+              path: "#generation",
+              text: "Generation"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#wild-items-common",
+              text: "Wild Items Common"
+            },
+            {
+              path: "#wild-items-uncommon",
+              text: "Wild Items Uncommon"
+            },
+            {
+              path: "#wild-items-rare",
+              text: "Wild Items Rare"
+            },
+            {
+              path: "#evolutions",
+              text: "Evolutions"
+            },
+            {
               path: "#other-parameters",
               text: "Other Parameters"
             },
@@ -556,8 +732,156 @@ export const pbsEditorMenu = {
               text: "Pokémon Form Selection"
             },
             {
-              path: "#id",
-              text: "ID"
+              path: "#id-and-form",
+              text: "ID and Form"
+            },
+            {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#form-name",
+              text: "Form Name"
+            },
+            {
+              path: "#pokedex-form",
+              text: "Pokedex Form"
+            },
+            {
+              path: "#types",
+              text: "Types"
+            },
+            {
+              path: "#base-stats",
+              text: "Base Stats"
+            },
+            {
+              path: "#gender-ratio",
+              text: "Gender Ratio"
+            },
+            {
+              path: "#growth-rate",
+              text: "Growth Rate"
+            },
+            {
+              path: "#base-exp",
+              text: "Base Exp"
+            },
+            {
+              path: "#evs",
+              text: "EVs"
+            },
+            {
+              path: "#catch-rate",
+              text: "Catch Rate"
+            },
+            {
+              path: "#happiness",
+              text: "Happiness"
+            },
+            {
+              path: "#abilities",
+              text: "Abilities"
+            },
+            {
+              path: "#hidden-abilities",
+              text: "Hidden Abilities"
+            },
+            {
+              path: "#moves",
+              text: "Moves"
+            },
+            {
+              path: "#tutor-moves",
+              text: "Tutor Moves"
+            },
+            {
+              path: "#egg-moves",
+              text: "Egg Moves"
+            },
+            {
+              path: "#egg-groups",
+              text: "Egg Groups"
+            },
+            {
+              path: "#hatch-steps",
+              text: "Hatch Steps"
+            },
+            {
+              path: "#incense",
+              text: "Incense"
+            },
+            {
+              path: "#offspring",
+              text: "Offspring"
+            },
+            {
+              path: "#height",
+              text: "Height"
+            },
+            {
+              path: "#weight",
+              text: "Weight"
+            },
+            {
+              path: "#color",
+              text: "Color"
+            },
+            {
+              path: "#shape",
+              text: "Shape"
+            },
+            {
+              path: "#habitat",
+              text: "Habitat"
+            },
+            {
+              path: "#category",
+              text: "Category"
+            },
+            {
+              path: "#pokedex",
+              text: "Pokedex"
+            },
+            {
+              path: "#generation",
+              text: "Generation"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#wild-items-common",
+              text: "Wild Items Common"
+            },
+            {
+              path: "#wild-items-uncommon",
+              text: "Wild Items Uncommon"
+            },
+            {
+              path: "#wild-items-rare",
+              text: "Wild Items Rare"
+            },
+            {
+              path: "#evolutions",
+              text: "Evolutions"
+            },
+            {
+              path: "#mega-stone",
+              text: "Mega Stone"
+            },
+            {
+              path: "#mega-move",
+              text: "Mega Move"
+            },
+            {
+              path: "#mega-message",
+              text: "Mega Message"
+            },
+            {
+              path: "#unmega-form",
+              text: "Unmega Form"
             },
             {
               path: "#other-parameters",
@@ -612,7 +936,6 @@ export const pbsEditorMenu = {
             {
               path: "points",
               text: "Points",
-              noPage: true,
               subItems: [
                 {
                   path: "#overview",
@@ -721,6 +1044,42 @@ export const pbsEditorMenu = {
                 {
                   path: "#shadow",
                   text: "Shadow"
+                },
+                {
+                  path: "#moves",
+                  text: "Moves"
+                },
+                {
+                  path: "#ability",
+                  text: "Ability"
+                },
+                {
+                  path: "#ability-index",
+                  text: "Ability Index"
+                },
+                {
+                  path: "#item",
+                  text: "Item"
+                },
+                {
+                  path: "#nature",
+                  text: "Nature"
+                },
+                {
+                  path: "#ivs",
+                  text: "IVs"
+                },
+                {
+                  path: "#evs",
+                  text: "EVs"
+                },
+                {
+                  path: "#happiness",
+                  text: "Happiness"
+                },
+                {
+                  path: "#ball",
+                  text: "Ball"
                 }
               ]
             },
@@ -767,6 +1126,38 @@ export const pbsEditorMenu = {
               text: "ID"
             },
             {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#gender",
+              text: "Gender"
+            },
+            {
+              path: "#base-money",
+              text: "Base Money"
+            },
+            {
+              path: "#skill-level",
+              text: "Skill Level"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#intro-bgm",
+              text: "Intro BGM"
+            },
+            {
+              path: "#battle-bgm",
+              text: "Battle BGM"
+            },
+            {
+              path: "#vitory-bgm",
+              text: "Victory BGM"
+            },
+            {
               path: "#other-parameters",
               text: "Other Parameters"
             },
@@ -807,6 +1198,38 @@ export const pbsEditorMenu = {
             {
               path: "#id",
               text: "ID"
+            },
+            {
+              path: "#name",
+              text: "Name"
+            },
+            {
+              path: "#icon-position",
+              text: "Icon Position"
+            },
+            {
+              path: "#is-special-type",
+              text: "Is Special Type"
+            },
+            {
+              path: "#is-pseudo-type",
+              text: "Is Pseudo Type"
+            },
+            {
+              path: "#flags",
+              text: "Flags"
+            },
+            {
+              path: "#weaknesses",
+              text: "Weaknesses"
+            },
+            {
+              path: "#resistances",
+              text: "Resistances"
+            },
+            {
+              path: "#immunities",
+              text: "Immunities"
             },
             {
               path: "#other-parameters",

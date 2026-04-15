@@ -115,13 +115,13 @@ export default function Sidebar({ menuItems, docType, mainDocs }: { menuItems: M
   return (
     <nav className="flex min-h-screen transition-all duration-300 ease-in-out">
       {/* Sidebar */}
-      <div
+      <div id="sidebar"
         className={`border-r border-y rounded-r-lg border-gray-700 top-0 mt-12 fixed left-0 z-51 bg-gray-800 text-white flex flex-col transition-all duration-300 ease-in-out ${
           isSidebarVisible ? "translate-x-0 opacity-100" : "-translate-x-full"
         } overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-200`}
         style={{ height: `calc(100vh - 47px)` }}
       >
-        <div id="sidebar" className="flex-1 pt-4 pb-16">
+        <div className="flex-1 pt-4 pb-16">
           {menuItems.map((item, index) => (
             <SidebarItem
               key={`${item.path}-${index}`}
