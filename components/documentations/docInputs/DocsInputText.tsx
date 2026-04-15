@@ -1,12 +1,14 @@
-export const DocsInputText = ({label, value, width}: {label: string, value: string, width: number}) => {
+import { DocInputType } from "@/types/docInputType"
+
+export const DocsInputText = ({label, value, width}: DocInputType) => {
   return (
-    <div className="mt-4">
+    <div className="mt-4 text-left border rounded-lg border-gray-500/50" style={{ width: `${width * 4}px` }}>
       <label className="label-box">{label}</label>
       <input
         type="text"
         value={value}
         readOnly
-        className={`content-box-w${width} mb-4 flex items-left`}
+        className={`content-box-w${width}`}
       />
     </div>
   )

@@ -1,9 +1,15 @@
-export const DocsInputTextArea =(value: string, width: string) => {
+import { DocInputType } from "@/types/docInputType"
+
+export const DocsInputTextArea = ({label, value, width}: DocInputType) => {
   return (
-    <textarea
-      value={value}
-      readOnly
-      className={`content-box-w${width || 50} min-h-18 my-4 flex items-left`}
-    />
+    <div className="mt-4 text-left border rounded-lg border-gray-500/50">
+      <label className="label-box">{label}</label>
+      <textarea
+        value={value}
+        readOnly
+        className={`content-box-w${width || 50} min-h-18`}
+      />
+    </div>
+
   )
 }

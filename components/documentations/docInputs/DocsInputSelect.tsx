@@ -1,12 +1,6 @@
 "use client"
 import Select from "react-select";
-import clsx from "clsx";
 import { selectStyles } from "@/lib/reactSelectStyles";
-
-type Option = {
-  value: string;
-  label: string;
-};
 
 interface InputSelectProps {
   label: string,
@@ -14,31 +8,24 @@ interface InputSelectProps {
   initValue: string,
   initLabel?: string,
   placeholder: string,
-  handleChange?: (option: string) => void,
   options: readonly ({ value: string; label: string; })[],
-  isDisabled?: boolean
   isClearable?: boolean
 }
 
-export const DocsInputSelect = ({label, width, initValue, initLabel, placeholder, handleChange, options, isDisabled, isClearable }: InputSelectProps) => {
+export const DocsInputSelect = ({label, width, initValue, initLabel, placeholder, options, isClearable }: InputSelectProps) => {
   return (
-    <div className={clsx("my-4", width ? `w-62.5` : "")}>
-      <label className="label-box">{label}</label>
+    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50" style={{ width }}>
+      <span className="label-box p-2">{label}</span>
       <Select
-        value={initValue
-          ? { value: initValue, label: initLabel || initValue }
-          : null
-        }
-        //onChange={(option: Option) => handleChange(option?.value)}
+        id="select"
+        value={{ value: initValue, label: initLabel || initValue }}
         options={options}
         placeholder={placeholder}
         isSearchable
         isClearable={isClearable}
+        menuPortalTarget={window.document.body}
         styles={selectStyles}
-        isDisabled={isDisabled}
-        menuPortalTarget={document.body}
         menuPlacement="auto"
-        menuShouldScrollIntoView={false}
       />
     </div>
   )

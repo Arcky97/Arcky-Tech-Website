@@ -18,6 +18,7 @@ import { DocsVersionBlock as VerBlock } from "./components/documentations/DocsVe
 import React from "react";
 import { DocsInputText as InputText } from "./components/documentations/docInputs/DocsInputText";
 import { DocsInputSelect as InputSelect } from "./components/documentations/docInputs/DocsInputSelect";
+import { DocsInputToggle as InputToggle } from "./components/documentations/docInputs/DocsInputToggle"
 
 function wrapWithKeys(children: React.ReactNode) {
   return React.Children.map(children, (child, i) => {
@@ -122,6 +123,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     VerBlock,
     InputText,
     InputSelect,
+    InputToggle,
     ...components
   }
 }

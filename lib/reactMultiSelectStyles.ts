@@ -1,6 +1,6 @@
 import { StylesConfig } from "react-select";
 
-export const selectStyles: StylesConfig = {
+export const multiSelectStyles: StylesConfig = {
   control: (base, state) => ({
     ...base,
     backgroundColor: state.isDisabled ? "#364153" : "#1e2939",
@@ -25,7 +25,7 @@ export const selectStyles: StylesConfig = {
   }),
   menuPortal: (base) => ({
     ...base,
-    zIndex: 25
+    zIndex: 75
   }),
   option: (base, state) => ({
     ...base,
