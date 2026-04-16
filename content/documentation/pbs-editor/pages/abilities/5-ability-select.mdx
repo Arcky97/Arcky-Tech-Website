@@ -5,14 +5,9 @@
   width={250} 
   initValue="STENCH" 
   placeholder="Select Ability" 
-  options={[
-    { label: "STENCH", value: "STENCH" },
-    { label: "DRIZZLE", value: "DRIZZLE" },
-    { label: "SPEEDBOOST", value: "SPEEDBOOST" },
-    { label: "BATTLEARMOR", value: "BATTLEARMOR" },
-    { label: "STURDY", value: "STURDY" }
-  ]} 
-  isClearable={false}
+  options={["STENCH", "DRIZZLE", "SPEEDBOOST", "BATTLEARMOR", "STURDY"]
+    .map(option => ({ label: option, value: option }))
+  }
 />
 This dropdown lists all available <Gr>Ability entries</Gr> for the currently selected file, identified by their ID.
 <br/>

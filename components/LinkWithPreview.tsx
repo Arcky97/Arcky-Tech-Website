@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
@@ -86,7 +85,7 @@ export default function LinkWithPreview({
           );
         });
     }
-  }, [href]);
+  }, [href, title]);
 
   // ✅ Smart positioning
   const updatePosition = () => {

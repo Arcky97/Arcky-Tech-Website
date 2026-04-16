@@ -15,17 +15,14 @@ export const multiSelectStyles: StylesConfig = {
   menu: (base) => ({
     ...base,
     backgroundColor: "#1e2939",
-    width: "100%"
+    width: "100%",
+    zIndex: 100
   }),
   menuList: (base) => ({
     ...base,
     maxHeight: "200px",
     border: "1px solid #1e2939",
     borderRadius: "0.5rem"
-  }),
-  menuPortal: (base) => ({
-    ...base,
-    zIndex: 75
   }),
   option: (base, state) => ({
     ...base,

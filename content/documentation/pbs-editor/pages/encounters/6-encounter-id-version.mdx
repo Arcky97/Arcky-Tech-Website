@@ -1,1 +1,8 @@
 ## ID and Version
+
+<div className='flex space-x-4'>
+  <InputNumber label="ID:" value="002" width={15}/>
+  <InputNumber label="Version:" value="0" width={9}/>
+</div>
+
+The <Or>ID</Or> and optional <Or>Version</Or> servers as the <Gr>internal identifier</Gr> used by the engine to reference an **Encounter** and it's Version. Each **Encounter** must have a <Rd>unique ID</Rd>. Thanks to the Version, you can have more than 1 **Encounter Entry** for a same Game Map.

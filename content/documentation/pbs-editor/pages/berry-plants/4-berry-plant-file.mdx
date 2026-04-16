@@ -1,5 +1,14 @@
 ## File Selection
 
+<InputSelect
+  label="Current Berry Plant PBS File:"
+  width={250}
+  initValue="berry_plants.txt"
+  placeholder="Select File"
+  options={["berry_plants.txt"]
+    .map(file => ({ label: file, value: file }))
+  }
+/>
 This dropdown allows you to choose between all available <Gr>Berry Plant PBS files</Gr> detected in your project.
 <br/>
 The primary file is typically named `berry_plants.txt`, but the editor also supports additional files follwing the format `berry_plants_xxx.txt`.

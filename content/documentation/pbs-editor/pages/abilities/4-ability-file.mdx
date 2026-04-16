@@ -5,11 +5,9 @@
   width={250} 
   initValue="abilities.txt" 
   placeholder="Select File" 
-  options={[
-    { label: "abilities.txt", value: "abilities.txt" }, 
-    { label: "abilities_Gen_9_Pack.txt", value: "abilities_Gen_9_Pack.txt" }
-  ]} 
-  isClearable={false}
+  options={["abilities.txt", "abilities_Gen_9_pack.txt"]
+    .map(file => ({ label: file, value: file }))
+  }
 />
 
 This dropdown allows you to choose between all available <Gr>Ability PBS files</Gr> detected in your project.

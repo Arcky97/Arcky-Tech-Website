@@ -13,21 +13,21 @@ interface InputMultiSelectProps {
 
 export const DocsInputMultiSelect = ({ label, maxWidth, initValue, initLabel, placeholder, options}: InputMultiSelectProps) => {
   return (
-    <div className="my-4 inline-flex text-left border rounded-lg border-gray-500/50" style={{ maxWidth }}>
-      <label className="label-box">{label}</label>
-      <Select
-        value={{ value: initValue, label: initLabel || initValue }}
-        options={options}
-        placeholder={placeholder}
-        isSearchable
-        isMulti
-        isClearable={true}
-        menuPortalTarget={window.document.body}
-        menuPosition="fixed"
-        menuShouldBlockScroll={true}
-        styles={multiSelectStyles}
-        menuPlacement="auto"
-      />
+    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50">
+      <span className="label-box">{label}</span>
+      <div className="inline-flex">
+        <Select
+          value={{ value: initValue, label: initLabel || initValue }}
+          options={options}
+          placeholder={placeholder}
+          isSearchable
+          isMulti
+          isClearable={true}
+          styles={multiSelectStyles}
+          menuPlacement="auto"
+        />
+      </div>  
     </div>
+
   )
 }

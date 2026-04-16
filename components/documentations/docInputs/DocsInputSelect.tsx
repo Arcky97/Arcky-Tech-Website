@@ -12,21 +12,23 @@ interface InputSelectProps {
   isClearable?: boolean
 }
 
-export const DocsInputSelect = ({label, width, initValue, initLabel, placeholder, options, isClearable }: InputSelectProps) => {
+export const DocsInputSelect = ({label, width, initValue, initLabel, placeholder, options, isClearable = false }: InputSelectProps) => {
   return (
-    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50" style={{ width }}>
-      <span className="label-box p-2">{label}</span>
-      <Select
-        id="select"
-        value={{ value: initValue, label: initLabel || initValue }}
-        options={options}
-        placeholder={placeholder}
-        isSearchable
-        isClearable={isClearable}
-        menuPortalTarget={window.document.body}
-        styles={selectStyles}
-        menuPlacement="auto"
-      />
+    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50">
+      <span className="label-box">{label}</span>
+      <div style={{ width }}>
+        <Select
+          id="select"
+          value={{ value: initValue, label: initLabel || initValue }}
+          options={options}
+          placeholder={placeholder}
+          isSearchable
+          isClearable={isClearable}
+          isDisabled={options.length <= 1}
+          styles={selectStyles}
+          menuPlacement="auto"
+        />
+      </div>
     </div>
   )
 }
