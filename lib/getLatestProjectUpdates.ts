@@ -40,9 +40,18 @@ export function getLatestProjectUpdates(): UpdateEntry[] {
         const title = rawContent.match(/^##\s+(.*)$/m)?.[1]?.trim() ?? "Unknown Update";
 
         const excerpt = (() => {
-          const match = rawContent.match(/(### .*?)(?=\### )/s);
+          const match = rawContent.match(/(### .*?)(?=\n### |\Z)/s);
+          if (!match) return "";
 
-          return match ? match[1].trim() : ""
+          const lines = match[1]
+            .split(/\r?\n/)          // split into lines (handles Windows + Unix)
+            .filter(line => line.trim() !== ""); // remove empty lines
+
+          const limited = lines.slice(0, 5); // keep max 5 lines
+
+          const hasMore = lines.length > 5;
+
+          return limited.join("\n") + (hasMore ? "\n..." : "");
         })();
 
         updates.push({
