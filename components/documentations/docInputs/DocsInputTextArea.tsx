@@ -2,7 +2,7 @@ import { DocInputType } from "@/types/docInputType"
 
 export const DocsInputTextArea = ({label, value = "", width, placeholder = ""}: DocInputType) => {
   return (
-    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50">
+    <div className="my-4 p-2 text-left">
       <label className="label-box">{label}</label>
       <textarea
         value={value}

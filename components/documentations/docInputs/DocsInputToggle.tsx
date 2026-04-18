@@ -7,7 +7,7 @@ export const DocsInputToggle = ({label}: { label: string }) => {
   const [state, setState] = useState(true);
 
   return (
-    <div className="items-center justify-between mb-4 p-2 text-left border rounded-lg border-gray-500/50">
+    <div className="items-center justify-between mb-4 p-2 text-left">
       <span className="label-box">{label}</span>
       <button
         className={`relative w-14 h-7 mt-2 flex items-center rounded-full transition-colors duration-300 ease-in-out ${

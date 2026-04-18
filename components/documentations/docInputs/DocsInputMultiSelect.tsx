@@ -13,7 +13,7 @@ interface InputMultiSelectProps {
 
 export const DocsInputMultiSelect = ({ label, maxWidth, initValue, initLabel, placeholder, options}: InputMultiSelectProps) => {
   return (
-    <div className="my-4 p-2 text-left border rounded-lg border-gray-500/50">
+    <div className="my-4 p-2 text-left">
       <span className="label-box">{label}</span>
       <div className="inline-flex">
         <Select
