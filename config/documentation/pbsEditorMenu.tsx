@@ -184,8 +184,8 @@ export const pbsEditorMenu = {
                   text: "Species"
                 },
                 {
-                  path: "#level",
-                  text: "Level"
+                  path: "#level-threshold",
+                  text: "Level Threshold"
                 }
               ]
             },
