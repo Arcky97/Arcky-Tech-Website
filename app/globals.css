@@ -82,6 +82,7 @@
   animation: ScrollToTopFade 0.5s ease-in-out backwards;
 }
 
+/* Scoreboard */
 @keyframes FadeImageIn {
   0% {
     opacity: 0;
